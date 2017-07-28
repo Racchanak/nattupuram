@@ -43,7 +43,7 @@ include('header.php');
                                     Add to cart
                                 </button>
                             </span>
-                            <span><label>Details: </label> 100% Natural Homemade cow ghee. The milk used for ghee preparation taken from our own free range dairy farm - Healthy Cows. We Used traditionalhand churned method. Zero Chemicals & preservatives added. Above all these makes our ghee to have great aroma, texture and flavor. The taste and quality of the ghee is comparabble o our own Grandmother's preparation. Made in small batches every week.</span>
+                            <span><label>Details: </label> 100% Natural Homemade cow ghee. The milk used for ghee preparation taken from our own free range dairy farm - Healthy Cows. We Used traditional hand churned method. Zero Chemicals & preservatives added. Above all these makes our ghee to have great aroma, texture and flavor. The taste and quality of the ghee is comparable to our own Grandmother's preparation. Made in small batches every week.</span>
                         <!--<p><b>Availability:</b> In Stock</p>-->
                         <!--<p><b>Condition:</b> New</p>-->
                         <!--<p><b>Brand:</b> E-SHOPPER</p>-->
