@@ -19,14 +19,14 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title <?php echo ($category=='sesame')?'active':'';?>"><a href="sesame.php">Natural Ghee</a></h4>
+                    <h4 class="panel-title <?php echo ($category=='ghee')?'active':'';?>"><a href="ghee.php">Natural Ghee</a></h4>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <!-- <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title <?php echo ($category=='sesame')?'active':'';?>"><a href="sesame.php">Cashewnut</a></h4>
                 </div>
-            </div>
+            </div> -->
         </div><!--/category-products-->
         <?php if($menu != 'testi') { if($menu != 'prod_det') { ?>
             <div class="brands_products"><!--brands_products-->
@@ -37,22 +37,30 @@
                         <li data-target="#slider-carousel" data-slide-to="1"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <?php for($i=0;$i<len($reviews);$i++) {?>
-                        <div class="item active" style="padding-left: 0px;">
+                        <?php //for($i=0;$i<len($reviews);$i++) {?>
+                        <!-- <div class="item active" style="padding-left: 0px;">
                             <div class="col-sm-12">
-                                <h1 style="margin-top: 0px;"><?php echo $name; ?></h1> <!-- User name -->
-                                <h2><?php echo $city; ?></h2><!-- Product name -->
-                                <p><?php echo $message; ?></p> <!-- 6 lines testimonials 15 words accepting-->
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <!-- <div class="item" style="padding-left: 0px;">
+                                <h1 style="margin-top: 0px;"><?php echo $name; ?></h1>  --><!-- User name -->
+                                <!-- <h2><?php echo $city; ?></h2><!-- Product name --> 
+                                <!-- <p><?php echo $message; ?></p>  6 lines testimonials 15 words accepting -->
+                            <!-- </div>
+                        </div> -->
+                        <?php //} ?>
+                        <div class="item active" style="padding-left: 0px;">
                             <div class="col-sm-12">
                                 <h1 style="margin-top: 0px;">NATTUPURAM</h1>
                                 <h2>Free E-Commerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, <a style="margin-top: 10px;margin-bottom: 50px;float: right;" class="btn btn-default add-to-cart" href="asdsd">Read More</a>
+                                </p>
                             </div>
-                        </div> -->
+                        </div>
+                        <div class="item" style="padding-left: 0px;">
+                            <div class="col-sm-12">
+                                <h1 style="margin-top: 0px;">NATTUPURAM</h1>
+                                <h2>Free E-Commerce Template</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, <a style="margin-top: 10px;margin-bottom: 50px;float: right;" class="btn btn-default add-to-cart" href="asdsd">Read More</a></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

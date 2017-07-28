@@ -1,8 +1,6 @@
 function add_review() {
-	console.log('add_review');
 	var name= $('#rev_name').val();
 	var emailid = $('#rev_email').val();
-	// var mobile = $('#rev_mobile').val();
 	var city = $('#rev_city').val();
 	var msg = $('#rev_msg').val();
 	var valid = 0;
@@ -30,7 +28,7 @@ function add_review() {
 	} else {
 		valid++;
 	}
-	var rev_data = {'name':name,'emailid':emailid,'city':city,'msg':msg}
+	var rev_data = {'name':name,'emailid':emailid,'city':city,'msg':msg};
 	if(valid==4) {
 		$.ajax({
 			url:'function.php?action=reviews',

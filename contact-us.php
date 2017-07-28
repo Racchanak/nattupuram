@@ -1,7 +1,6 @@
 <?php
 $title = 'Contact Us';
 include('header.php');
-include('menu.php');
 ?>
 <div id="contact-page" class="container">
     <div class="bg">

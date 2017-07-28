@@ -2,7 +2,6 @@
 	$title = 'Blog';
 	$menu = 'blog';
 	include('header.php');
-	include('menu.php');
 ?>	
 	<section>
 		<div class="container">

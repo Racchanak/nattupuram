@@ -1,7 +1,6 @@
 <?php
 	$title = 'Checkout';
 	include('header.php');
-	include('menu.php');
 ?>
 	<section id="cart_items">
 		<div class="container">

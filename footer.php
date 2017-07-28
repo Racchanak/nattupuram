@@ -2,10 +2,9 @@
     <div class="footer-top">
         <div class="container">
             <div class="row">
-                <div class="col-sm-2">
-                    <div class="companyinfo">
-                        <h2>Nattupuram</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                <div class="col-sm-6">
+                    <div class="single-widget">
+                        <p>NATTUPURAM with all its innocence, No adulteration, Purity with Virginity, Welcome everyone to create a Healthy World !</p>
                     </div>
                 </div>
                 <!-- <div class="col-sm-7">
@@ -82,65 +81,118 @@
     <div class="footer-widget">
         <div class="container">
             <div class="row">
-                <div class="col-sm-2">
-                    <div class="single-widget">
-                        <h2>Service</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Online Help</a></li>
-                            <li><a href="contact-us.php">Contact Us</a></li>
-                            <li><a href="#">Order Status</a></li>
-                            <li><a href="#">Change Location</a></li>
-                            <li><a href="#">FAQ’s</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- <div class="col-sm-2">
+                <div class="col-sm-12">
+                    <div class="col-sm-4">
                         <div class="single-widget">
-                                <h2>Quock Shop</h2>
-                                <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="#">T-Shirt</a></li>
-                                        <li><a href="#">Mens</a></li>
-                                        <li><a href="#">Womens</a></li>
-                                        <li><a href="#">Gift Cards</a></li>
-                                        <li><a href="#">Shoes</a></li>
-                                </ul>
+                            <h2>Payment options</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">paytm</a></li>
+                                <!-- <li><a href="#">Privecy Policy</a></li>
+                                <li><a href="#">Refund Policy</a></li> -->
+                                <!-- <li><a href="#">Billing System</a></li> -->
+                                <!-- <li><a href="#">Ticket System</a></li> -->
+                            </ul>
                         </div>
-                </div> -->
-                <div class="col-sm-2">
-                    <div class="single-widget">
-                        <h2>Policies</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Terms of Use</a></li>
-                            <li><a href="#">Privecy Policy</a></li>
-                            <li><a href="#">Refund Policy</a></li>
-                            <!-- <li><a href="#">Billing System</a></li> -->
-                            <!-- <li><a href="#">Ticket System</a></li> -->
-                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="single-widget">
+                            <h2>About Shopper</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
+                                    <li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
+                                    <li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Products</a></li>
+                                    <li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
+                                    <li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>
+                                    <li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
+                                    <li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                    <li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-1">                    
+                        <div class="contact-form">
+                            <h2 class="title text-center">Get In Touch</h2>
+                            <div class="status alert alert-success" style="display: none"></div>
+                            <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                                <div class="form-group col-md-6">
+                                    <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                                </div>                        
+                                <div class="form-group col-md-12">
+                                    <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Quock Shop</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Get Your Order<i class="fa fa-phone"></i> +91 9994739036</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="single-widget">
-                        <h2>About Shopper</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Company Information</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Store Location</a></li>
-                            <!-- <li><a href="#">Affillate Program</a></li> -->
-                            <li><a href="#">Copyright</a></li>
-                        </ul>
-                    </div>
+                <div class="col-sm-4">                                
+                    <div class="contact-info">
+                        <h2 class="title text-center">Contact Info</h2>
+                        <address>
+                            <p>M/s,Nexus Agro Enterprises</p>
+                            <p>Sangai Nagar</p>
+                            <p>Reddichavadi</p>
+                            <p>Cuddalore</p>
+                            <p>Pincode:607402</p>
+                            <p>Mobile: 9585006008</p>
+                            <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
+                        </address>  
+                    </div> 
                 </div>
-                <div class="col-sm-3 col-sm-offset-1">
+                <div class="col-sm-4">                                
                     <div class="single-widget">
-                        <h2>About Shopper</h2>
-                        <form action="#" class="searchform">
-                            <input type="text" placeholder="Your email address" />
-                            <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                            <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                        <h2 class="title text-center">Menus </h2>                        
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
+                            <li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
+                            <li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Products</a></li>
+                            <li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
+                            <li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>
+                            <li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
+                            <li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
+                        </ul> 
+                    </div> 
+                </div>
+                <div class="col-sm-4">                                                
+                    <div class="contact-form">
+                        <h2 class="title text-center">Get In Touch</h2>
+                        <div class="status alert alert-success" style="display: none"></div>
+                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                            </div>                        
+                            <div class="form-group col-md-12">
+                                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                            </div>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

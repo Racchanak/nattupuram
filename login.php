@@ -1,7 +1,6 @@
 <?php
 	$title = 'Login';
 	include('header.php');
-	include('menu.php');
 ?>
 	<section id="form"><!--form-->
 		<div class="container">

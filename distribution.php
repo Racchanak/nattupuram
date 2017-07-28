@@ -7,7 +7,7 @@ include('header.php');
     <div class="bg">
         <div class="row">    		
             <div class="col-sm-12">    			   			
-                <h2 class="title text-center">Contact <strong>Us</strong></h2> 
+                <h2 class="title text-center">Distributors Contact Us</h2> 
             </div>			 		
         </div>    	
         <div class="row">  	
@@ -21,55 +21,32 @@ include('header.php');
                         <div class="form-group col-md-6">
                             <input type="email" name="email" class="form-control" required="required" placeholder="Email">
                         </div>
+                        <div class="form-group col-md-6">
+                            <input type="email" name="phoneno" class="form-control" required="required" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" name="city" class="form-control" required="required" placeholder="City">
+                        </div>
                         <div class="form-group col-md-12">
-                            <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
+                            <input type="text" name="address" class="form-control" required="required" placeholder="Your Address">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <select name="product" class="form-control" required="required">
+                                <option value="oil">Oil</option>
+                                <option value="ghee">Ghee</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-12">
                             <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
                         </div>                        
                         <div class="form-group col-md-12">
-                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                            <input type="submit" name="submit" id="distribute" class="btn btn-primary pull-right" value="Submit">
                         </div>
                     </form>
                 </div>
-            </div>
-        <div class="col-sm-6">
-            <div class="social-networks">
-                <h2 class="title text-center">Social Networking</h2>
-                <ul>
-                    <li>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-youtube"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="contact-info">
-                <h2 class="title text-center">Contact Info</h2>
-                <address>
-                    <!--<p>E-Shopper Inc.</p>-->
-                    <p>M/s,Nexus Agro Enterprises</p>
-                    <p>Sangai Nagar</p>
-                    <p>Reddichavadi</p>
-                    <p>Cuddalore</p>
-                    <p>Pincode:607402</p>
-                    <p>Mobile: 9585006008</p>
-                    <!--<p>Fax: 1-714-252-0026</p>-->
-                    <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
-                </address>
-            </div>   
-        </div>			
-    </div>  
-</div>	
+            </div>			
+        </div>  
+    </div>	
 </div><!--/#contact-page-->
 
 <?php

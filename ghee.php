@@ -1,8 +1,8 @@
 <?php
-$title = 'Coconut Oil';
+$title = 'Natural Ghee';
 $menu = 'prod_det';
 $submenu = 'prod_det';
-$category = 'coconut';
+$category = 'ghee';
 include('header.php');
 ?>
 <section>
@@ -15,23 +15,23 @@ include('header.php');
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
-                            <img src="images/product-details/coconut.jpg" alt="" />
+                            <img src="images/product-details/ghee.jpg" alt="" />
                             <!--<h3>ZOOM</h3>-->
                         </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">								
                             <!-- Wrapper for slides -->
                             <div class="col-sm-6 wit56">
-                                <img class="img-responsive" src="images/product-details/coconut.jpg" alt="">
+                                <img class="img-responsive" src="images/product-details/ghee.jpg" alt="">
                             </div>
                             <div class="col-sm-6 wit56">
-                                <img class="img-responsive" src="images/product-details/coconut.jpg" alt="">
+                                <img class="img-responsive" src="images/product-details/ghee.jpg" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <div class="product-information"><!--/product-information-->
+                        <div class="product-information" style="padding-bottom: 12px;padding-left: 25px;padding-top: 29px;"><!--/product-information-->
                             <!-- <img src="images/product-details/new.jpg" class="newarrival" alt="" /> -->
-                            <h2>Mara Chekku Coconut Oil - (Wood/Cold Pressed)</h2>
+                            <h2>Natural Homemade Ghee</h2>
                             <!--<p>ID: MCO-590</p>-->
                             <!--<img src="images/product-details/rating.png" alt="" />-->
                             <span>
@@ -43,7 +43,7 @@ include('header.php');
                                     Add to cart
                                 </button>
                             </span>
-                            <span><label>Details: </label> This natural Coconut Oil extracted by traditional Cold Press method using Mara Chekku / Wooden Ghani. Since there is no Heat generation in this process, Oil is dense and keeps all its own flavor, aroma and nutrients intact.</span>
+                            <span><label>Details: </label> 100% Natural Homemade cow ghee. The milk used for ghee preparation taken from our own free range dairy farm - Healthy Cows. We Used traditionalhand churned method. Zero Chemicals & preservatives added. Above all these makes our ghee to have great aroma, texture and flavor. The taste and quality of the ghee is comparabble o our own Grandmother's preparation. Made in small batches every week.</span>
                         <!--<p><b>Availability:</b> In Stock</p>-->
                         <!--<p><b>Condition:</b> New</p>-->
                         <!--<p><b>Brand:</b> E-SHOPPER</p>-->
@@ -56,7 +56,7 @@ include('header.php');
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
                             <!--<li><a href="#details" data-toggle="tab">Details</a></li>-->
-                            <li class="active"><a href="#companyprofile" data-toggle="tab">Manufacture method</a></li>
+                            <li class="active"><a href="#companyprofile" data-toggle="tab">Features</a></li>
                             <li><a href="#tag" data-toggle="tab">Nutritional Facts</a></li>
                             <li><a href="#character" data-toggle="tab">Characteristics</a></li>
                             <li><a href="#benefit" data-toggle="tab">Major Benefits</a></li>
@@ -74,9 +74,9 @@ include('header.php');
                         <div class="tab-pane fade active in" id="companyprofile" >
                             <div class="col-sm-12" style="margin-left: 20px;">
                                 <ul style="background: #fff;border-bottom: 1px solid #fff;">
-                                    <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">The exceptional quality of Sun dried raw Coconut are placed to Wooden Ghani / Mara Chekku and pressing produce Oil in bottom.</span></p></li> 
-                                    <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">We store these unrefined oil in barrels and keep it in sunlight for 4 days. Once the sediments settle, we filter the oil manually and pack it.</span></p></li>
-                                    <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">There is no Thermal/Refining process and no additives/chemical/preservatives added.</span></p></li>
+                                    <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Good for Health.</span></p></li> 
+                                    <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Hygienically processed.</span></p></li>
+                                    <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Mouth Watering taste.</span></p></li>
                                 </ul>
                             </div>
                         </div>
@@ -85,46 +85,26 @@ include('header.php');
                             <table class="nfacts">
                                 <thead>
                                     <tr>
-                                        <th>Coconut Oil</th>
+                                        <th>Ghee</th>
                                         <th>Result</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td>Fat Content</td>
+                                        <td>98.9%</td>
+                                    </tr>
+                                    <tr>
                                         <td>Energy</td>
-                                        <td>883.83</td>
+                                        <td>920.7kcal</td>
                                     </tr>
                                     <tr>
                                         <td>Protein</td>
-                                        <td>0</td>
+                                        <td>0.15g</td>
                                     </tr>
                                     <tr>
-                                        <td>Cholestrol</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Saturated Fatty Acid</td>
-                                        <td>89.86</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mono Unsaturated</td>
-                                        <td>7.98</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Poly Unsaturated</td>
-                                        <td>1.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trans Fatty acid</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Oryzanol</td>
-                                        <td>BDL* (DL-10.0)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TBHQ (Antioxidant)</td>
-                                        <td>BDL* (DL-10.0)</td>
+                                        <td>Moisture</td>
+                                        <td>Less than 0.2g</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -133,9 +113,7 @@ include('header.php');
                         <div class="tab-pane fade" id="character" >
                             <div class="col-sm-12" style="margin-left: 20px;">
                                 <ul style="background: #fff;border-bottom: 1px solid #fff;">
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Cold pressed sesame oil has white color with authentic Coconut flavor and aroma.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">It has low smoking point & unsuitable for deep frying but suit for cooking at lower temp.</span></p></li>
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">For better shelf life, store the oil in cool dark place away from light using clay utensils.</span></p></li>
+                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Don't refigerate and shelf life is 3 months from manufacturing dae..</span></p></li> 
                                 </ul>
                             </div>
                         </div>
@@ -143,18 +121,13 @@ include('header.php');
                         <div class="tab-pane fade" id="benefit" >
                             <div class="col-sm-12" style="margin-left: 20px;">
                                 <ul style="background: #fff;border-bottom: 1px solid #fff;">
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Prevent Wrinkles, Sagging Skin, Skin dryness and Flaking.</span></p></li>                                     
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Reduces Protein loss in hair and nourishes the hair.</span></p></li>                                     
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Treats Pancreatitis and Alzheimer's disease.</span></p></li>  
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Prevents and effectively cures Candida.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Improve Bone Health.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Helps in Easy Digestion.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Strengthens Immune System.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Prevents diseases affecting Liver and Kidney.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Effective in Handling damaged tissues and infections.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Rich in Lauric acid (a compound found in human breast milk) that fights against harmful pathogens.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Helps to maintain Blood Sugar and Cholesterol.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Best for Kids healthy development.</span></p></li> 
+                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Taking out impurities from our body.</span></p></li>                                     
+                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Stimulates muscle movements, strenghthen the sense organ.</span></p></li>                                     
+                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Rich source of Vitamin A, D and E.</span></p></li>  
+                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Lactose Free & contains no salt.</span></p></li> 
+                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Better Digestion & helps in Hair growth also.</span></p></li> 
+                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Ideal for Cooking, Garnishing and Making Sweets.</span></p></li> 
+                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Good source of energy and used in many diet styles especially in Paleo Diet.</span></p></li> 
                                 </ul>
                             </div>
                         </div>
