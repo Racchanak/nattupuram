@@ -99,13 +99,13 @@
                             <h2>About Shopper</h2>
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
-                                    <li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
-                                    <li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Products</a></li>
-                                    <li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
-                                    <li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>
-                                    <li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
-                                    <li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                    <li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
+                                <li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Products</a></li>
+                                <li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
+                                <li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>
+                                <li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
+                                <li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                <li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
                             </ul>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Quock Shop</h2>
+                            <h2>Quick Shop</h2>
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="#">Get Your Order<i class="fa fa-phone"></i> +91 9994739036</a></li>
                             </ul>
@@ -145,11 +145,12 @@
                     <div class="contact-info">
                         <h2 class="title text-center">Contact Info</h2>
                         <address>
-                            <p>M/s,Nexus Agro Enterprises</p>
-                            <p>Sangai Nagar</p>
+                            <p>Redibro Enterprises</p>
+                            <p>No:7/26, Reddiyar Street</p>
                             <p>Reddichavadi</p>
                             <p>Cuddalore</p>
                             <p>Pincode:607402</p>
+                            <p>Tamil Nadu, India.</p>
                             <p>Mobile: 9585006008</p>
                             <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
                         </address>  
