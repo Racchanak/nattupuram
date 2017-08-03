@@ -7,7 +7,7 @@ include('header.php');
     <div class="bg">
         <div class="row">    		
             <div class="col-sm-12">    			   			
-                <h2 class="title text-center">Distributors Contact Us</h2> 
+                <h2 class="title text-center">For Distribution Opportunity</h2> 
             </div>			 		
         </div>    	
         <div class="row">  	
@@ -22,7 +22,7 @@ include('header.php');
                             <input type="email" name="email" class="form-control" required="required" placeholder="Email">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="email" name="phoneno" class="form-control" required="required" placeholder="Email">
+                            <input type="email" name="phoneno" class="form-control" required="required" placeholder="Phone Number">
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" name="city" class="form-control" required="required" placeholder="City">
@@ -48,7 +48,6 @@ include('header.php');
         </div>  
     </div>	
 </div><!--/#contact-page-->
-
 <?php
 include('footer.php');
 ?>

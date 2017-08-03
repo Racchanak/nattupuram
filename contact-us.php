@@ -5,10 +5,27 @@ include('header.php');
 <div id="contact-page" class="container">
     <div class="bg">
         <div class="row">    		
-            <div class="col-sm-12">    			   			
-                <h2 class="title text-center">Contact <strong>Us</strong></h2>
-                <div id="gmap" class="contact-map">
-                </div>
+            <div class="col-sm-12"> 
+                <div class="col-sm-6">    			   			
+                    <h2 class="title text-center">Contact <strong>Us</strong></h2>
+                    <div id="gmap" class="contact-map">
+                    </div>
+                </div>               
+        <div class="col-sm-6">
+            <div class="contact-info">
+                <h2 class="title text-center">Contact Info</h2>
+                <address>
+                    <p>Redibro Enterprises</p>
+                    <p>No:7/26, Reddiyar Street</p>
+                    <p>Reddichavadi</p>
+                    <p>Cuddalore</p>
+                    <p>Pincode:607402</p>
+                    <p>Tamil Nadu, India.</p>
+                    <p>Mobile: 9585006008</p>
+                    <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
+                </address>
+            </div>   
+        </div>          
             </div>			 		
         </div>    	
         <!--        <div class="row">  	
@@ -54,22 +71,6 @@ include('header.php');
                 </ul>
             </div>
         </div> -->
-        <div class="col-sm-6">
-            <div class="contact-info">
-                <h2 class="title text-center">Contact Info</h2>
-                <address>
-                    <!--<p>E-Shopper Inc.</p>-->
-                    <p>M/s,Nexus Agro Enterprises</p>
-                    <p>7/26, Reddiyar Street</p>
-                    <p>Reddichavadi</p>
-                    <p>Cuddalore</p>
-                    <p>Pincode:607402</p>
-                    <p>Mobile: +91 9994739036</p>
-                    <!--<p>Fax: 1-714-252-0026</p>-->
-                    <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
-                </address>
-            </div>   
-        </div>			
     </div>  
 </div>	
 </div><!--/#contact-page-->

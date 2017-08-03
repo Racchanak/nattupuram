@@ -9,12 +9,12 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title <?php echo ($category=='sesame')?'active':'';?>"><a href="sesame.php">Sesame Oil</a></h4>
+                    <h4 class="panel-title <?php echo ($category=='sesame')?'active':'';?>"><a href="sesame.php">Sesame Oil(Cold Press)</a></h4>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title <?php echo ($category=='coconut')?'active':'';?>"><a href="coconut.php">Coconut Oil</a></h4>
+                    <h4 class="panel-title <?php echo ($category=='coconut')?'active':'';?>"><a href="coconut.php">Coconut Oil(Cold Press)</a></h4>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -28,7 +28,7 @@
                 </div>
             </div> -->
         </div><!--/category-products-->
-        <?php if($menu != 'testi') { if($menu != 'prod_det') { ?>
+        <?php if($menu != 'prod_det') { ?>
             <div class="brands_products"><!--brands_products-->
                 <h2>Reviews</h2>
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
@@ -68,9 +68,19 @@
             <div class="brands_products user_info"><!--brands_products-->
                 <h2 class="reh2">Write Your Review</h2>
                 <form id="reviews">
-                    <h1 style="margin-top: 0px;font-size: 17px;font-weight: 700;">Product : <?= $title; ?></h1>
                     <div><input class="fom-div" style="height: 40px !important;" name="name" id="rev_name" type="text" placeholder="Name" /></div>
                     <div><input class="fom-div" style="height: 40px !important;" name="email-id" id="rev_email" type="text" placeholder="Email Id" /></div>
+                    <?php if($menu == 'testi') { ?>
+                        <h1 style="margin-top: 0px;font-size: 17px;font-weight: 700;">Product : <?= $title; ?></h1>
+                    <? } else { ?>
+                        <select id="option" name="option">
+                            <option value="">Select</option>
+                            <option value="groundnut oil">Groundnut Oil(Cold Press)</option>
+                            <option value="sesame oil">Sesame Oil(Cold Press)</option>
+                            <option value="coconut oil">Coconut Oil(Cold Press)</option>
+                            <option value="natural ghee">Natural Ghee</option>
+                        </select>
+                    <?php } ?>
                     <!-- <div><input class="fom-div" style="height: 40px !important;" name="mobile-no" id="rev_mobile" type="text" placeholder="Mobile No" /></div> -->
                     <div><input class="fom-div" style="height: 40px !important;" name="city" id="rev_city" type="text" placeholder="City" /></div>
                     <div><textarea class="fom-div" id="rev_msg" name="typeurmsg" placeholder="Type Your Message  " ></textarea></div>
@@ -78,7 +88,7 @@
                     <div><button type="button" class="btn btn-default pull-right" onclick="add_review();">Submit</button></div>
                 </form>
             </div>
-        <?php } } ?>
+        <?php } ?>
     <!-- </div>  brands_products 
     <div class="price-range">  price-range 
         <h2>Price Range</h2>
