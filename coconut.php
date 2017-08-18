@@ -15,7 +15,7 @@ include('header.php');
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
-                            <img src="images/product-details/coconut.jpg" alt="" />
+                            <img id="product_img" src="images/product-details/coconut.jpg" alt="" />
                             <!--<h3>ZOOM</h3>-->
                         </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">								

@@ -2052,7 +2052,7 @@ h2.title {
 /*************************
 *******Blog CSS******
 **************************/
-.blog-post-area h2, .blog-post-area p {  
+.single-blog-post h2, .single-blog-post p {  
   text-align: justify;
 }
 
@@ -2606,4 +2606,7 @@ h2.title {
 }
 .error-review {
   color: red;
+}
+.success-review {
+  color: green;  
 }

@@ -23,9 +23,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-<?php //include('function.php');
- // $reviews = reviews_data();
-// print_r($reviews); ?>
+<?php include('function.php');
+ $reviews = reviews_data();
+ ?>
 <body>
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
