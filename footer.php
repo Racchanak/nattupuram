@@ -1,41 +1,40 @@
-<footer id="footer"><!--Footer-->
-    <div class="footer-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="companyinfo">
-                        <h3 style="text-align: center;">Get NATTUPURAM !</br>Stay Hale & Healthy Forever !!!</h3>
-                        <address>
-                        <p>Don't wait for a foreigner's approval to say, What We have already in our culture is the best.</p>
-                        <p>NATTUPURAM with all its innocence, No adulteration, Purity with Virginity welcome everyone to create Healthy India !</p>
-                        <p><strong>"Healthy Products</strong> from a <strong>Heathy Farm</strong> to make <strong>Healthy India"</strong></p>
-                        <p>"மண்வாசம் ; பாரம்பரியம்</p>
-                        <p>மணக்கும் பதார்த்தம்"</p>
-                        <p>- நாட்டுப்புறம்</p>
-                        </address>
-                    </div>
+<div class="footer-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="companyinfo natu-info">
+                    <h3 style="text-align: center;">Get NATTUPURAM !</br>Stay Hale & Healthy Forever !!!</h3>
+                    <address>
+                    <p>Don't wait for a foreigner's approval to say, What We have already in our culture is the best.</p>
+                    <p>NATTUPURAM with all its innocence, No adulteration, Purity with Virginity welcome everyone to create Healthy India !</p>
+                    <p><strong>"Healthy Products</strong> from a <strong>Heathy Farm</strong> to make <strong>Healthy India"</strong></p>
+                    <p>"மண்வாசம் ; பாரம்பரியம்</p>
+                    <p>மணக்கும் பதார்த்தம்"</p>
+                    <p>- நாட்டுப்புறம்</p>
+                    </address>
                 </div>
-                <div class="col-sm-4">
-                    <div class="companyinfo">
-                        <img src="images/fssai.jpg" alt="" class="img-responsive"/>
-                    </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="companyinfo">
+                    <img src="images/fssai.jpg" alt="" class="img-responsive"/>
                 </div>
-                <div class="col-sm-4">
-                    <div class="companyinfo">
-                        <h3>Payment Option</h3>
-                        <address>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        </address>
-                    </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="companyinfo pay-info">
+                    <h3>Payment Option</h3>
+                    <address>
+                    <p>UPI</p>
+                    <p>Cards</p>
+                    <p>EMI</p>
+                    <p>Netbanking</p>
+                    <p>Wallets</p>
+                    </address>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+<footer id="footer"><!--Footer-->
     <div class="footer-widget">
         <div class="container">
             <div class="row">
@@ -94,17 +93,23 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom" style="background: none repeat scroll 0 0 rgba(29, 111, 24, 0.88);">
+        <div class="container" style="width: 850px;">
+            <div class="row">
                 <div class="col-sm-12">   
-                    <div class="footer-menu">
+                    <div class="nav-pills navfooter">
                         <ul class="nav navbar-nav">
                             <li><a href="testimonials.php" class="<?= ($menu == 'feedback') ? 'active' : ''; ?>"> Feedback</a></li>
                             <li><a href="team.php" class="<?= ($menu == 'team') ? 'active' : ''; ?>"> Nattupuram Team</a></li>
                             <li><a href="privacypolicy.php" class="<?= ($menu == 'policy') ? 'active' : ''; ?>"> Privacy Policy</a></li>
                             <li><a href="shippingrefund.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Shipping and Delivery Policy</a></li>
                             <li><a href="termscondi.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Terms and Condition</a></li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li> 
-                            <li><a href="#"><i class="fa fa-envelope"></i> care@nattupuram.com</a></li>
-                            <li><a href="#">Get Your Order<i class="fa fa-phone"></i> +91 9994739036</a></li>
+                            <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li>  -->
+                            <!-- <li><a href="#"><i class="fa fa-envelope"></i> care@nattupuram.com</a></li> -->
+                            <!-- <li><a href="#">Get Your Order<i class="fa fa-phone"></i> +91 9994739036</a></li> -->
                         </ul>
                     </div>
                 </div>

@@ -35,13 +35,26 @@ include('header.php');
                             <!--<p>ID: MCO-590</p>-->
                             <!--<img src="images/product-details/rating.png" alt="" />-->
                             <span>
-                                <span>Rs. 260</span>
-                                <label>Quantity:</label>
-                                <input type="text" name="quantity" />
-                                <button type="button" class="btn btn-fefault cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
-                                </button>
+                                <div class="col-sm-6">
+                                    <select name="volume" class="vol_qnty">
+                                        <option value="onel">1 Liter</option>
+                                        <option value="twofyml">250 ML</option>
+                                    </select>
+                                </div>                           
+                                <div class="col-sm-6">
+                                    <span class="onel_amt">Rs. 850</span>
+                                    <span class="twofyml_amt" style="display: none;">Rs. 250</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Quantity:</label>
+                                    <input type="text" name="quantity" />
+                                </div>                                
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-fefault cart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Add to cart
+                                    </button>
+                                </div>
                             </span>
                             <span><label>Details: </label> 100% Natural Homemade cow ghee. The milk used for ghee preparation taken from our own free range dairy farm - Healthy Cows. We Used traditional hand churned method. Zero Chemicals & preservatives added. Above all these makes our ghee to have great aroma, texture and flavor. The taste and quality of the ghee is comparable to our own Grandmother's preparation. Made in small batches every week.</span>
                         <!--<p><b>Availability:</b> In Stock</p>-->
@@ -138,13 +151,13 @@ include('header.php');
                                     <div class="single-blog-post">
                                         <h3>
                                             <span style="margin-left: -33px;margin-right: 47%;">Girls Pink T Shirt arrived in store</span>
-                                                <span style="float: right;color: #FE980F;padding-right: 35px;">
+                                                <!-- <span style="float: right;color: #FE980F;padding-right: 35px;">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star-half-o"></i>
-                                                </span>
+                                                </span> -->
                                         </h3>
                                         <div class="col-sm-2">
                                             <a href="javascript:;">
@@ -160,13 +173,13 @@ include('header.php');
                                     <div class="single-blog-post">
                                         <h3>
                                             <span style="margin-left: -33px;margin-right: 47%;">Girls Pink T Shirt arrived in store</span>
-                                                <span style="float: right;color: #FE980F;padding-right: 35px;">
+                                                <!-- <span style="float: right;color: #FE980F;padding-right: 35px;">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star-half-o"></i>
-                                                </span>
+                                                </span> -->
                                         </h3>
                                         <div class="col-sm-2">
                                             <a href="javascript:;">
@@ -182,13 +195,13 @@ include('header.php');
                                     <div class="single-blog-post">
                                         <h3>
                                             <span style="margin-left: -33px;margin-right: 47%;">Girls Pink T Shirt arrived in store</span>
-                                                <span style="float: right;color: #FE980F;padding-right: 35px;">
+                                                <!-- <span style="float: right;color: #FE980F;padding-right: 35px;">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star-half-o"></i>
-                                                </span>
+                                                </span> -->
                                         </h3>
                                         <div class="col-sm-2">
                                             <a href="javascript:;">
@@ -303,3 +316,14 @@ include('header.php');
 <?php
 include('footer.php');
 ?>
+<script type="text/javascript">
+    $('.vol_qnty').change(function(){
+        if($('.vol_qnty').val()=='twofyml'){
+            $('.twofyml_amt').css('display','block');
+            $('.onel_amt').css('display','none');
+        } else {
+            $('.twofyml_amt').css('display','none');  
+            $('.onel_amt').css('display','block');
+        }
+    });
+</script>

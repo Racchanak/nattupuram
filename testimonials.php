@@ -20,7 +20,7 @@
 									<a href="javascript:;">
 										<img src="images/blog/blog-one.jpg" alt="">
 									</a>
-									<div class="post-meta">
+									<!-- <div class="post-meta">
 										<span style="float: left;">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -28,7 +28,7 @@
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star-half-o"></i>
 										</span>
-									</div>
+									</div> -->
 								</div>								
 								<div class="col-sm-9">
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
@@ -42,7 +42,7 @@
 									<a href="javascript:;">
 										<img src="images/blog/blog-one.jpg" alt="">
 									</a>
-									<div class="post-meta">
+									<!-- <div class="post-meta">
 										<span style="float: left;">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -50,7 +50,7 @@
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star-half-o"></i>
 										</span>
-									</div>
+									</div> -->
 								</div>								
 								<div class="col-sm-9">
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -65,7 +65,7 @@
 									<a href="javascript:;">
 										<img src="images/blog/blog-one.jpg" alt="">
 									</a>
-									<div class="post-meta">
+									<!-- <div class="post-meta">
 										<span style="float: left;">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -73,7 +73,7 @@
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star-half-o"></i>
 										</span>
-									</div>
+									</div> -->
 								</div>								
 								<div class="col-sm-9">
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>

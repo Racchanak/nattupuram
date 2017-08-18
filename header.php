@@ -35,14 +35,17 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>	
-								<li><a href="#"><i class="fa fa-envelope"></i> care@nattupuram.com</a></li>
+								<li><a href="#" mail="care@nattupuram.com"><i class="fa fa-envelope"></i></a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> +91 9994739036</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<div class="social-icons pull-right">
-							<ul class="nav navbar-nav">							
-								<li><a href="#">Get Your Order<i class="fa fa-phone"></i> +91 9994739036</a></li>
+						<div class="contactinfo">
+							<ul class="nav nav-pills contact-pills pull-right">			
+								<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li><li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>	
+								<li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<!-- <li><a href="#">Get Your Order<i class="fa fa-phone"></i> +91 9994739036</a></li> -->
 								<!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
@@ -86,17 +89,16 @@
 						</div> -->
 					</div>
 					<div class="col-sm-9">
-						<div class="shop-menu">
+						<div class="header-menu">
 							<ul class="nav navbar-nav"><!-- 
 								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
 								<li><a href="checkout.php"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
 								<li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
-								<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
-								<li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Products</a></li>
+								<!-- <li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li> -->
+								<li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Shop Online</a></li>
 								<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
-								<li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>
+								<!-- <li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li> -->
 								<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
-								<li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
 							</ul>
 						</div>

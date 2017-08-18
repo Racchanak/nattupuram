@@ -43,7 +43,7 @@
 								<strong>"Spend on Oil and Stay Health"</strong> than being stingy towards Oil and <strong>"Paying them in multiple for Hospitals"</strong>.</p> <br>
 
 							<p>
-								This Cold Pressed Oil has its essence as such like a virgin girl. Taste the health with more of anti oxidants (Free Radical), boosts immunity and prevents from life threatening diseases like Cancer & Heart diseases.
+								This Cold Pressed Oil has its essence as such like a virgin girl. Taste the health with more of anti oxidants, boosts immunity and prevents from life threatening diseases like Cancer & Heart diseases.
 							</p>
 							<p>
 								This Oil contains rich amount of Proteins, Minerals, Vitamin E & B family, Omega-6, No Bad Cholesterol (LDL) - Only Good Cholesterol (HDL). It also helps for easy digestion, Lungs, Liver, Kidney, Skin and Hair care too.
