@@ -25,13 +25,13 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
-						<form id="register">
+						<form id="register" onsubmit="return add_register();">
 							<input type="text" id="reg_name" name="name" placeholder="Name"/>
 							<input type="email" id="reg_email" placeholder="Email Address" name="email" />
 							<input type="password" id="reg_password" name="password" placeholder="Password"/>
 		                    <div><span class="error-review"></span></div>
 		                    <div><span class="success-review"></span></div>
-							<button type="submit" id="register" class="btn btn-default"  onclick="add_register();">Signup</button>
+							<button type="submit" id="register" class="btn btn-default" >Signup</button>
 						</form>
 					</div><!--/sign up form-->
 				</div>

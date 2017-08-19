@@ -122,6 +122,9 @@ function add_register(){
 			success: function(res){
 				if(res>0) {
 					$('.error-review').html('');
+					$('#reg_name').val('');
+					$('#reg_email').val('');
+					$('#reg_password').val('');
 					$('.success-review').html('Thanks for Your Registration');
 					setTimeout(function(){ $('.success-review').html(''); }, 1000);
 				}
