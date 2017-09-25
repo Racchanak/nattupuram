@@ -1,12 +1,13 @@
 <?php
 	$title = 'Cart';
+	$menu = 'cart';
 	include('header.php');
 ?>
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
+				  <li><a href="index">Home</a></li>
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>

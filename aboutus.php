@@ -31,7 +31,7 @@
 								</span>
 							</div> -->
 							<a href="">
-								<img src="images/nattupuramold.jpg" alt="">
+								<img src="assets/images/nattupuramold.jpg" alt="">
 							</a>
 							<p>
 								In the Era of Global warming every natural resources changes for just 40˚C. In this scenario, Just think of Oil extracted under pressure with excessive heat generation, more than 100˚C ! We know Heating of Oil more than once, forms Acetylene. All these says too much of Heat, changes natural properties and think How could Refined Oil be beneficial to our health?</p> <br>

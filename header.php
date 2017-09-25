@@ -24,7 +24,10 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 <?php include('function.php');
- $reviews = reviews_data();
+ $product_reviews = reviews_data(); 
+ $products = products_data();
+ $product_id = (isset($_REQUEST['product_id']))?$_REQUEST['product_id']:'';
+ $product = products_data($product_id);
  ?>
 <body>
 	<header id="header"><!--header-->

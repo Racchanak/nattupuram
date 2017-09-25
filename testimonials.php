@@ -15,8 +15,8 @@
                         	<div class="col-sm-9">
 								<h2 class="title text-center">Product Reviews</h2>
 								<div id="product_list">
-									<?php if(!empty($reviews)){
-			                                foreach ($reviews as $key => $value) { 
+									<?php if(!empty($product_reviews)){
+			                                foreach ($product_reviews as $key => $value) { 
 			                                    if($key==0){ $classa = 'active'; } else { $classa = ''; }?>
 			                                    <div class="col-sm-12">
 													<div class="single-blog-post">

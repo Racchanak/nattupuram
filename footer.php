@@ -16,7 +16,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="companyinfo">
-                    <img src="images/fssai.jpg" alt="" class="img-responsive"/>
+                    <img src="assets/images/fssai.jpg" alt="" class="img-responsive"/>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -125,12 +125,12 @@
         </div>
     </div>
 </footer><!--/Footer-->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.scrollUp.min.js"></script>
-<script src="js/price-range.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/main.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.scrollUp.min.js"></script>
+<script src="assets/js/price-range.js"></script>
+<script src="assets/js/jquery.prettyPhoto.js"></script>
+<script src="assets/js/main.js"></script>
 <script src="js/ajax.js"></script>
 </body>
 </html>
