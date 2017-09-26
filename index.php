@@ -20,7 +20,7 @@ include('header.php');
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="col-sm-12">
-                                <img src="images/homeslider/WPC-oil.jpg" class="" alt="" />
+                                <img src="assets/images/homeslider/WPC-oil.jpg" class="" alt="" />
                                 <!-- <img src="images/home/pricing.png"  class="pricing" alt="" /> -->
                             </div>
                         </div>

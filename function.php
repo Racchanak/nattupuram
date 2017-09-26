@@ -13,7 +13,7 @@ if (isset($_POST)) {
     if ($action == 'reviews') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO review (name,emailid,city,message,reviewcol,product_name,product_img) 
+        $query = "INSERT INTO review (name,emailid,city,message,cret_date,product_name,product_img) 
 			VALUES ('" . $name . "','" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "','" . $product . "','" . $product_img . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $rev_id = mysqli_insert_id($link);
@@ -22,7 +22,7 @@ if (isset($_POST)) {
     if ($action == 'register') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO register (name,emailid,password,registercol) 
+        $query = "INSERT INTO register (name,emailid,password,cret_date) 
 			VALUES ('" . $name . "','" . $emailid . "','" . md5($password) . "','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $reg_id = mysqli_insert_id($link);
