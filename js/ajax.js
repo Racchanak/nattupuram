@@ -174,3 +174,111 @@ function add_register() {
     }
     return false;
 }
+
+function login_check() {
+    var emailid = $('#login_email').val();
+    var password = $('#login_password').val();
+    var valid = 0;
+    if (emailid == '') {
+        $('.error-review').html('Please enter your email id');
+        return false;
+    } else {
+        $('.error-review').html('');
+        valid++;
+    }
+    if (password == '') {
+        $('.error-review').html('Please enter your password');
+        return false;
+    } else {
+        $('.error-review').html('');
+        valid++;
+    }
+    var reg_data = {'emailid': emailid, 'password': password};
+    if (valid == 2) {
+        $.ajax({
+            url: 'function.php?action=userlogin',
+            type: 'POST',
+            data: reg_data,
+            success: function (res) {
+                console.log(res);
+                if (res > 0) {
+                    window.location.href = 'products.php';
+                }
+            }
+        });
+    }
+    return false;
+}
+
+function enquiry() {
+    var name = $('#enq_name').val();
+    var email = $('#enq_emailid').val();
+    var subject = $('#enq_subject').val();
+    var msg = $('#enq_message').val();
+    var valid = 0;
+    if (name == '') {
+        $('.error-review').html('Please enter your name');
+        return false;
+    } else {
+        $('.error-review').html('');
+        valid++;
+    }
+    if (email == '') {
+        $('.error-review').html('Please enter your email id');
+        return false;
+    } else {
+        $('.error-review').html('');
+        valid++;
+    }
+    if (subject == '') {
+        $('.error-review').html('Please enter the subject');
+        return false;
+    } else {
+        $('.error-review').html('');
+        valid++;
+    }
+    if (msg == '') {
+        $('.error-review').html('Please enter your message');
+        return false;
+    } else {
+        $('.error-review').html('');
+        valid++;
+    }
+    var reg_data = {'name': name, 'email': email, 'subject': subject, 'msg': msg};
+    if (valid == 4) {
+        $.ajax({
+            url: 'function.php?action=enquiry',
+            type: 'POST',
+            data: reg_data,
+            success: function (res) {
+                if (res > 0) {
+                    $('.error-review').html('');
+                    $('#enq_name').val('');
+                    $('#enq_emailid').val('');
+                    $('#enq_subject').val('');
+                    $('#enq_message').val('');
+                    $('.success-review').html('Thanks for Your Opinion');
+                    setTimeout(function () {
+                        $('.success-review').html('');
+                    }, 1000);
+                }
+            }
+        });
+    }
+    return false;
+}
+
+function purchase() {
+
+    var product_amount = $('#product_amount').val();
+    var product_category = $('#product_category').val();
+    var product_quantity = $('#product_quantity').val();
+    var product_name = $('#product_name').val();
+    var product_id = $('#product_id').val();
+    console.log(product_quantity);
+    console.log(product_category);
+    console.log(product_amount);
+    console.log(product_name);
+    console.log(product_id);
+    return false;
+}   

@@ -13,20 +13,40 @@ if (isset($_POST)) {
     if ($action == 'reviews') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO review (name,emailid,city,message,reviewcol,product_name,product_img) 
+        $query = "INSERT INTO review (name,emailid,city,message,cret_date,product_name,product_img) 
 			VALUES ('" . $name . "','" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "','" . $product . "','" . $product_img . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $rev_id = mysqli_insert_id($link);
         echo json_encode($rev_id);
     }
+    if ($action == 'enquiry') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "INSERT INTO enquiry (name,emailid,subject,message,cret_date) 
+            VALUES ('" . $name . "','" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $enq_id = mysqli_insert_id($link);
+        echo json_encode($enq_id);
+    }
     if ($action == 'register') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO register (name,emailid,password,registercol) 
+        $query = "INSERT INTO register (name,emailid,password,cret_date) 
 			VALUES ('" . $name . "','" . $emailid . "','" . md5($password) . "','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $reg_id = mysqli_insert_id($link);
         echo json_encode($reg_id);
+    }
+    if ($action == 'userlogin') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "SELECT * FROM register WHERE emailid='" . $emailid . "' AND password='" . md5($password) . "'";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $arr = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $arr[] = $row;
+        }
+        echo json_encode($arr);
     }
     if ($action == 'product') {
         extract($GLOBALS);

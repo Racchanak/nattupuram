@@ -884,6 +884,10 @@ h2.title:before{
 	overflow:hidden;
 }
 
+.contact-info h2.title, .single-widget h2.title, .contact-form h2.title {
+  text-align:left;
+  margin-left: 0;  
+}
 
 h2.title {
   color: #FE980F;
