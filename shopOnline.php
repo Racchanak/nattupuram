@@ -39,19 +39,29 @@ include('header.php');
                                     <select name="volume" class="vol_qnty">
                                         <?php foreach ($product[0]['quantity'] as $key => $value) { 
                                             if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
+<<<<<<< HEAD
                                             <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
+=======
+                                            <option value="<?php echo str_replace(' ', '', $value).' '.$select; ?>"><?php echo $value; ?></option>
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
                                         <?php } ?>
                                     </select>
                                 </div>                           
                                 <div class="col-sm-6">
+<<<<<<< HEAD
                                     <?php foreach ($product[0]['price'] as $key => $value) { 
                                             if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
                                         <span class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><?php echo $value; ?></span>
+=======
+                                    <?php foreach ($product[0]['price'] as $key => $value) { ?>
+                                        <span class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt amount"><?php echo $value; ?></span>
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
                                         <!--<span class="halfl_amt amount" style="display: none;">Rs. 145</span>-->
                                     <?php } ?>
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Quantity:</label>
+<<<<<<< HEAD
                                     <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/>
                                 </div>                                
                                 <div class="col-sm-6">
@@ -66,6 +76,11 @@ include('header.php');
                                             Add to cart
                                         </button>
                                     </form>
+=======
+                                    <input type="text" name="quantity" />
+                                </div>                                
+                                <div class="col-sm-6">
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
                                     <button type="button" class="btn btn-fefault cart">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
@@ -352,13 +367,4 @@ include('footer.php');
         var x = $('#proquantity').val();
         $('#product_quantity').val(x);
     }        
-
-    // $('.vol_qnty').change(function () {
-    //     $('.vol_qnty').removeClass('notselected');
-    //     var val_qunty = $('.vol_qnty').val();
-    //     console.log(val_qunty);
-    //     $('.vol_qnty').addClass('selected');
-    //     $('.amount').css('display', 'none');
-    //     $('.' + val_qunty + '_amt').css('display', 'block');
-    // });
 </script>

@@ -597,7 +597,11 @@ ul.sub-menu {
 }
 
 .contact-pills li a {
+<<<<<<< HEAD
   font-size: 15px !important;
+=======
+  font-size: 13px !important;
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
 }
 
 .footer-bottom p {
@@ -884,10 +888,13 @@ h2.title:before{
 	overflow:hidden;
 }
 
+<<<<<<< HEAD
 .contact-info h2.title, .single-widget h2.title, .contact-form h2.title {
   text-align:left;
   margin-left: 0;  
 }
+=======
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
 
 h2.title {
   color: #FE980F;
@@ -1459,28 +1466,52 @@ h2.title {
   margin-top: 60px;
 }
 
+<<<<<<< HEAD
 .content-404 h1 {
+=======
+.content-logout {
+  margin-top: 121px;
+}
+
+.content-logout h1, .content-404 h1 {
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
   color: #363432;
   font-family: 'Roboto', sans-serif;
   font-size: 41px;
   font-weight: 300;
 }
 
+<<<<<<< HEAD
 .content-404 img {
  margin:0 auto;
 }
 
 .content-404 p {
+=======
+.content-logout img, .content-404 img {
+ margin:0 auto;
+}
+
+.content-logout p, .content-404 p {
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
   color: #363432;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
 }
 
+<<<<<<< HEAD
 .content-404  h2 {
   margin-top:50px;
 }
 
 .content-404 h2 a {
+=======
+.content-logout h2, .content-404  h2 {
+  margin-top:50px;
+}
+
+.content-logout h2 a, .content-404 h2 a {
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
   background: #FE980F;
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
@@ -1496,8 +1527,13 @@ h2.title {
 
 #form {
   display: block;
+<<<<<<< HEAD
   margin-bottom: 185px;
   margin-top: 185px;
+=======
+  margin-bottom: 72px;
+  margin-top: 70px;
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
   overflow: hidden;
 }
 
@@ -2592,7 +2628,11 @@ h2.title {
 }
 
 .nfacts {
+<<<<<<< HEAD
     margin-left: 30%;  
+=======
+    margin-left: 20%;  
+>>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
     border: 3px solid #696763;
 }
 
