@@ -1,4 +1,5 @@
 <?php
+	include('functioncall.php');
 	$title = 'Shipping and Delivery Policy';
 	$menu = 'terms';
 	include('header.php');

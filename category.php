@@ -31,8 +31,8 @@
                 <h2 class="reh2">Write Your Review</h2>
                 <form id="reviews">
                     <?php if (isset($menu) && $menu == 'prod_det') { ?>
-                        <h1 style="margin-top: 0px;font-size: 17px;font-weight: 700;">Product : <?= $title; ?></h1>
-                        <input type="hidden" id="product_name" name="product_name" value="<?= $title; ?>"/>
+                        <h1 style="margin-top: 0px;font-size: 17px;font-weight: 700;">Product : <?php echo $value['product_name']; ?></h1>
+                        <input type="hidden" id="product_name" name="product_name" value="<?php echo $value['product_name']; ?>"/>
                         <input type="hidden" id="product_id" name="product_id" value="<?= (isset($_REQUEST['product_id'])) ? $_REQUEST['product_id'] : ''; ?>"/>
                     <?php } else if (isset($menu) && $menu == 'testi') { ?>
                         <select id="option" name="option">

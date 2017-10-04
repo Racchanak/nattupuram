@@ -1,4 +1,5 @@
 <?php
+    include('functioncall.php');
 $title = 'Home';
 $menu = 'home';
 include('header.php');

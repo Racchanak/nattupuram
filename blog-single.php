@@ -1,4 +1,5 @@
 <?php
+	include('functioncall.php');
 	$title = 'Blog Single';
 	$menu = 'blog_sig';
 	include('header.php');

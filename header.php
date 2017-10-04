@@ -23,12 +23,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-<?php include('function.php');
- $product_reviews = reviews_data(); 
- $products = products_data();
- $product_id = (isset($_REQUEST['product_id']))?$_REQUEST['product_id']:'';
- $product = products_data($product_id);
- ?>
 <body>
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
@@ -102,7 +96,10 @@
 								<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
 								<!-- <li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li> -->
 								<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
-								<li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
+								<li><?php if (!empty($_SESSION['user'])) { ?>
+                                        <a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a> 
+                                    <?php } else { ?>
+                                        <a href="login.php"><i class="fa fa-lock"></i> Login/Register </a> <?php } ?></li>
 							</ul>
 						</div>
 					</div>

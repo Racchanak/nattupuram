@@ -1,4 +1,5 @@
 <?php 
+	include('functioncall.php');
 	$title = 'Shop';
 	$menu = 'menu_act';
 	$submenu = 'prod';

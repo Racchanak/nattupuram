@@ -1,4 +1,5 @@
 <?php
+	include('functioncall.php');
 	$title = 'Terms and Condition';
 	$menu = 'terms';
 	include('header.php');

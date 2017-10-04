@@ -1,5 +1,5 @@
 <?php
-
+    include('functioncall.php');
 $title = 'Login';
 $menu = 'login';
 include('header.php');

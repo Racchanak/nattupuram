@@ -1,4 +1,5 @@
 <?php
+    include('functioncall.php');
 $title = 'Groundnut Oil';
 $menu = 'prod_det';
 $submenu = 'prod_det';

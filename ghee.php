@@ -1,4 +1,5 @@
 <?php
+    include('functioncall.php');
 $title = 'Natural Ghee';
 $menu = 'prod_det';
 $submenu = 'prod_det';

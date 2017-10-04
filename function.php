@@ -1,6 +1,7 @@
 <?php
 
 include('conn.php');
+session_start();
 $action = '';
 $product = '';
 if (isset($_REQUEST['action'])) {
@@ -37,6 +38,27 @@ if (isset($_POST)) {
         $reg_id = mysqli_insert_id($link);
         echo json_encode($reg_id);
     }
+    if ($action == 'product_cart') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "INSERT INTO product_cart (user_id,product_id,product_name,category,quantity,price,total,cret_date) 
+            VALUES ('" . $product_user_id . "','" . $product_id . "','" . $product_name . "','" . $product_category . "','" . $product_quantity . "','" . $product_amount . "','" . ($product_quantity*$product_amount) . "','" . date('Y-m-d H:i:s') . "')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $cart_id = mysqli_insert_id($link);
+        echo json_encode($cart_id);
+    }
+    if ($action == 'product_order') {
+        extract($_POST);
+        extract($GLOBALS);
+        $cart_ids = explode(',', $cart_ids);
+        foreach ($cart_ids as $key => $value) {
+            $cart_detials = carts_data($user_id,$value);
+            $query = "INSERT INTO product_order (user_id,cart_id,product_id,total,  delivery_status,order_status,cret_date) VALUES ('" . $user_id . "','" . $value . "','" . $cart_detials[0]['product_id'] . "', '" . $cart_detials[0]['total'] . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
+            $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+            $order_id = mysqli_insert_id($link);
+        }
+        echo json_encode($order_id);
+    }
     if ($action == 'userlogin') {
         extract($_POST);
         extract($GLOBALS);
@@ -46,7 +68,16 @@ if (isset($_POST)) {
         while ($row = mysqli_fetch_assoc($result)) {
             $arr[] = $row;
         }
-        echo json_encode($arr);
+        if (!empty($arr)) {
+            $curr_user = array();
+            $curr_user['register_id'] = $arr[0]['register_id'];
+            $curr_user['name'] = $arr[0]['name'];
+            $curr_user['emailid'] = $arr[0]['emailid'];
+            $_SESSION['user'] = $curr_user;
+            echo json_encode((int) $arr[0]['register_id']);
+        } else {
+            echo json_encode(0);
+        }
     }
     if ($action == 'product') {
         extract($GLOBALS);
@@ -57,12 +88,46 @@ if (isset($_POST)) {
             $arr[] = $row;
         }
         echo json_encode($arr);
+    }    
+    if ($action == 'userlogout') {
+        $_SESSION['user'] = '';
+        echo json_encode(1);
     }
 }
 
 function reviews_data() {
     extract($GLOBALS);
     $query = "SELECT * FROM `review`";
+    $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+    $arr = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $arr[] = $row;
+    }
+    return $arr;
+}
+
+function carts_data($user_id,$cart_id = '') {
+    extract($GLOBALS);
+    if($cart_id=='') {
+        $query = "SELECT * FROM `product_cart` WHERE user_id='".$user_id."'";
+    } else {
+        $query = "SELECT * FROM `product_cart` WHERE user_id='".$user_id."' AND cart_id='".$cart_id."'";        
+    }
+    $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+    $arr = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $arr[] = $row;
+    }
+    return $arr;
+}
+
+function order_data($user_id,$cart_id = '') {
+    extract($GLOBALS);
+    if($cart_id=='') {
+        $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."'";
+    } else {
+        $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."' AND cart_id='".$cart_id."'";        
+    }
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $arr = array();
     while ($row = mysqli_fetch_assoc($result)) {

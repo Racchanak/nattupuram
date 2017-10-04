@@ -1,4 +1,5 @@
 <?php
+    include('functioncall.php');
 $title = 'Contact Us';
 include('header.php');
 ?>

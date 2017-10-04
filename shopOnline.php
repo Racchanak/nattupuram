@@ -1,5 +1,6 @@
 <?php
-$title = 'Groundnut Oil';
+    include('functioncall.php');
+$title = $product[0]['product_name'];
 $menu = 'prod_det';
 $submenu = 'prod_det';
 $category = 'groundnut';
@@ -39,34 +40,26 @@ include('header.php');
                                     <select name="volume" class="vol_qnty">
                                         <?php foreach ($product[0]['quantity'] as $key => $value) { 
                                             if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
-<<<<<<< HEAD
                                             <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
-=======
-                                            <option value="<?php echo str_replace(' ', '', $value).' '.$select; ?>"><?php echo $value; ?></option>
->>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
                                         <?php } ?>
                                     </select>
                                 </div>                           
                                 <div class="col-sm-6">
-<<<<<<< HEAD
                                     <?php foreach ($product[0]['price'] as $key => $value) { 
                                             if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
                                         <span class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><?php echo $value; ?></span>
-=======
-                                    <?php foreach ($product[0]['price'] as $key => $value) { ?>
-                                        <span class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt amount"><?php echo $value; ?></span>
->>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
                                         <!--<span class="halfl_amt amount" style="display: none;">Rs. 145</span>-->
                                     <?php } ?>
                                 </div>
+                                <?php if (!empty($_SESSION['user'])) { ?>
                                 <div class="col-sm-6">
                                     <label>Quantity:</label>
-<<<<<<< HEAD
                                     <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/>
                                 </div>                                
                                 <div class="col-sm-6">
-                                    <form id="main-form" onsubmit="return purchase();" class="purchase-form row" name="purchase-form">
+                                    <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
                                         <input type="hidden" name="category" id="product_category" class="form-control">
+                                        <input type="hidden" name="category" id="product_user_id" class="form-control" value="<?php echo $_SESSION['user']['register_id']; ?>">
                                         <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
                                         <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
                                         <input type="hidden" name="quantity" id="product_quantity" class="form-control">
@@ -76,17 +69,14 @@ include('header.php');
                                             Add to cart
                                         </button>
                                     </form>
-=======
-                                    <input type="text" name="quantity" />
-                                </div>                                
-                                <div class="col-sm-6">
->>>>>>> 115ffaf190a77fb88988b8406a2efec25f36dc3a
-                                    <button type="button" class="btn btn-fefault cart">
+                                    <!-- <button type="button" class="btn btn-fefault cart">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
-                                    </button>
+                                    </button> -->
                                 </div>
+                                <?php } ?>
                             </span>
+                                    <span class="error-product"></span>
                             <span><label>Details: </label> <?php echo $product[0]['description']; ?> </span>
                         <!--<p><b>Availability:</b> In Stock</p>-->
                         <!--<p><b>Condition:</b> New</p>-->
@@ -348,8 +338,8 @@ include('footer.php');
     $('.amount').css('display', 'block');
     var val_qunty = $('.vol_qnty').val();
     var sele_amt = $('.amount')[0]['outerText'];
-    $('#product_amount').val(val_qunty);
-    $('#product_category').val(sele_amt);
+    $('#product_amount').val(sele_amt);
+    $('#product_category').val(val_qunty);
     $('.vol_qnty').change(function () {
         var val_qunty = $('.vol_qnty').val();
         $('.notselected').addClass('selected');
@@ -360,8 +350,8 @@ include('footer.php');
         $('.' + val_qunty + '_amt').addClass('amount');
         var sele_amt = $('.amount')[0]['outerText'];
         $('.' + val_qunty + '_amt').css('display', 'block');
-        $('#product_amount').val(val_qunty);
-        $('#product_category').val(sele_amt);
+        $('#product_amount').val(sele_amt);
+        $('#product_category').val(val_qunty);
     });
     function myquantity() {
         var x = $('#proquantity').val();

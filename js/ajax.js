@@ -210,6 +210,19 @@ function login_check() {
     return false;
 }
 
+function logout() {
+    $.ajax({
+        url:  'function.php?action=userlogout',
+        type: 'POST',
+        success: function (res) {
+            if (res > 0) {
+                window.location.href = 'logout.php';
+            }
+        }
+    });
+    return false;
+}
+
 function enquiry() {
     var name = $('#enq_name').val();
     var email = $('#enq_emailid').val();
@@ -268,17 +281,72 @@ function enquiry() {
     return false;
 }
 
-function purchase() {
+function purchase_cart() {
 
     var product_amount = $('#product_amount').val();
     var product_category = $('#product_category').val();
     var product_quantity = $('#product_quantity').val();
     var product_name = $('#product_name').val();
     var product_id = $('#product_id').val();
-    console.log(product_quantity);
-    console.log(product_category);
-    console.log(product_amount);
-    console.log(product_name);
-    console.log(product_id);
+    var product_user_id = $('#product_user_id').val();
+    if (product_quantity == '') {
+        $('.error-product').html('Please enter your message');
+        return false;
+    } else {
+        $('.error-review').html('');        
+        var product_data = {'product_user_id':product_user_id, 'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
+        console.log(product_data);
+        $.ajax({
+            url: 'function.php?action=product_cart',
+            type: 'POST',
+            data: product_data,
+            success: function (res) {
+                if (res > 0) {
+                    window.location.href = 'cart.php';
+                }
+            }
+        });
+        return false;
+    }
     return false;
 }   
+
+function purchase_order() {
+
+    var amount = $('#orderamount').val();
+    var user_id = $('#orderuser_id').val();
+    var cart_ids = $('#cart_ids').val();      
+    var order_data = {'cart_ids':cart_ids, 'user_id': user_id, 'amount': amount};
+    console.log(order_data);
+    $.ajax({
+        url: 'function.php?action=product_order',
+        type: 'POST',
+        data: order_data,
+        success: function (res) {
+            if (res > 0) {
+                window.location.href = 'checkout.php';
+            }
+        }
+    });
+    return false;
+}
+
+function purchase_transaction() {
+    var user_id = $('#user_id').val();
+    var add_email = $('#add_email').val();  
+    var add_name = $('#add_name').val();  
+    var add_email = $('#add_email').val();  
+    var address1 = $('#address1').val();  
+    var address2 = $('#address2').val();  
+    var city = $('#city').val();  
+    var zipcode = $('#zipcode').val();  
+    var state = $('#state').val();  
+    var country = $('#country').val();  
+    var mobile = $('#mobile').val();  
+    var grand_total = $('#grand_total').val();  
+    var order_ids = $('#order_ids').val();  
+    //address for user id
+    var address_data = {'user_id':user_id, 'address1': address1, 'address2': address2, 'city': $city, 'zipcode':zipcode};
+    console.log(order_data);
+
+}

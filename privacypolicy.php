@@ -1,4 +1,5 @@
 <?php
+	include('functioncall.php');
 	$title = 'Privacy Policy';
 	$menu = 'privacy';
 	include('header.php');

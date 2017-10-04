@@ -1,4 +1,5 @@
 <?php
+    include('functioncall.php');
 $title = 'Distributors';
 $menu = 'distribute';
 include('header.php');
