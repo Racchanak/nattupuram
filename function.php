@@ -59,6 +59,35 @@ if (isset($_POST)) {
         }
         echo json_encode($order_id);
     }
+    if ($action == 'user_address') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "INSERT INTO user_address (user_id,name,phoneno,address1,address2,country,city, state,pincode,cret_date) VALUES ('" . $user_id . "','" . $_SESSION['user']['name'] . "','" . $phone. "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $country . "', '" . $zipcode . "', '" . date('Y-m-d H:i:s') . "')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $address_id = mysqli_insert_id($link);
+        echo json_encode($address_id);
+    }
+    if ($action == 'product_transaction') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "INSERT INTO product_transaction (user_id, billing_addid, total_amt,cret_date) VALUES ('" . $user_id . "','" . $billing_addid . "','" . $total_amt. "', '" . date('Y-m-d H:i:s') . "')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $transaction_id = mysqli_insert_id($link);
+        $order_ids = explode(',', $order_ids);
+        foreach ($order_ids as $key => $value) {
+            $query = "UPDATE product_order SET transaction_id=".$transaction_id." WHERE order_id=".$value;
+            $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        }
+        echo json_encode($transaction_id);
+    }
+    if ($action == 'transact_payment') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "UPDATE product_transaction SET transaction_status='".$status."', payment_id='".$payment_id."' WHERE transaction_id=".$transact_id;
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        echo json_encode((int)$transact_id);
+        
+    }
     if ($action == 'userlogin') {
         extract($_POST);
         extract($GLOBALS);

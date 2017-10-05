@@ -331,7 +331,7 @@ function purchase_order() {
     return false;
 }
 
-function purchase_transaction() {
+function purchase_transact() {
     var user_id = $('#user_id').val();
     var add_email = $('#add_email').val();  
     var add_name = $('#add_name').val();  
@@ -344,9 +344,61 @@ function purchase_transaction() {
     var country = $('#country').val();  
     var mobile = $('#mobile').val();  
     var grand_total = $('#grand_total').val();  
-    var order_ids = $('#order_ids').val();  
+    var order_ids = $('#order_ids').val();
     //address for user id
-    var address_data = {'user_id':user_id, 'address1': address1, 'address2': address2, 'city': $city, 'zipcode':zipcode};
-    console.log(order_data);
-
+    var address_data = { 'user_id':user_id, 'phone':mobile,'address1': address1, 'address2': address2, 'city': city, 'state':state, 'country':country,'zipcode':zipcode };
+    console.log(address_data);
+    $.ajax({
+        url: 'function.php?action=user_address',
+        type: 'POST',
+        data: address_data,
+        success: function (add_id) {
+            console.log(add_id);
+            if(add_id > 0) {
+                var trans_data = { 'billing_addid':parseInt($.trim(add_id)), 'user_id':user_id, 'total_amt':grand_total,'order_ids':order_ids};
+                console.log(trans_data);
+                $.ajax({
+                    url: 'function.php?action=product_transaction',
+                    type: 'POST',
+                    data: trans_data,
+                    success: function (transact_id) {
+                        var options = {
+                            "key": "rzp_test_vKA7gqOvxPudTU",
+                            "amount": parseInt(grand_total) * 100, // 2000 paise = INR 20
+                            "name": "Nattupuram",
+                            "description": "Transaction ID :" + transact_id,
+                            "image": "assets/images/nattupuram.jpg",
+                            "handler": function (response){
+                                if(response != '') {
+                                    console.log(response.razorpay_payment_id);
+                                    var payment_data = {'status':'Success','transact_id':parseInt($.trim(transact_id)),'payment_id':response.razorpay_payment_id}
+                                } else {
+                                    var payment_data = {'status':'Failure','transact_id':parseInt($.trim(transact_id)),'payment_id':0}
+                                }
+                                $.ajax({
+                                    url: 'function.php?action=transact_payment',
+                                    type: 'POST',
+                                    data: payment_data,
+                                    success: function (res) {
+                                        console.log(res);
+                                        //redirect to Thank You Page.
+                                    }
+                                });
+                            },
+                            "prefill": {
+                                "name": add_name,
+                                "email": add_email
+                            },
+                            "theme": {
+                                "color": "#F37254"
+                            }
+                        };
+                        var rzp1 = new Razorpay(options);
+                            rzp1.open();
+                    }
+                });
+            }
+        }
+    });
+    return false;
 }
