@@ -235,13 +235,14 @@
 			</div>
 			<div class="payment-options">
 						<?php $order_ids = implode(',', $order_id); ?>
-				<form id="main-form" onsubmit="return purchase_transaction();" class="purchase-form row" name="purchase-form">
-					<input type="hidden" name="order_ids" id="order_ids" value="<?php echo $order_ids; ?>">
-					<button type="submit" class="btn btn-fefault cart" >
-	                	<i class="fa fa-shopping-cart"></i>
-	                	Check Out
-	            	</button>
-	            </form>
+							<!-- <a class="btn btn-default update" href="">Update</a> -->
+							<form id="main-form" onsubmit="return purchase_transact();" class="purchase-form row" name="purchase-form">
+                                <input type="hidden" name="order_ids" id="order_ids" class="form-control" value="<?php echo $order_ids; ?>" >
+                                <button type="submit" class="btn btn-fefault cart" >
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Check Out
+                                </button>
+                            </form>
 					<!-- <span>
 						<label><input type="checkbox"> Direct Bank Transfer</label>
 					</span>
@@ -255,6 +256,7 @@
 		</div>
 	</section> <!--/#cart_items-->
 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <?php
 	include('footer.php');
 ?>	
