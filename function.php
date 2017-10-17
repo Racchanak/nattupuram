@@ -53,11 +53,19 @@ if (isset($_POST)) {
         $cart_ids = explode(',', $cart_ids);
         foreach ($cart_ids as $key => $value) {
             $cart_detials = carts_data($user_id,$value);
-            $query = "INSERT INTO product_order (user_id,cart_id,product_id,total,  delivery_status,order_status,cret_date) VALUES ('" . $user_id . "','" . $value . "','" . $cart_detials[0]['product_id'] . "', '" . $cart_detials[0]['total'] . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
+            $query = "INSERT INTO product_order (user_id,cart_id,product_id,total,delivery_status,order_status,cret_date) VALUES ('" . $user_id . "','" . $value . "','" . $cart_detials[0]['product_id'] . "', '" . $cart_detials[0]['total'] . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
             $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
             $order_id = mysqli_insert_id($link);
         }
         echo json_encode($order_id);
+    }
+    if ($action == 'guest_order') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "INSERT INTO product_order (product_id,product_name,category,quantity,price,total,delivery_status, order_status,cret_date) VALUES ('" . $product_id . "', '" . $product_name . "','".$product_category."', '" . $product_quantity . "','" . $product_amount . "','" . ($product_quantity*$product_amount) . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $order_id = mysqli_insert_id($link);
+        echo json_encode($order_id);        
     }
     if ($action == 'userlogin') {
         extract($_POST);
@@ -74,6 +82,29 @@ if (isset($_POST)) {
             $curr_user['name'] = $arr[0]['name'];
             $curr_user['emailid'] = $arr[0]['emailid'];
             $_SESSION['user'] = $curr_user;
+            $subject = "Registration Confirmation";
+
+            $message = "
+            <html>
+            <head>
+            <title>HTML email</title>
+            </head>
+            <body>
+            <p>Hi ".$curr_user['name'] .",</p>
+            <p>You have successfully registered with Nattupuram.</p>
+            <p>Thank you<br><br>Regards,<br><a href='http://www.nattupuram.com/alpha'>Nattupuram</a></p>
+            </body>
+            </html>
+            ";
+            // Always set content-type when sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            // More headers
+            $headers .= 'From: <salesnattupuram@gmail.com>' . "\r\n";
+            $headers .= 'Cc: salesnattupuram@gmail.com' . "\r\n";
+
+            mail($curr_user['emailid'],$subject,$message,$headers);
             echo json_encode((int) $arr[0]['register_id']);
         } else {
             echo json_encode(0);

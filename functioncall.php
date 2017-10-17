@@ -15,5 +15,8 @@
  			$product_order[$key]['product_name'] = $value['product_name'];
  		}
  	}
+ } else {
+ 	// print_r($_COOKIE);
+ 	// exit();
  }
  ?>

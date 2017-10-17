@@ -55,9 +55,15 @@
 							<p>Address</p>
 							<div class="form-one">
 								<form>
+                                <?php if (!empty($_SESSION['user'])) { ?>  
 									<input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user']['register_id'];?>">
 									<input type="text" placeholder="Email*" id="add_email" value="<?php echo $_SESSION['user']['emailid'];?>">
 									<input type="text" placeholder="Name *" id="add_name" value="<?php echo $_SESSION['user']['name'];?>">
+								<?php } else { ?>
+									<input type="hidden" name="user_id" id="user_id" value="Guest_id">
+									<input type="text" placeholder="Email*" id="add_email">
+									<input type="text" placeholder="Name *" id="add_name">							
+								<?php } ?>
 									<!-- <input type="text" placeholder="Middle Name">
 									<input type="text" placeholder="Last Name *"> -->
 									<input type="text" placeholder="Address 1 *" id="address1">

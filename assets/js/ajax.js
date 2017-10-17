@@ -5,6 +5,7 @@ function add_review() {
     var msg = $('#rev_msg').val();
     var product = $('#product_name').val();
     var product_img = $('#product_img').attr('src');
+    var product_id = $('#product_id').attr('src');
     var valid = 0;
     if (product == '') {
         $('.error-review').html('Please Select the Product');
@@ -41,10 +42,10 @@ function add_review() {
         $('.error-review').html('');
         valid++;
     }
-    var rev_data = {'name': name, 'emailid': emailid, 'city': city, 'msg': msg, 'product': product, 'product_img': product_img};
+    var rev_data = {'name': name, 'emailid': emailid, 'city': city, 'msg': msg, 'product': product, 'product_img': product_img, 'product_id':product_id};
     if (valid == 5) {
         $.ajax({
-            url: baseUrl+'reviews',
+            url: 'function.php?action=reviews',
             type: 'POST',
             data: rev_data,
             success: function (res) {
@@ -66,15 +67,15 @@ function add_review() {
 }
 
 $('#option').change(function () {
-    $('#product_name').val($('#option').val());
-    if ($('#option').val() == 'Groundnut Oil') {
-        product_img = baseUrl+'assets/images/product-details/groundnut.jpg';
+    $('#product_id').val($('#option').val());
+    if ($('#option').val() == '1') {
+        product_img = 'images/product-details/groundnut.jpg';
     } else if ($('#option').val() == 'Sesame Oil') {
-        product_img = baseUrl+'assets/images/product-details/sesame.jpg';
+        product_img = 'images/product-details/sesame.jpg';
     } else if ($('#option').val() == 'Coconut Oil') {
-        product_img = baseUrl+'assets/images/product-details/coconut.jpg';
+        product_img = 'images/product-details/coconut.jpg';
     } else if ($('#option').val() == 'Natural Ghee') {
-        product_img = baseUrl+'assets/images/product-details/ghee.jpg';
+        product_img = 'images/product-details/ghee.jpg';
     }
     $("#product_img").attr("src", product_img);
 });
@@ -82,7 +83,7 @@ $('#option').change(function () {
 $('#product_filter').change(function () {
     var product = $('#product_filter').val();
     $.ajax({
-        url: baseUrl+'product/' + product,
+        url: 'function.php?action=product&product=' + product,
         type: 'GET',
         success: function (res) {
             var reviews = JSON.parse(res);
@@ -103,13 +104,13 @@ $('#product_filter').change(function () {
                             + '<img src="' + reviews[i]['product_img'] + '" alt="">'
                             + '</a>'
                             //<div class="post-meta">
-                            // 	<span style="float: left;">
-                            // 		<i class="fa fa-star"></i>
-                            // 		<i class="fa fa-star"></i>
-                            // 		<i class="fa fa-star"></i>
-                            // 		<i class="fa fa-star"></i>
-                            // 		<i class="fa fa-star-half-o"></i>
-                            // 	</span>
+                            //  <span style="float: left;">
+                            //      <i class="fa fa-star"></i>
+                            //      <i class="fa fa-star"></i>
+                            //      <i class="fa fa-star"></i>
+                            //      <i class="fa fa-star"></i>
+                            //      <i class="fa fa-star-half-o"></i>
+                            //  </span>
                             // </div> 
                             + '</div>'
                             + '<div class="col-sm-9">'
@@ -154,7 +155,7 @@ function add_register() {
     var reg_data = {'name': name, 'emailid': emailid, 'password': password};
     if (valid == 3) {
         $.ajax({
-            url: baseUrl+'register',
+            url: 'function.php?action=register',
             type: 'POST',
             data: reg_data,
             success: function (res) {
@@ -195,17 +196,30 @@ function login_check() {
     var reg_data = {'emailid': emailid, 'password': password};
     if (valid == 2) {
         $.ajax({
-            url: baseUrl+'userlogin',
+            url: 'function.php?action=userlogin',
             type: 'POST',
             data: reg_data,
             success: function (res) {
                 console.log(res);
                 if (res > 0) {
-                    window.location.href = baseUrl+'products';
+                    window.location.href = 'products.php';
                 }
             }
         });
     }
+    return false;
+}
+
+function logout() {
+    $.ajax({
+        url:  'function.php?action=userlogout',
+        type: 'POST',
+        success: function (res) {
+            if (res > 0) {
+                window.location.href = 'logout.php';
+            }
+        }
+    });
     return false;
 }
 
@@ -246,7 +260,7 @@ function enquiry() {
     var reg_data = {'name': name, 'email': email, 'subject': subject, 'msg': msg};
     if (valid == 4) {
         $.ajax({
-            url: baseUrl+'enquiry',
+            url: 'function.php?action=enquiry',
             type: 'POST',
             data: reg_data,
             success: function (res) {
@@ -267,50 +281,89 @@ function enquiry() {
     return false;
 }
 
-function add_distributors() {
-    var name = $('#dist_name').val();
-    var email = $('#dist_email').val();
-    var phone = $('#dist_phone').val();
-    var city = $('#dist_city').val();
-    var address = $('#dist_address').val();
-    var product = $('#dist_product').val();
-    var msg = $('#message').val();
-    var reg_data = {'name': name, 'email': email, 'phone': phone, 'city':city, 'address': address, 'product':product, 'msg': msg};
-//    if (valid == 4) {
-        $.ajax({
-            url: baseUrl+'distributor',
-            type: 'POST',
-            data: reg_data,
-            success: function (res) {
-                if (res > 0) {
-                    $('.error-distr').html('');
-                    $('#dist_name').val('');
-                    $('#dist_email').val('');
-                    $('#dist_phone').val('');
-                    $('#dist_city').val('');
-                    $('#dist_address').val('');
-                    $('#dist_product').val('');
-                    $('#message').val('');
-                    $('.success-distr').html('Thanks');
-                    setTimeout(function () {
-                        $('.success-distr').html('');
-                    }, 1000);
-                }
-            }
-        });
-//    }
-    return false;
-}
+function purchase_cart() {
 
-function logout() {
+    var product_amount = $('#product_amount').val();
+    var product_category = $('#product_category').val();
+    var product_quantity = $('#product_quantity').val();
+    var product_name = $('#product_name').val();
+    var product_id = $('#product_id').val();
+    var product_user_id = $('#product_user_id').val();
+    if (product_quantity == '') {
+        $('.error-product').html('Please enter your message');
+        return false;
+    } else {
+        $('.error-review').html('');   
+        if(product_user_id!='Guest_id') {     
+            var product_data = {'product_user_id':product_user_id, 'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
+            console.log(product_data);
+            $.ajax({
+                url: 'function.php?action=product_cart',
+                type: 'POST',
+                data: product_data,
+                success: function (res) {
+                    if (res > 0) {
+                        window.location.href = 'cart.php';
+                    }
+                }
+            });
+            return false;
+        } else {   
+            var product_data = {'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
+            console.log(product_data);
+            $.ajax({
+                url: 'function.php?action=product_cart',
+                type: 'POST',
+                data: product_data,
+                success: function (res) {
+                    if (res > 0) {
+                        document.cookie = 'Guest_cart=' + res;
+                        window.location.href = 'cart.php';
+                    }
+                }
+            });
+            return false;      
+        }  
+    }
+    return false;
+}   
+
+function purchase_order() {
+
+    var amount = $('#orderamount').val();
+    var user_id = $('#orderuser_id').val();
+    var cart_ids = $('#cart_ids').val();      
+    var order_data = {'cart_ids':cart_ids, 'user_id': user_id, 'amount': amount};
+    console.log(order_data);
     $.ajax({
-        url:  baseUrl+'userlogout',
+        url: 'function.php?action=product_order',
         type: 'POST',
+        data: order_data,
         success: function (res) {
             if (res > 0) {
-                window.location.href = 'logout';
+                window.location.href = 'checkout.php';
             }
         }
     });
     return false;
+}
+
+function purchase_transaction() {
+    var user_id = $('#user_id').val();
+    var add_email = $('#add_email').val();  
+    var add_name = $('#add_name').val();  
+    var add_email = $('#add_email').val();  
+    var address1 = $('#address1').val();  
+    var address2 = $('#address2').val();  
+    var city = $('#city').val();  
+    var zipcode = $('#zipcode').val();  
+    var state = $('#state').val();  
+    var country = $('#country').val();  
+    var mobile = $('#mobile').val();  
+    var grand_total = $('#grand_total').val();  
+    var order_ids = $('#order_ids').val();  
+    //address for user id
+    var address_data = {'user_id':user_id, 'address1': address1, 'address2': address2, 'city': $city, 'zipcode':zipcode};
+    console.log(order_data);
+
 }

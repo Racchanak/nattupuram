@@ -51,11 +51,11 @@ include('header.php');
                                         <!--<span class="halfl_amt amount" style="display: none;">Rs. 145</span>-->
                                     <?php } ?>
                                 </div>
-                                <?php if (!empty($_SESSION['user'])) { ?>
                                 <div class="col-sm-6">
                                     <label>Quantity:</label>
                                     <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/>
-                                </div>                                
+                                </div>  
+                                <?php if (!empty($_SESSION['user'])) { ?>                              
                                 <div class="col-sm-6">
                                     <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
                                         <input type="hidden" name="category" id="product_category" class="form-control">
@@ -69,11 +69,22 @@ include('header.php');
                                             Add to cart
                                         </button>
                                     </form>
-                                    <!-- <button type="button" class="btn btn-fefault cart">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        Add to cart
-                                    </button> -->
                                 </div>
+                                <?php } else { ?>                        
+                                <div class="col-sm-6">
+                                    <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
+                                        <input type="hidden" name="category" id="product_category" class="form-control">
+                                        <input type="hidden" name="category" id="product_user_id" class="form-control" value="Guest_id">
+                                        <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
+                                        <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
+                                        <input type="hidden" name="quantity" id="product_quantity" class="form-control">
+                                        <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
+                                        <button type="submit" class="btn btn-fefault cart" >
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Buy Now
+                                        </button>
+                                    </form>
+                                </div>                                
                                 <?php } ?>
                             </span>
                                     <span class="error-product"></span>
