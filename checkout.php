@@ -94,6 +94,7 @@
 									<!-- <input type="text" placeholder="Fax"> -->
 								</form>
 							</div>
+							<span class="error-checkout"></span>
 						</div>
 					</div>
 					<!-- <div class="col-sm-4">
@@ -113,8 +114,8 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<!-- <td class="description"></td> -->
+							<td class="image">Order No</td>
+							<td class="description">Product Name</td>
 							<td class="price">Price</td>
 							<td class="quantity">Quantity</td>
 							<td class="total">Total</td>
@@ -130,12 +131,11 @@
                             		array_push($order_id,$value['order_id']);
                             	?>
 						<tr>
-							<!-- <td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
-							</td> -->
+							<td class="cart_product">
+								<p>Web ID: <?php echo $value['order_id']; ?></p>
+							</td>
 							<td class="cart_description">
 								<h4><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></h4>
-								<p>Web ID: <?php echo $value['order_id']; ?></p>
 							</td>
 							<td class="cart_price">
 								<p><?php echo $value['price']; ?></p>
@@ -151,9 +151,11 @@
 							<td class="cart_total">
 								<p class="cart_total_price"><?php echo $value['total']; ?></p>
 							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
+                            <?php if (!empty($_SESSION['user'])) { ?>  
+								<td class="cart_delete">
+									<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								</td>
+							<?php } ?>
 						</tr>
 						<?php } ?>
 						<!-- <tr>

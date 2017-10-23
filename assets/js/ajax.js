@@ -294,9 +294,9 @@ function purchase_cart() {
         return false;
     } else {
         $('.error-review').html('');   
+        console.log(product_user_id);
         if(product_user_id!='Guest_id') {     
             var product_data = {'product_user_id':product_user_id, 'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
-            console.log(product_data);
             $.ajax({
                 url: 'function.php?action=product_cart',
                 type: 'POST',
@@ -310,14 +310,17 @@ function purchase_cart() {
             return false;
         } else {   
             var product_data = {'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
-            console.log(product_data);
+            
             $.ajax({
                 url: 'function.php?action=product_cart',
                 type: 'POST',
                 data: product_data,
                 success: function (res) {
                     if (res > 0) {
-                        document.cookie = 'Guest_cart=' + res;
+                        console.log(res);
+                        res = Number(res);
+                        console.log(res);
+                        document.cookie = 'Guest_cart=' + parseInt(res);
                         window.location.href = 'cart.php';
                     }
                 }

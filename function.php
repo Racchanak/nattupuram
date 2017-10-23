@@ -14,8 +14,8 @@ if (isset($_POST)) {
     if ($action == 'reviews') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO review (name,emailid,city,message,cret_date,product_name,product_img) 
-			VALUES ('" . $name . "','" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "','" . $product . "','" . $product_img . "')";
+        $query = "INSERT INTO review (name,product_id,emailid,city,message,cret_date,product_name,product_img) 
+			VALUES ('" . $name . "',".$product_id.",'" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "','" . $product . "','" . $product_img . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $rev_id = mysqli_insert_id($link);
         echo json_encode($rev_id);
@@ -59,19 +59,14 @@ if (isset($_POST)) {
         }
         echo json_encode($order_id);
     }
-<<<<<<< HEAD
-    if ($action == 'guest_order') {
-        extract($_POST);
-        extract($GLOBALS);
-        $query = "INSERT INTO product_order (product_id,product_name,category,quantity,price,total,delivery_status, order_status,cret_date) VALUES ('" . $product_id . "', '" . $product_name . "','".$product_category."', '" . $product_quantity . "','" . $product_amount . "','" . ($product_quantity*$product_amount) . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
-        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
-        $order_id = mysqli_insert_id($link);
-        echo json_encode($order_id);        
-=======
     if ($action == 'user_address') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO user_address (user_id,name,phoneno,address1,address2,country,city, state,pincode,cret_date) VALUES ('" . $user_id . "','" . $_SESSION['user']['name'] . "','" . $phone. "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $country . "', '" . $zipcode . "', '" . date('Y-m-d H:i:s') . "')";
+        if(isset($_SESSION['user']['register_id'])) {
+            $query = "INSERT INTO user_address (user_id,name,phoneno,address1,address2,country,city, state,pincode,cret_date) VALUES ('" . $user_id . "','" . $_SESSION['user']['name'] . "','" . $phone. "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $country . "', '" . $zipcode . "', '" . date('Y-m-d H:i:s') . "')";
+        } else if(isset($_COOKIE['Guest_cart'])) { 
+            $query = "INSERT INTO user_address (guest_orderid,name,phoneno,address1,address2,country,city, state,pincode,cret_date) VALUES ('" . $_COOKIE['Guest_cart'] . "','" . $name . "','" . $phone. "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $country . "', '" . $zipcode . "', '" . date('Y-m-d H:i:s') . "')";
+        }
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $address_id = mysqli_insert_id($link);
         echo json_encode($address_id);
@@ -79,7 +74,11 @@ if (isset($_POST)) {
     if ($action == 'product_transaction') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO product_transaction (user_id, billing_addid, total_amt,cret_date) VALUES ('" . $user_id . "','" . $billing_addid . "','" . $total_amt. "', '" . date('Y-m-d H:i:s') . "')";
+        if(isset($_SESSION['user']['register_id'])) {
+            $query = "INSERT INTO product_transaction (user_id, billing_addid, total_amt,cret_date) VALUES ('" . $user_id . "','" . $billing_addid . "','" . $total_amt. "', '" . date('Y-m-d H:i:s') . "')";
+        } else if(isset($_COOKIE['Guest_cart'])) { 
+            $query = "INSERT INTO product_transaction (guest_orderid, billing_addid, total_amt,cret_date) VALUES ('" . $_COOKIE['Guest_cart'] . "','" . $billing_addid . "','" . $total_amt. "', '" . date('Y-m-d H:i:s') . "')";
+        }
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $transaction_id = mysqli_insert_id($link);
         $order_ids = explode(',', $order_ids);
@@ -89,14 +88,46 @@ if (isset($_POST)) {
         }
         echo json_encode($transaction_id);
     }
+    if ($action == 'guest_order') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "INSERT INTO product_order (product_id,product_name,category,quantity,price,total,delivery_status, order_status,cret_date) VALUES ('" . $product_id . "', '" . $product_name . "','".$product_category."', '" . $product_quantity . "','" . $product_amount . "','" . ($product_quantity*$product_amount) . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $order_id = mysqli_insert_id($link);
+        echo json_encode($order_id);  
+    }
     if ($action == 'transact_payment') {
         extract($_POST);
         extract($GLOBALS);
         $query = "UPDATE product_transaction SET transaction_status='".$status."', payment_id='".$payment_id."' WHERE transaction_id=".$transact_id;
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
-        echo json_encode((int)$transact_id);
-        
->>>>>>> 7c31a93d8707065fb32907cc99a84d0343778f9f
+        if ($status == 'Success') {
+
+            $subject = "Booking Confirmed";
+
+            $message = "
+            <html>
+            <head>
+            <title>HTML email</title>
+            </head>
+            <body>
+            <p>Hi ".$curr_user['name'] .",</p>
+            <p>You have successfully booked your order with Nattupuram.</p>
+            <p>Thank you<br><br>Regards,<br><a href='http://www.nattupuram.com/alpha'>Nattupuram</a></p>
+            </body>
+            </html>
+            ";
+            // Always set content-type when sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            // More headers
+            $headers .= 'From: <salesnattupuram@gmail.com>' . "\r\n";
+            $headers .= 'Cc: salesnattupuram@gmail.com' . "\r\n";
+
+            mail($curr_user['emailid'],$subject,$message,$headers);
+        }
+        echo json_encode((int)$transact_id);        
     }
     if ($action == 'userlogin') {
         extract($_POST);
@@ -183,12 +214,14 @@ function carts_data($user_id,$cart_id = '') {
     return $arr;
 }
 
-function order_data($user_id,$cart_id = '') {
+function order_data($user_id,$cart_id = '',$order_id='') {
     extract($GLOBALS);
-    if($cart_id=='') {
-        $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."'";
+    if($cart_id!='') {
+        $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."' AND cart_id='".$cart_id."'";
+    } else if ($order_id!='') {
+        $query = "SELECT * FROM `product_order` WHERE order_id='".$order_id."'";
     } else {
-        $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."' AND cart_id='".$cart_id."'";        
+        $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."'";        
     }
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $arr = array();

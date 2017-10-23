@@ -5,7 +5,7 @@ function add_review() {
     var msg = $('#rev_msg').val();
     var product = $('#product_name').val();
     var product_img = $('#product_img').attr('src');
-    var product_id = $('#product_id').attr('src');
+    var product_id = $('#product_id').val();
     var valid = 0;
     if (product == '') {
         $('.error-review').html('Please Select the Product');
@@ -223,7 +223,6 @@ function logout() {
     });
     return false;
 }
-
 function enquiry() {
     var name = $('#enq_name').val();
     var email = $('#enq_emailid').val();
@@ -297,7 +296,6 @@ function purchase_cart() {
         $('.error-review').html('');   
         if(product_user_id!='Guest_id') {        
             var product_data = {'product_user_id':product_user_id, 'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
-            console.log(product_data);
             $.ajax({
                 url: 'function.php?action=product_cart',
                 type: 'POST',
@@ -311,18 +309,19 @@ function purchase_cart() {
             return false;
         } else {   
             var product_data = {'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
-            console.log(product_data);
             $.ajax({
                 url: 'function.php?action=guest_order',
                 type: 'POST',
                 data: product_data,
                 success: function (res) {
-                    console.log(res);
                     if (res > 0) {
+                        console.log(res);
+                        res = Number(res);
+                        console.log(res);
                         document.cookie = 'Guest_cart=' + res;
-                        // setTimeout(function () {
-                        //     // window.location.href = 'cart.php';
-                        // }, 1000);
+                        setTimeout(function () {
+                            window.location.href = 'checkout.php';
+                        }, 1000);
                     }
                 }
             });
@@ -366,60 +365,126 @@ function purchase_transact() {
     var mobile = $('#mobile').val();  
     var grand_total = $('#grand_total').val();  
     var order_ids = $('#order_ids').val();
+    var valid = 0;
+    if (add_email == '') {
+        $('.error-checkout').html('Please enter your email id');
+        $('#add_email').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (add_name == '') {
+        $('.error-checkout').html('Please enter your name');
+        $('#add_name').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (address1 == '') {
+        $('.error-checkout').html('Please enter the address');
+        $('#address1').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (city == '') {
+        $('.error-checkout').html('Please select the city');
+        $('#city').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (zipcode == '') {
+        $('.error-checkout').html('Please enter the pincode');
+        $('#zipcode').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (state == '') {
+        $('.error-checkout').html('Please select the state');
+        $('#state').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (country == '') {
+        $('.error-checkout').html('Please select the state');
+        $('#country').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
     //address for user id
-    var address_data = { 'user_id':user_id, 'phone':mobile,'address1': address1, 'address2': address2, 'city': city, 'state':state, 'country':country,'zipcode':zipcode };
+    var address_data = { 'user_id':user_id, 'phone':mobile,'address1': address1, 'address2': address2, 'city': city, 'state':state, 'country':country,'zipcode':zipcode, 'name':add_name };
     console.log(address_data);
-    $.ajax({
-        url: 'function.php?action=user_address',
-        type: 'POST',
-        data: address_data,
-        success: function (add_id) {
-            console.log(add_id);
-            if(add_id > 0) {
-                var trans_data = { 'billing_addid':parseInt($.trim(add_id)), 'user_id':user_id, 'total_amt':grand_total,'order_ids':order_ids};
-                console.log(trans_data);
-                $.ajax({
-                    url: 'function.php?action=product_transaction',
-                    type: 'POST',
-                    data: trans_data,
-                    success: function (transact_id) {
-                        var options = {
-                            "key": "rzp_test_vKA7gqOvxPudTU",
-                            "amount": parseInt(grand_total) * 100, // 2000 paise = INR 20
-                            "name": "Nattupuram",
-                            "description": "Transaction ID :" + transact_id,
-                            "image": "assets/images/nattupuram.jpg",
-                            "handler": function (response){
-                                if(response != '') {
-                                    console.log(response.razorpay_payment_id);
-                                    var payment_data = {'status':'Success','transact_id':parseInt($.trim(transact_id)),'payment_id':response.razorpay_payment_id}
-                                } else {
-                                    var payment_data = {'status':'Failure','transact_id':parseInt($.trim(transact_id)),'payment_id':0}
-                                }
-                                $.ajax({
-                                    url: 'function.php?action=transact_payment',
-                                    type: 'POST',
-                                    data: payment_data,
-                                    success: function (res) {
-                                        console.log(res);
-                                        //redirect to Thank You Page.
+    if(valid==7) {
+        $.ajax({
+            url: 'function.php?action=user_address',
+            type: 'POST',
+            data: address_data,
+            success: function (add_id) {
+                console.log(add_id);
+                if(add_id > 0) {
+                    var trans_data = { 'billing_addid':parseInt($.trim(add_id)), 'user_id':user_id, 'total_amt':grand_total,'order_ids':order_ids};
+                    console.log(trans_data);
+                    $.ajax({
+                        url: 'function.php?action=product_transaction',
+                        type: 'POST',
+                        data: trans_data,
+                        success: function (transact_id) {
+                            var options = {
+                                "key": "rzp_test_vKA7gqOvxPudTU",
+                                "amount": parseInt(grand_total) * 100, // 2000 paise = INR 20
+                                "name": "Nattupuram",
+                                "description": "Transaction ID :" + transact_id,
+                                "image": "assets/images/nattupuram.jpg",
+                                "handler": function (response){
+                                    console.log(response);
+                                    if(response != '') {
+                                        console.log(response.razorpay_payment_id);
+                                        var payment_data = {'status':'Success','transact_id':parseInt($.trim(transact_id)),'payment_id':response.razorpay_payment_id}
+                                    } else {
+                                        var payment_data = {'status':'Failure','transact_id':parseInt($.trim(transact_id)),'payment_id':0}
                                     }
-                                });
-                            },
-                            "prefill": {
-                                "name": add_name,
-                                "email": add_email
-                            },
-                            "theme": {
-                                "color": "#F37254"
-                            }
-                        };
-                        var rzp1 = new Razorpay(options);
-                            rzp1.open();
-                    }
-                });
+                                    $.ajax({
+                                        url: 'function.php?action=transact_payment',
+                                        type: 'POST',
+                                        data: payment_data,
+                                        success: function (res) {
+                                            console.log(res);
+                                            if(response != '') {
+                                                if(res > 0) {
+                                                    window.location.href = 'orderThank.php';
+                                                }
+                                            }
+                                            //redirect to Thank You Page.
+                                        }
+                                    });
+                                },
+                                "prefill": {
+                                    "name": add_name,
+                                    "email": add_email
+                                },
+                                "theme": {
+                                    "color": "#F37254"
+                                }
+                            };
+                            var rzp1 = new Razorpay(options);
+                                rzp1.open();
+                        }
+                    });
+                }
             }
-        }
-    });
+        });
+        return false;
+    } 
     return false;
 }
