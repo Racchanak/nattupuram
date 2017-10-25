@@ -35,57 +35,77 @@ include('header.php');
                             <h2><?php echo $product[0]['product_name']; ?></h2>
                             <!--<p>ID: MCO-590</p>-->
                             <!--<img src="images/product-details/rating.png" alt="" />-->
-                            <span>                                
-                                <div class="col-sm-6">
-                                    <select name="volume" class="vol_qnty">
-                                        <?php foreach ($product[0]['quantity'] as $key => $value) { 
-                                            if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
-                                            <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>                           
-                                <div class="col-sm-6">
-                                    <?php foreach ($product[0]['price'] as $key => $value) { 
-                                            if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
-                                        <span class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><?php echo $value; ?></span>
-                                        <!--<span class="halfl_amt amount" style="display: none;">Rs. 145</span>-->
+                            <span>                            
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2">
+                                        <label>Price:</label>
+                                    </div>
+                                    <div class="col-sm-8" style="font-size: 25px;font-weight: 700;margin-right: 9px;margin-top: -12px;">
+                                        <?php foreach ($product[0]['price'] as $key => $value) { 
+                                                if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
+                                            <span class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><?php echo $value; ?></span>
+                                            <!--<span class="halfl_amt amount" style="display: none;">Rs. 145</span>-->
+                                        <?php } ?> <h5>(inclusive of all taxes)</h5>
+                                    </div>
+                                </div>                              
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2">
+                                        <label>Volume:</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select name="volume" class="vol_qnty">
+                                            <?php foreach ($product[0]['quantity'] as $key => $value) { 
+                                                if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
+                                                <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>            
+                                <div class="col-sm-12">
+                                    <div class="col-sm-6">
+                                        <label>Quantity:</label>
+                                        <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/>
+                                    </div>  
+                                </div> 
+                                <div class="col-sm-12">
+                                    <label>Free Delivery (Tamilnadu, Pondicherry & Bengaluru)</label>
+                                </div>
+                                <div class="col-sm-12">                                    
+                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#proOffers">Offers</button>
+                                </div>
+                                <div class="col-sm-12">
+                                    <?php if (!empty($_SESSION['user'])) { ?>                              
+                                    <div class="col-sm-6">
+                                        <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
+                                            <input type="hidden" name="category" id="product_category" class="form-control">
+                                            <input type="hidden" name="category" id="product_user_id" class="form-control" value="<?php echo $_SESSION['user']['register_id']; ?>">
+                                            <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
+                                            <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
+                                            <input type="hidden" name="quantity" id="product_quantity" class="form-control">
+                                            <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
+                                            <button type="submit" class="btn btn-fefault cart" >
+                                                <i class="fa fa-shopping-cart"></i>
+                                                Add to cart
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <?php } else { ?>                        
+                                    <div class="col-sm-6">
+                                        <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
+                                            <input type="hidden" name="category" id="product_category" class="form-control">
+                                            <input type="hidden" name="category" id="product_user_id" class="form-control" value="Guest_id">
+                                            <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
+                                            <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
+                                            <input type="hidden" name="quantity" id="product_quantity" class="form-control">
+                                            <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
+                                            <button type="submit" class="btn btn-fefault cart" >
+                                                <i class="fa fa-shopping-cart"></i>
+                                                Buy Now
+                                            </button>
+                                        </form>
+                                    </div>                                
                                     <?php } ?>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label>Quantity:</label>
-                                    <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/>
-                                </div>  
-                                <?php if (!empty($_SESSION['user'])) { ?>                              
-                                <div class="col-sm-6">
-                                    <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
-                                        <input type="hidden" name="category" id="product_category" class="form-control">
-                                        <input type="hidden" name="category" id="product_user_id" class="form-control" value="<?php echo $_SESSION['user']['register_id']; ?>">
-                                        <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
-                                        <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
-                                        <input type="hidden" name="quantity" id="product_quantity" class="form-control">
-                                        <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
-                                        <button type="submit" class="btn btn-fefault cart" >
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Add to cart
-                                        </button>
-                                    </form>
-                                </div>
-                                <?php } else { ?>                        
-                                <div class="col-sm-6">
-                                    <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
-                                        <input type="hidden" name="category" id="product_category" class="form-control">
-                                        <input type="hidden" name="category" id="product_user_id" class="form-control" value="Guest_id">
-                                        <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
-                                        <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
-                                        <input type="hidden" name="quantity" id="product_quantity" class="form-control">
-                                        <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
-                                        <button type="submit" class="btn btn-fefault cart" >
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Buy Now
-                                        </button>
-                                    </form>
-                                </div>                                
-                                <?php } ?>
                             </span>
                                     <span class="error-product"></span>
                             <span><label>Details: </label> <?php echo $product[0]['description']; ?> </span>
@@ -96,7 +116,6 @@ include('header.php');
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->
-
                 <div class="category-tab shop-details-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">

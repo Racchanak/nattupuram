@@ -34,6 +34,55 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div id="welOffers" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><?php echo $offers['Welcome'][0]['title']; ?></h4>
+      </div>
+      <div class="modal-body">
+        <h2><?php echo $offers['Welcome'][0]['description']; ?></h2>
+        <h4><?php echo $offers['Welcome'][0]['coupon_code']; ?></h4>
+        <p><?php echo $offers['Welcome'][0]['coupon_text']; ?></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal -->
+<div id="proOffers" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">OFFERS</h4>
+      </div>
+      <div class="modal-body">
+        <?php foreach ($offers['Product'] as $key => $value) { ?>
+            <h3><?php echo $value['title']; ?></h3>
+            <h4><?php echo $value['description']; ?></h4 >
+            <h5><?php echo $value['coupon_code']; ?></h5>
+        <?php } ?>
+        <!-- <h3>2. REFERRAL OFFER</h3>
+        <h4>Refer and Earn Flat 5% Cash back on Referal's first order.</h4>
+        <h5>Use Coupon : REFER05</h5> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <footer id="footer"><!--Footer-->
     <div class="footer-widget">
         <div class="container">

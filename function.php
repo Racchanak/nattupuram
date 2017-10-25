@@ -199,6 +199,34 @@ function reviews_data() {
     return $arr;
 }
 
+function offers_data($offer_id = '') {
+    extract($GLOBALS);
+    if($offer_id=='') {
+        $query = "SELECT * FROM `Offers`";
+    } else {
+        $query = "SELECT * FROM `Offers` WHERE offers_id = '".$offer_id."'" ;
+    }
+    $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+    $arr = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $arr[] = $row;
+    }
+    if($offer_id=='') {
+        $offers['Welcome'] = array();
+        $offers['Product'] = array();
+        foreach ($arr as $key => $value) {
+            if($value['category'] == 'Welcome') {
+                array_push($offers['Welcome'],$value);
+            } else if($value['category'] == 'Product') {
+                array_push($offers['Product'],$value);
+            }
+        }
+        return $offers;
+    } else {
+        return $arr;
+    }
+}
+
 function carts_data($user_id,$cart_id = '') {
     extract($GLOBALS);
     if($cart_id=='') {

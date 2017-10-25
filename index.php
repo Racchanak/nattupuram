@@ -21,7 +21,7 @@ include('header.php');
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="col-sm-12">
-                                <img src="assets/images/homeslider/WPC-oil.jpg" class="img img-responsive" alt="" />
+                                <img src="assets/images/nattupuramold.jpg" class="img img-responsive" alt="" />
                                 <!-- <img src="images/home/pricing.png"  class="pricing" alt="" /> -->
                             </div>
                         </div>
@@ -124,3 +124,6 @@ include('header.php');
 <?php
 include('footer.php');
 ?>
+<script type="text/javascript">
+    $('#welOffers').modal('toggle');
+</script>

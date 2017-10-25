@@ -116,6 +116,7 @@
 						<tr class="cart_menu">
 							<td class="image">Order No</td>
 							<td class="description">Product Name</td>
+							<td class="image">Offers</td>
 							<td class="price">Price</td>
 							<td class="quantity">Quantity</td>
 							<td class="total">Total</td>
