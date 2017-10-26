@@ -125,7 +125,8 @@ $('#product_filter').change(function () {
         }
     });
 });
-
+if()
+$("input[name='account_option[]']:checked");
 function add_register() {
     var name = $('#reg_name').val();
     var emailid = $('#reg_email').val();

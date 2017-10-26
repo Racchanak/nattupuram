@@ -13,17 +13,17 @@
 			</div><!--/breadcrums-->
 
 			<div class="step-one">
-				<h2 class="heading">Step1</h2>
+				<h2 class="heading">Step - 1</h2>
 			</div>
-			<!-- <div class="checkout-options">
+			<div class="checkout-options">
 				<h3>New User</h3>
 				<p>Checkout options</p>
 				<ul class="nav">
 					<li>
-						<label><input type="checkbox"> Register Account</label>
+						<label><input type="checkbox" class="chekout" name="account_option[]" value="Register"> Register Account</label>
 					</li>
 					<li>
-						<label><input type="checkbox"> Guest Checkout</label>
+						<label><input type="checkbox" class="chekout" name="account_option[]" value="Guest"> Guest Checkout</label>
 					</li>
 					<li>
 						<a href=""><i class="fa fa-times"></i>Cancel</a>
@@ -31,10 +31,13 @@
 				</ul>
 			</div><!--/checkout-options-->
 
-			<!--<div class="register-req">
+			<div class="register-req">
 				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-			</div> --><!--/register-req-->
+			</div> <!--/register-req-->
 
+			<div class="step-one">
+				<h2 class="heading">Step - 2</h2>
+			</div>
 			<div class="shopper-informations">
 				<div class="row">
 					<!-- <div class="col-sm-3">
@@ -105,6 +108,9 @@
 						</div>	
 					</div>	 -->				
 				</div>
+			</div>
+			<div class="step-one">
+				<h2 class="heading">Step - 3</h2>
 			</div>
 			<div class="review-payment">
 				<h2>Review & Payment</h2>
@@ -233,6 +239,30 @@
 								</table>
 							</td>
 						</tr>
+						<tr>
+							<td colspan="4">&nbsp;</td>
+							<td colspan="2">
+								<table class="table table-condensed total-result">
+									<!-- <tr>
+										<td>Cart Sub Total</td>
+										<td>$59</td>
+									</tr>
+									<tr>
+										<td>Exo Tax</td>
+										<td>$2</td>
+									</tr>
+									<tr class="shipping-cost">
+										<td>Shipping Cost</td>
+										<td>Free</td>										
+									</tr> -->
+									<tr>
+										<td>Total</td>
+										<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
+										<td><span><?php echo $grand_total; ?></span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -258,7 +288,6 @@
 				</div>
 		</div>
 	</section> <!--/#cart_items-->
-
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <?php
 	include('footer.php');
