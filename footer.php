@@ -148,7 +148,7 @@
         </div>
     </div>
     <div class="footer-bottom" style="background: none repeat scroll 0 0 rgba(29, 111, 24, 0.88);">
-        <div class="container" style="width: 850px;">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-12">   
                     <div class="nav-pills navfooter">
