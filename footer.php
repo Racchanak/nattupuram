@@ -46,7 +46,7 @@
       </div>
       <div class="modal-body">
         <h2><?php echo $offers['Welcome'][0]['description']; ?></h2>
-        <h4><?php echo $offers['Welcome'][0]['code_text'].$offers['Welcome'][0]['coupon_code']; ?></h4>
+        <h4><?php echo $offers['Welcome'][0]['coupon_code']; ?></h4>
         <p><?php echo $offers['Welcome'][0]['coupon_text']; ?></p>
       </div>
       <div class="modal-footer">
@@ -70,7 +70,7 @@
         <?php foreach ($offers['Product'] as $key => $value) { ?>
             <h3><?php echo $value['title']; ?></h3>
             <h4><?php echo $value['description']; ?></h4 >
-            <h5><?php echo $value['code_text'].$value['coupon_code']; ?></h5>
+            <h5><?php echo $value['coupon_code']; ?></h5>
         <?php } ?>
         <!-- <h3>2. REFERRAL OFFER</h3>
         <h4>Refer and Earn Flat 5% Cash back on Referal's first order.</h4>
@@ -107,14 +107,14 @@
                         <div class="single-widget">
                             <h2 class="title">Menu</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="index" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
-                                <li><a href="aboutus" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
-                                <li><a href="products" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Products</a></li>
-                                <li><a href="distribution" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
-                                <li><a href="testimonials" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>
-                                <li><a href="contact_us" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
+                                <li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
+                                <li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
+                                <li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Products</a></li>
+                                <li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
+                                <li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>
+                                <li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
                                 <li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                <li><a href="login"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
                             </ul>
                         </div>
                     </div>
@@ -148,16 +148,16 @@
         </div>
     </div>
     <div class="footer-bottom" style="background: none repeat scroll 0 0 rgba(29, 111, 24, 0.88);">
-        <div class="container" style="width: 850px;">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-12">   
                     <div class="nav-pills navfooter">
                         <ul class="nav navbar-nav">
-                            <li><a href="testimonials" class="<?= ($menu == 'feedback') ? 'active' : ''; ?>"> Feedback</a></li>
-                            <li><a href="team" class="<?= ($menu == 'team') ? 'active' : ''; ?>"> Nattupuram Team</a></li>
-                            <li><a href="privacypolicy" class="<?= ($menu == 'policy') ? 'active' : ''; ?>"> Privacy Policy</a></li>
-                            <li><a href="shippingrefund" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Shipping and Delivery Policy</a></li>
-                            <li><a href="termscondi" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Terms and Condition</a></li>
+                            <li><a href="testimonials.php" class="<?= ($menu == 'feedback') ? 'active' : ''; ?>"> Feedback</a></li>
+                            <!-- <li><a href="team.php" class="<?= ($menu == 'team') ? 'active' : ''; ?>"> Nattupuram Team</a></li> -->
+                            <li><a href="privacypolicy.php" class="<?= ($menu == 'policy') ? 'active' : ''; ?>"> Privacy Policy</a></li>
+                            <li><a href="shippingrefund.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Shipping and Delivery Policy</a></li>
+                            <li><a href="termscondi.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Terms and Condition</a></li>
                             <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li>  -->
                             <!-- <li><a href="#"><i class="fa fa-envelope"></i> care@nattupuram.com</a></li> -->
                             <!-- <li><a href="#">Get Your Order<i class="fa fa-phone"></i> +91 9994739036</a></li> -->
