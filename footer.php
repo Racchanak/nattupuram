@@ -46,7 +46,7 @@
       </div>
       <div class="modal-body">
         <h2><?php echo $offers['Welcome'][0]['description']; ?></h2>
-        <h4><?php echo $offers['Welcome'][0]['coupon_code']; ?></h4>
+        <h4><?php echo $offers['Welcome'][0]['code_text'].$offers['Welcome'][0]['coupon_code']; ?></h4>
         <p><?php echo $offers['Welcome'][0]['coupon_text']; ?></p>
       </div>
       <div class="modal-footer">
@@ -70,7 +70,7 @@
         <?php foreach ($offers['Product'] as $key => $value) { ?>
             <h3><?php echo $value['title']; ?></h3>
             <h4><?php echo $value['description']; ?></h4 >
-            <h5><?php echo $value['coupon_code']; ?></h5>
+            <h5><?php echo $value['code_text'].$value['coupon_code']; ?></h5>
         <?php } ?>
         <!-- <h3>2. REFERRAL OFFER</h3>
         <h4>Refer and Earn Flat 5% Cash back on Referal's first order.</h4>

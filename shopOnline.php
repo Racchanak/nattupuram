@@ -1,3 +1,4 @@
+
 <?php
     include('functioncall.php');
 $title = $product[0]['product_name'];
@@ -71,9 +72,7 @@ include('header.php');
                                     <label>Free Delivery (Tamilnadu, Pondicherry & Bengaluru)</label>
                                 </div>
                                 <div class="col-sm-12">                                    
-                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#proOffers">Offers</button>
-                                </div>
-                                <div class="col-sm-12">
+                                    <span style="padding: 0px 5px;color:#f9f9f9;font-size: 20px;" class="btn btn-info btn-sm" data-toggle="modal" data-target="#proOffers">Offers</span>
                                     <?php if (!empty($_SESSION['user'])) { ?>                              
                                     <div class="col-sm-6">
                                         <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
@@ -104,7 +103,7 @@ include('header.php');
                                             </button>
                                         </form>
                                     </div>                                
-                                    <?php } ?>
+                                    <?php } ?>                                
                                 </div>
                             </span>
                                     <span class="error-product"></span>
@@ -116,6 +115,7 @@ include('header.php');
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->
+
                 <div class="category-tab shop-details-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
@@ -270,7 +270,7 @@ include('header.php');
             
                                 <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
-                                        <div class="item active">	
+                                        <div class="item active">   
                                             <div class="col-sm-4">
                                                 <div class="product-image-wrapper">
                                                     <div class="single-products">
@@ -308,7 +308,7 @@ include('header.php');
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="item">	
+                                        <div class="item">  
                                             <div class="col-sm-4">
                                                 <div class="product-image-wrapper">
                                                     <div class="single-products">
@@ -352,7 +352,7 @@ include('header.php');
                                     </a>
                                     <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
                                         <i class="fa fa-angle-right"></i>
-                                    </a>			
+                                    </a>            
                                 </div>
                             </div>/recommended_items-->
 

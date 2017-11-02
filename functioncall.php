@@ -2,6 +2,7 @@
  $product_reviews = reviews_data(); 
  $products = products_data();
  $offers = offers_data('');
+ // randomString(3);
  $product_id = (isset($_REQUEST['product_id']))?$_REQUEST['product_id']:'';
  $product = products_data($product_id);
  if(isset($_SESSION['user']['register_id'])) {

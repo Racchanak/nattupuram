@@ -32,10 +32,35 @@ if (isset($_POST)) {
     if ($action == 'register') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO register (name,emailid,password,cret_date) 
-			VALUES ('" . $name . "','" . $emailid . "','" . md5($password) . "','" . date('Y-m-d H:i:s') . "')";
+        $query = "INSERT INTO register (name,emailid,password,referal_code,cret_date) VALUES ('".$name."','".$emailid."','".md5($password)."','".date('Y-m-d H:i:s')."')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $reg_id = mysqli_insert_id($link);
+        $random_refer = 'ref'. (rand(10, 30)). '_'. $reg_id. randomString(2,$name);
+        $refupdate = "UPDATE register SET referal_code='".$random_refer."' WHERE register_id=".$reg_id;
+        $ref_result = mysqli_query($link, $refupdate) or die('Error in Query.' . mysqli_error($link));
+        $curr_user = array();
+        $curr_user['register_id'] = $arr[0]['register_id'];
+        $curr_user['name'] = $arr[0]['name'];
+        $curr_user['emailid'] = $arr[0]['emailid'];
+        $_SESSION['user'] = $curr_user;
+        $subject = "Registration Confirmation";
+        $message = "<html>
+        <head>
+        <title>HTML email</title>
+        </head>
+        <body>
+        <p>Hi ".$curr_user['name'] .",</p>
+        <p>You have successfully registered with Nattupuram.</p>
+        <p>Thank you<br><br>Regards,<br><a href='http://www.nattupuram.com/alpha'>Nattupuram</a></p>
+        </body>
+        </html>";
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        // More headers
+        $headers .= 'From: <salesnattupuram@gmail.com>' . "\r\n";
+        $headers .= 'Cc: salesnattupuram@gmail.com' . "\r\n";
+        mail($curr_user['emailid'],$subject,$message,$headers);
         echo json_encode($reg_id);
     }
     if ($action == 'product_cart') {
@@ -96,6 +121,146 @@ if (isset($_POST)) {
         $order_id = mysqli_insert_id($link);
         echo json_encode($order_id);  
     }
+    if ($action == 'guestLoginregister') { //gOrderId
+        extract($_POST);
+        extract($GLOBALS);
+        session_start();
+        $query = "INSERT INTO register (name,emailid,password,cret_date) VALUES ('".$name."','".$emailid."','".md5($password)."','".date('Y-m-d H:i:s')."')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $reg_id = mysqli_insert_id($link);  
+        $random_refer = 'ref'. (rand(10, 30)). '_'. $reg_id. randomString(2,$name);
+        $refupdate = "UPDATE register SET referal_code='".$random_refer."' WHERE register_id=".$reg_id;
+        $ref_result = mysqli_query($link, $refupdate) or die('Error in Query.' . mysqli_error($link)); 
+        $curr_user = array();
+        $curr_user['register_id'] = $reg_id;
+        $curr_user['name'] = $name;
+        $curr_user['emailid'] = $emailid;
+        $_SESSION['user'] = $curr_user;     
+        $subject = "Registration Confirmation";
+        $message = "<html>
+        <head>
+        <title>HTML email</title>
+        </head>
+        <body>
+        <p>Hi ".$curr_user['name'] .",</p>
+        <p>You have successfully registered with Nattupuram.</p>
+        <p>Thank you<br><br>Regards,<br><a href='http://www.nattupuram.com/alpha'>Nattupuram</a></p>
+        </body>
+        </html>";
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        // More headers
+        $headers .= 'From: <salesnattupuram@gmail.com>' . "\r\n";
+        $headers .= 'Cc: salesnattupuram@gmail.com' . "\r\n";
+        mail($curr_user['emailid'],$subject,$message,$headers);
+        $curr_user['order_id'] = $gOrderId;
+        $query = "UPDATE product_order SET user_id='".$reg_id."' WHERE order_id=".$gOrderId;
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        echo json_encode($curr_user);
+    }
+    if ($action == 'userLoginregister') {
+        extract($_POST);
+        extract($GLOBALS);
+        session_start();
+        $query = "SELECT * FROM register WHERE emailid='" . $emailid . "' AND password='" . md5($password) . "'";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $arr = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $arr[] = $row;
+        }
+        if (!empty($arr)) {
+            $curr_user = array();
+            $curr_user['register_id'] = $arr[0]['register_id'];
+            $curr_user['name'] = $arr[0]['name'];
+            $curr_user['emailid'] = $arr[0]['emailid'];
+            $_SESSION['user'] = $curr_user;
+            $curr_user['order_id'] = $gOrderId;
+            $query = "UPDATE product_order SET user_id='".$arr[0]['register_id']."' WHERE order_id=".$gOrderId;
+            $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+            echo json_encode($curr_user);
+        } else {
+            echo json_encode(0);
+        }        
+    }
+    if ($action == 'applyuserDiscount') {
+        extract($_POST);
+        extract($GLOBALS);
+        //Order_details
+        $order_id = explode(',', $order_ids);
+        $grand_total = 0;
+        foreach ($order_id as $key => $value) {         
+            $order_details = "SELECT * FROM product_order WHERE order_id='" . $value . "'";
+            $res_order = mysqli_query($link, $order_details) or die('Error in Query.' . mysqli_error($link));
+            $arr = array();
+            while ($row = mysqli_fetch_assoc($res_order)) {
+                $arr[] = $row;
+            }
+            $grand_total += ($arr[0]['total']);   
+        } 
+        $response['grand_total'] = $grand_total;
+        if(!empty($aCcoupon)) {
+            //coupon code
+            $coupon = "SELECT * FROM Offers WHERE coupon_code='" . $aCcoupon . "'";
+            $res_coupon = mysqli_query($link, $coupon) or die('Error in Query.' . mysqli_error($link));
+            $coupon_arr = array();
+            while ($row = mysqli_fetch_assoc($res_coupon)) {
+                $coupon_arr[] = $row;
+            }
+            if(!empty($coupon_arr)) {
+                $discount_value = $grand_total - (($grand_total * $coupon_arr[0]['Offersvalue'])/100);
+                $response['coupon_value'] = $discount_value;
+            } else {
+                $response['coupon_value'] = 0;
+            }
+        }
+        if(!empty($redeemCash)) {
+            $redcoupon = "SELECT * FROM Offers WHERE coupon_code='" . $redeemCash . "'";
+            $red_coupon = mysqli_query($link, $redcoupon) or die('Error in Query.' . mysqli_error($link));
+            $redcoupon_arr = array();
+            while ($row = mysqli_fetch_assoc($red_coupon)) {
+                $redcoupon_arr[] = $row;
+            }
+            if($grand_total > ($redcoupon_arr[0]['Offersabove']-500) && $redeemCash < 200) { 
+                if(!empty($redcoupon_arr)) {
+                    $total_value = ($grand_total * $redcoupon_arr[0]['Offersvalue'])/100;
+                    $response['wallet_value'] = $total_value; //$grand_total - $redeemCash;
+                } else {
+                    $response['wallet_value'] = 0;
+                }
+            } else {
+                $response['wallet_value'] = 0;
+            }
+        }
+        if(!empty($referCode)) {
+            $redcoupon = "SELECT * FROM Offers WHERE coupon_code='user'";
+            $red_coupon = mysqli_query($link, $redcoupon) or die('Error in Query.' . mysqli_error($link));
+            $redcoupon_arr = array();
+            while ($row = mysqli_fetch_assoc($red_coupon)) {
+                $redcoupon_arr[] = $row;
+            }
+            $refcoupon = "SELECT * FROM register WHERE referal_code='" . $referCode . "' AND register_id!='" . $user_id . "'";
+            $ref_coupon = mysqli_query($link, $refcoupon) or die('Error in Query.' . mysqli_error($link));
+            $refcoupon_arr = array();
+            while ($row = mysqli_fetch_assoc($ref_coupon)) {
+                $refcoupon_arr[] = $row;
+            }
+            if(!empty($refcoupon_arr)) {
+                $refer_value = ($grand_total * $redcoupon_arr[0]['Offersvalue'])/100;      
+                $ref_reg = "INSERT INTO wallet_history (user_id,wallet_value,wallet_mode,wallet_valuefrom,wallet_status,cret_date) VALUES 
+                '".$refcoupon_arr[0]['register_id']."','".$refer_value."','Referal','".$user_id."','Pending',('".date('Y-m-d H:i:s')."')";
+                $res_refreg = mysqli_query($link, $ref_reg) or die('Error in Query.' . mysqli_error($link));
+                $wallet_history = mysqli_insert_id($link);
+                $response['referal_value'] = $wallet_history; //$grand_total - $redeemCash;
+            } else {
+                $response['referal_value'] = 0;
+            } 
+        }
+        print_r($_POST);
+        print_r($response);
+        exit();
+
+    }
     if ($action == 'transact_payment') {
         extract($_POST);
         extract($GLOBALS);
@@ -144,29 +309,6 @@ if (isset($_POST)) {
             $curr_user['name'] = $arr[0]['name'];
             $curr_user['emailid'] = $arr[0]['emailid'];
             $_SESSION['user'] = $curr_user;
-            $subject = "Registration Confirmation";
-
-            $message = "
-            <html>
-            <head>
-            <title>HTML email</title>
-            </head>
-            <body>
-            <p>Hi ".$curr_user['name'] .",</p>
-            <p>You have successfully registered with Nattupuram.</p>
-            <p>Thank you<br><br>Regards,<br><a href='http://www.nattupuram.com/alpha'>Nattupuram</a></p>
-            </body>
-            </html>
-            ";
-            // Always set content-type when sending HTML email
-            $headers = "MIME-Version: 1.0" . "\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-            // More headers
-            $headers .= 'From: <salesnattupuram@gmail.com>' . "\r\n";
-            $headers .= 'Cc: salesnattupuram@gmail.com' . "\r\n";
-
-            mail($curr_user['emailid'],$subject,$message,$headers);
             echo json_encode((int) $arr[0]['register_id']);
         } else {
             echo json_encode(0);
@@ -186,6 +328,16 @@ if (isset($_POST)) {
         $_SESSION['user'] = '';
         echo json_encode(1);
     }
+}   
+function randomString($length,$string) {
+    $str = "";
+    $characters = str_split($string, 1);
+    $max = count($characters) - 1;
+    for ($i = 0; $i < $length; $i++) {
+        $rand = mt_rand(0, $max);
+        $str .= $characters[$rand];
+    }
+    return $str;
 }
 
 function reviews_data() {

@@ -125,8 +125,106 @@ $('#product_filter').change(function () {
         }
     });
 });
-if()
-$("input[name='account_option[]']:checked");
+
+$('.chekout').click(function(){
+    var checkout = $("input[name='account_option[]']:checked")[0].value;    
+    if(checkout=='Guest') {
+        $('#'+checkout).css('display', 'block');
+        $('#Register').css('display', 'none');
+    } else if(checkout=='Register') {
+        $('#Guest').css('display', 'none');
+        $('#'+checkout).css('display', 'block');        
+    }
+});
+
+$('.redeem').click(function(){
+    var redeem = $("input[name='redeem_option[]']:checked")[0].value;    
+    if(redeem=='WalletCash') {
+        $('#referCode').val('');
+        $('#'+redeem).css('display', 'block');
+        $('#ReferCode').css('display', 'none');
+    } else if(redeem=='ReferCode') {
+        $('#redeemCash').val('');
+        $('#WalletCash').css('display', 'none');
+        $('#'+redeem).css('display', 'block');        
+    }
+});
+
+$('.regisCheck').click(function(){
+    $('#regisCheck').css('display','block');
+    $('#gRegister').val('RegisterGuest');
+});
+
+function checkoutGuestLogin() {
+    var name = $('#guestname').val();
+    var emailid = $('#guestemail').val();
+    var password = $('#guestresPassword').val();
+    var gOrderId = $('#gOrderId').val(); 
+    var ges_data = {'name': name, 'emailid': emailid, 'password': password, 'gOrderId':gOrderId};
+    $.ajax({
+        url: 'function.php?action=guestLoginregister',
+        type: 'POST',
+        data: ges_data,
+        success: function (res) {
+            var guestRegist = JSON.parse(res);
+            console.log(guestRegist);
+            $('.error-review').html('');
+            $('#user_id').val(guestRegist.register_id);
+            $('#add_name').val(guestRegist.name);
+            $('#add_email').val(guestRegist.emailid);
+            $('#gOrderId').val(guestRegist.order_id); 
+            $('#gRegister').val('GuestRegister');
+            $('#regisCheck').css('display','none');
+            $('#guestresPassword').val('');
+        }
+    });
+    return false;    
+}
+
+function checkoutRegisterLogin() {
+    var emailid = $('#login_email').val();
+    var password = $('#login_password').val();
+    var gOrderId = $('#gOrderId').val(); 
+    var reg_data = {'emailid': emailid, 'password': password, 'gOrderId':gOrderId };
+    $.ajax({
+        url: 'function.php?action=userLoginregister',
+        type: 'POST',
+        data: reg_data,
+        success: function (res) {
+            if (res == 0) {
+                $('.error-review').html('Please enter valid username and password');
+            } else {
+                var guestRegist = JSON.parse(res);
+                $('.error-review').html('');
+                $('#user_id').val(guestRegist.register_id);
+                $('#add_name').val(guestRegist.name);
+                $('#add_email').val(guestRegist.emailid);
+                $('#gOrderId').val(guestRegist.order_id); 
+            }
+        }
+    });
+    return false;    
+}
+
+function applyDiscounts() {
+    var aCcoupon = $('#aCcoupon').val();
+    var redeemCash = $('#redeemCash').val();
+    var referCode = $('#referCode').val();
+    var user_id = $('#user_id').val();  
+    var order_ids = $('#order_ids').val();
+    var grand_total = $('#grand_total').val();
+    var apply_data = {'aCcoupon': aCcoupon, 'redeemCash': redeemCash, 'referCode':referCode, 'user_id':user_id,'order_ids':order_ids, 'grand_total':grand_total };
+    $.ajax({
+        url: 'function.php?action=applyuserDiscount',
+        type: 'POST',
+        data: apply_data,
+        success: function (res) {
+            console.log(res);
+        }
+    });
+    return false;    
+}
+
 function add_register() {
     var name = $('#reg_name').val();
     var emailid = $('#reg_email').val();
@@ -224,6 +322,7 @@ function logout() {
     });
     return false;
 }
+
 function enquiry() {
     var name = $('#enq_name').val();
     var email = $('#enq_emailid').val();

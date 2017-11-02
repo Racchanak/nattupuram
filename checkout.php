@@ -15,60 +15,73 @@
 			<div class="step-one">
 				<h2 class="heading">Step - 1</h2>
 			</div>
+			<?php if (!empty($_SESSION['user'])) { ?>  
+				<input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user']['register_id'];?>">
+				<input type="hidden" id="add_email" value="<?php echo $_SESSION['user']['emailid'];?>">
+				<input type="hidden" id="add_name" value="<?php echo $_SESSION['user']['name'];?>">
+				<input type="text" placeholder="Email*" id="sess_email" value="<?php echo $_SESSION['user']['emailid'];?>">
+				<input type="text" placeholder="Name *" id="sess_name" value="<?php echo $_SESSION['user']['name'];?>">
+			<?php } else { ?>
 			<div class="checkout-options">
 				<h3>New User</h3>
 				<p>Checkout options</p>
 				<ul class="nav">
 					<li>
-						<label><input type="checkbox" class="chekout" name="account_option[]" value="Register"> Register Account</label>
+						<label><input type="radio" class="chekout" name="account_option[]" value="Register"> Register Account</label>
 					</li>
 					<li>
-						<label><input type="checkbox" class="chekout" name="account_option[]" value="Guest"> Guest Checkout</label>
+						<label><input type="radio" class="chekout" name="account_option[]" value="Guest"> Guest Checkout</label>
 					</li>
 					<li>
 						<a href=""><i class="fa fa-times"></i>Cancel</a>
 					</li>
-				</ul>
-			</div><!--/checkout-options-->
-
+				</ul> 
+			</div><!--/checkout-options--> 
 			<div class="register-req">
 				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
+			    <input type="hidden" id="gOrderId" value="<?php echo $_COOKIE['Guest_cart']; ?>">
+				<input type="hidden" id="add_email" value="">
+				<input type="hidden" id="add_name" value="">	
+				<div class="col-sm-12">                  
+			        <div class="col-sm-6" class="checkout_method" id="Register" style="display: none;">
+			            <form id="main-form" onsubmit="return checkoutRegisterLogin();" class="purchase-form row" name="purchase-form">
+							<input type="hidden" name="user_id" id="user_id" value="Guest_id">
+	                        <input type="text" id="login_email" name="email" placeholder="Email Address" />
+	                        <input type="password" id="login_password" name="password" placeholder="Password" />
+			                <button type="submit" class="btn btn-fefault cart" >
+			                    <i class="fa fa-shopping-cart"></i>
+			                    Continue
+			                </button>
+			            </form>			
+			        </div>                     
+			        <div class="col-sm-6" class="checkout_method" id="Guest" style="display: none;">
+						<p>Guest Details</p>
+			            <form id="main-form" onsubmit="return checkoutGuestLogin();" class="purchase-form row" name="purchase-form">
+							<input type="hidden" name="user_id" id="user_id" value="Guest_id">
+							<input type="text" placeholder="Name *" id="guestname" value="">	
+							<input type="text" placeholder="Email*" id="guestemail" value="">
+			                <input type="hidden" id="gRegister" value="Guest">
+			                <label><input type="radio" class="regisCheck" name="guestRegister[]" value="GRegister"> Do You want to Register?</label></br>
+			                <span id="regisCheck" style="display: none;"><label>Password :</label><input type="password" name="password" id="guestresPassword" class="form-control">
+			                <button type="submit" class="btn btn-fefault cart" >
+			                    <i class="fa fa-shopping-cart"></i>
+			                    Continue
+			                </button></span>
+			            </form>
+			        </div>
+		        </div>
 			</div> <!--/register-req-->
-
+			<?php } ?>	
 			<div class="step-one">
 				<h2 class="heading">Step - 2</h2>
 			</div>
 			<div class="shopper-informations">
 				<div class="row">
-					<!-- <div class="col-sm-3">
-						<div class="shopper-info">
-							<p>Shopper Information</p>
-							<form>
-								<input type="text" placeholder="Display Name">
-								<input type="text" placeholder="User Name">
-								<input type="password" placeholder="Password">
-								<input type="password" placeholder="Confirm password">
-							</form>
-							<a class="btn btn-primary" href="">Get Quotes</a>
-							<a class="btn btn-primary" href="">Continue</a>
-						</div>
-					</div> -->
 					<div class="col-sm-12 clearfix">
 						<div class="bill-to">
 							<p>Address</p>
 							<div class="form-one">
 								<form>
-                                <?php if (!empty($_SESSION['user'])) { ?>  
-									<input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user']['register_id'];?>">
-									<input type="text" placeholder="Email*" id="add_email" value="<?php echo $_SESSION['user']['emailid'];?>">
-									<input type="text" placeholder="Name *" id="add_name" value="<?php echo $_SESSION['user']['name'];?>">
-								<?php } else { ?>
-									<input type="hidden" name="user_id" id="user_id" value="Guest_id">
-									<input type="text" placeholder="Email*" id="add_email">
-									<input type="text" placeholder="Name *" id="add_name">							
-								<?php } ?>
-									<!-- <input type="text" placeholder="Middle Name">
-									<input type="text" placeholder="Last Name *"> -->
 									<input type="text" placeholder="Address 1 *" id="address1">
 									<input type="text" placeholder="Address 2" id="address2">
 								</form>
@@ -122,7 +135,6 @@
 						<tr class="cart_menu">
 							<td class="image">Order No</td>
 							<td class="description">Product Name</td>
-							<td class="image">Offers</td>
 							<td class="price">Price</td>
 							<td class="quantity">Quantity</td>
 							<td class="total">Total</td>
@@ -135,6 +147,7 @@
                             	$grand_total = 0; 
                             	foreach ($product_order as $key => $value) { 
                             		$grand_total+= $value['total']; 
+                            		$total_value = $grand_total;
                             		array_push($order_id,$value['order_id']);
                             	?>
 						<tr>
@@ -166,99 +179,61 @@
 						</tr>
 						<?php } ?>
 						<!-- <tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr> -->
-						<tr>
 							<td colspan="4">&nbsp;</td>
 							<td colspan="2">
 								<table class="table table-condensed total-result">
-									<!-- <tr>
-										<td>Cart Sub Total</td>
-										<td>$59</td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>$2</td>
-									</tr>
-									<tr class="shipping-cost">
-										<td>Shipping Cost</td>
-										<td>Free</td>										
-									</tr> -->
 									<tr>
 										<td>Total</td>
-										<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
-										<td><span><?php echo $grand_total; ?></span></td>
+										<input type="hidden" id="grand_total" value="<?php //echo $grand_total; ?>" name="">
+										<td><span><?php //echo $grand_total; ?></span></td>
 									</tr>
 								</table>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
-							<td colspan="4">&nbsp;</td>
-							<td colspan="2">
+							<td colspan="4">
 								<table class="table table-condensed total-result">
-									<!-- <tr>
-										<td>Cart Sub Total</td>
-										<td>$59</td>
+									<tr>
+										<td><label>Apply Coupon</label></td>
+										<td><input type="text" name="apply_coupon" id="aCcoupon"/></td>
 									</tr>
 									<tr>
-										<td>Exo Tax</td>
-										<td>$2</td>
+										<td><label><input type="radio" class="redeem" name="redeem_option[]" value="WalletCash"> Redeem Wallet Cash</label></td>
+										<td id="WalletCash" style="display: none;"><input type="text" name="redeem_Cash" id="redeemCash"/></td>
+									</tr>
+									<tr>
+										<td><label><input type="radio" class="redeem" name="redeem_option[]" value="ReferCode"> Refferrer Code</label></td>
+										<td id="ReferCode" style="display: none;"><input type="text" name="refferrer_Code" id="referCode"/></td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>										
+										<td>
+											<form id="main-form" onsubmit="return applyDiscounts();" class="purchase-form row" name="purchase-form">
+												<button type="submit" class="btn btn-fefault cart" ><i class="fa fa-shopping-cart"></i>Apply</button>
+					                    	</form>
+					                    </td>								
+									</tr>
+								</table>
+							</td>
+							<td colspan="2">
+								<table class="table table-condensed total-result">
+									<tr>
+										<td>Order Sub Total</td>
+										<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
+										<td><?php echo $grand_total; ?></td>
+									</tr>
+									<tr>
+										<td>Discount</td>
+										<td><span id="discount_value">0</span></td>
 									</tr>
 									<tr class="shipping-cost">
 										<td>Shipping Cost</td>
 										<td>Free</td>										
-									</tr> -->
+									</tr>
 									<tr>
-										<td>Total</td>
-										<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
-										<td><span><?php echo $grand_total; ?></span></td>
+										<td><label>Total</label></td>
+										<input type="hidden" id="totalValue" value="<?php echo $total_value; ?>">
+										<td><span id="total_value"><?php echo $total_value; ?></span></td>
 									</tr>
 								</table>
 							</td>
@@ -267,25 +242,25 @@
 				</table>
 			</div>
 			<div class="payment-options">
-						<?php $order_ids = implode(',', $order_id); ?>
-							<!-- <a class="btn btn-default update" href="">Update</a> -->
-							<form id="main-form" onsubmit="return purchase_transact();" class="purchase-form row" name="purchase-form">
-                                <input type="hidden" name="order_ids" id="order_ids" class="form-control" value="<?php echo $order_ids; ?>" >
-                                <button type="submit" class="btn btn-fefault cart" >
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Check Out
-                                </button>
-                            </form>
-					<!-- <span>
-						<label><input type="checkbox"> Direct Bank Transfer</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Check Payment</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Paypal</label>
-					</span> -->
-				</div>
+				<?php $order_ids = implode(',', $order_id); ?>
+				<!-- <a class="btn btn-default update" href="">Update</a> -->
+				<form id="main-form" onsubmit="return purchase_transact();" class="purchase-form row" name="purchase-form">
+                    <input type="hidden" name="order_ids" id="order_ids" class="form-control" value="<?php echo $order_ids; ?>" >
+                    <button type="submit" class="btn btn-fefault cart" >
+                        <i class="fa fa-shopping-cart"></i>
+                        Check Out
+                    </button>
+                </form>
+				<!-- <span>
+					<label><input type="checkbox"> Direct Bank Transfer</label>
+				</span>
+				<span>
+					<label><input type="checkbox"> Check Payment</label>
+				</span>
+				<span>
+					<label><input type="checkbox"> Paypal</label>
+				</span> -->
+			</div>
 		</div>
 	</section> <!--/#cart_items-->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
