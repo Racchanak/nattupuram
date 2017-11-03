@@ -24,7 +24,25 @@
     <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 <body>
-<div class="header_top"><!--header_top-->
+<div class="topHeader">
+	<div class="row mar0">
+		<div class="col-md-offset-7 col-md-5">
+			<div class="topHeaderContent">
+				<ul>
+						<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Become a distributor</a></li>
+						<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
+						<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
+						<li><?php if (!empty($_SESSION['user'])) { ?>
+							<a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a> 
+							<?php } else { ?>
+								<a href="login.php"><i class="fa fa-lock"></i> Login/Register </a> <?php } ?>
+						</li>							
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div class="header_top">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6 col-md-6 col-xs-4">
@@ -41,18 +59,40 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills contact-pills pull-right">			
 								<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li><li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li>	
-								<li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a href=""><i class="fa fa-shopping-cart"></i> Cart</a></li> -->
 								<!-- <li><a href="#">Get Your Order<i class="fa fa-phone"></i> +91 9994739036</a></li> -->
 								<!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li> -->
-							</ul>
+							<!-- </ul>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div><!--/header_top-->
+		</div> -->
+		<div class="headMiddle">
+			<div class="midContent">
+				<img src="assets/images/free_delivery-gray.png" alt="">
+				<h3 class="hidden-xs hidden-sm">Free Delivery</h3>
+			</div>
+			<div class="midContent">
+				<img src="assets/images/secure-payment-gray.png" alt="">
+				<h3 class="hidden-xs hidden-sm">100% Secure Payment</h3>
+			</div>
+			<div class="midContent">
+				<img src="assets/images/guarantee-gray.png" alt="">
+				<h3 class="hidden-xs hidden-sm">100% Moneyback guarantee</h3>
+			</div>
+			<div class="midContent">
+				<img src="assets/images/phone-gray.png" alt="">
+				<h3 class="hidden-xs hidden-sm">Order On Phone</h3>
+			</div>
+			<div class="midContent">
+				<img src="assets/images/medal.png" alt="">
+				<h3 class="hidden-xs hidden-sm">Quality guaranteed</h3>
+			</div>
+		</div>
 	<header id="header"><!--header-->
 		<nav class="navbar navbar-default">
   	<div class="container-fluid">
@@ -64,7 +104,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.php"><img src="assets/images/nattupuram.jpg" alt=""/></a>
+      <a class="navbar-brand" href="index.php"><img src="assets/images/nattu.png" alt=""/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
