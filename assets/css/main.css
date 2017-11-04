@@ -2571,10 +2571,9 @@ textarea {
     padding: 0px !important;
 }
 
-
-/* .navbar-brand img {
-    width: 25%;
-} */
+.navbar-brand img {
+    padding: 0px 40px;
+}
 
 .fbicon li {
     display: inline-block;
@@ -2626,7 +2625,7 @@ textarea {
 }
 
 .midContent h3 {
-    display: inline-block;
+    display: inline-block !important;
     margin: 0;
     font-size: 12px;
     margin-right: 12px;
@@ -2639,4 +2638,9 @@ textarea {
 
 .mar0 {
     margin: 0 !important;
+}
+
+.headBottom {
+    margin-top: 20px;
+    margin-left: 100px;
 }
