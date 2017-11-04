@@ -2572,7 +2572,13 @@ textarea {
 }
 
 .navbar-brand img {
-    padding: 0px 40px;
+    padding-left: 240px;
+    width: 80%;
+}
+
+.brand img {
+    width: 25%;
+    padding: 4px 15px;
 }
 
 .fbicon li {
@@ -2609,12 +2615,6 @@ textarea {
     padding: 15px 0px;
 }
 
-@media (max-width:767px) {
-    .headMiddle {
-        width: auto;
-    }
-}
-
 .midContent {
     display: inline-block;
 }
@@ -2622,6 +2622,7 @@ textarea {
 .midContent img {
     display: inline-block;
     width: 20px;
+    pointer-events: none;
 }
 
 .midContent h3 {
@@ -2641,6 +2642,45 @@ textarea {
 }
 
 .headBottom {
-    margin-top: 20px;
-    margin-left: 100px;
+    margin-top: 10px;
+}
+
+@media (max-width:767px) {
+    .midContent img {
+        pointer-events: all;
+    }
+    .headMiddle {
+        width: 200px;
+    }
+    .navbar-brand img {
+        padding-left: 0px;
+        width: 50px;
+        padding-top: 2px;
+    }
+    .topHeaderContent {
+        float: right;
+        margin-right: 0;
+    }
+    .topHeaderContent ul li:first-child {
+        border-left: 1px solid #CCC;
+    }
+    .topHeaderContent ul li a {
+        color: #000;
+        padding: 0px 5px;
+        font-size: 9px;
+    }
+    .topHeaderContent ul {
+        padding: 0;
+    }
+    .pad0 {
+        padding: 0px;
+    }
+    .midContent {
+        margin-right: 15px;
+    }
+    .brand img {
+        width: 40%;
+        padding: 4px 0px;
+        margin-left: 60px;
+    }
 }

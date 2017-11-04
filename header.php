@@ -25,19 +25,25 @@
 </head><!--/head-->
 <body>
 <div class="topHeader">
-	<div class="row mar0">
-		<div class="col-md-offset-7 col-md-5">
-			<div class="topHeaderContent">
-				<ul>
-						<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Become a distributor</a></li>
-						<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
-						<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
-						<li><?php if (!empty($_SESSION['user'])) { ?>
-							<a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a> 
-							<?php } else { ?>
-								<a href="login.php"><i class="fa fa-lock"></i> Login/Register </a> <?php } ?>
-						</li>							
-				</ul>
+	<div class="container">
+		<div class="row mar0">
+			<div class="col-md-6 col-xs-2 pad0">
+			<a class="navbar-brand hidden-lg hidden-md" href="index.php"><img src="assets/images/logo.png" alt=""/></a>
+				<a class="brand  hidden-xs hidden-sm" href="index.php"><img src="assets/images/nattu.png" alt=""/></a>	
+			</div>
+			<div class="col-md-6 col-xs-10">
+				<div class="topHeaderContent">
+					<ul>
+							<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Become a distributor</a></li>
+							<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
+							<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
+							<li><?php if (!empty($_SESSION['user'])) { ?>
+								<a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a> 
+								<?php } else { ?>
+									<a href="login.php"><i class="fa fa-lock"></i> Login/Register </a> <?php } ?>
+							</li>							
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -50,7 +56,7 @@
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>	
 								<li><a href="#" mail="care@nattupuram.com"><i class="fa fa-envelope"></i></a></li>
-								<li><a href="#"><i class="fa fa-phone" data-toggle="tooltip" data-placement="bottom" title="9994739036"></i> </a></li>
+								<li><a href="#"><i class="fa fa-phone" data-toggle="tooltip" data-placement="top" title="9994739036"></i> </a></li>
 								
 							</ul>
 						</div>
@@ -73,23 +79,23 @@
 		</div> -->
 		<div class="headMiddle">
 			<div class="midContent">
-				<img src="assets/images/free_delivery-gray.png" alt="">
+				<img src="assets/images/free_delivery-gray.png" alt="" data-toggle="tooltip" data-placement="top" title="Free Delivery">
 				<h3 class="hidden-xs hidden-sm">Free Delivery</h3>
 			</div>
 			<div class="midContent">
-				<img src="assets/images/secure-payment-gray.png" alt="">
+				<img src="assets/images/secure-payment-gray.png" alt="" data-toggle="tooltip" data-placement="top" title="100% Secure Payment">
 				<h3 class="hidden-xs hidden-sm">100% Secure Payment</h3>
 			</div>
 			<div class="midContent">
-				<img src="assets/images/guarantee-gray.png" alt="">
+				<img src="assets/images/guarantee-gray.png" alt="" data-toggle="tooltip" data-placement="top" title="100% Moneyback guarantee"> 
 				<h3 class="hidden-xs hidden-sm">100% Moneyback guarantee</h3>
 			</div>
 			<div class="midContent">
-				<img src="assets/images/phone-gray.png" alt="">
+				<img src="assets/images/phone-gray.png" alt="" data-toggle="tooltip" data-placement="top" title="Order On Phone">
 				<h3 class="hidden-xs hidden-sm">Order On Phone</h3>
 			</div>
 			<div class="midContent">
-				<img src="assets/images/medal.png" alt="">
+				<img src="assets/images/medal.png" alt="" data-toggle="tooltip" data-placement="top" title="Quality guaranteed">
 				<h3 class="hidden-xs hidden-sm">Quality guaranteed</h3>
 			</div>
 		</div>
@@ -104,7 +110,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.php"><img src="assets/images/nattu.png" alt=""/></a>
+	  <a class="navbar-brand hidden-sm hidden-xs" href="index.php"><img src="assets/images/logo.png" alt=""/></a>
+	  <a class="brand hidden-lg hidden-md" href="index.php"><img src="assets/images/nattu.png" alt=""/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
