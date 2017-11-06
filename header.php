@@ -34,14 +34,14 @@
 			<div class="col-md-6 col-xs-10">
 				<div class="topHeaderContent">
 					<ul>
-							<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Become a distributor</a></li>
-							<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
-							<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
-							<li><?php if (!empty($_SESSION['user'])) { ?>
-								<a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a> 
-								<?php } else { ?>
-									<a href="login.php"><i class="fa fa-lock"></i> Login/Register </a> <?php } ?>
-							</li>							
+						<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Become a distributor</a></li>
+						<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
+						<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
+						<li><?php if (!empty($_SESSION['user'])) { ?>
+						<a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a>
+						<?php } else { ?>
+						<a href="login.php"><i class="fa fa-lock"></i> Login/Register </a> <?php } ?>
+						</li>							
 					</ul>
 				</div>
 			</div>
@@ -113,21 +113,19 @@
 	  <a class="navbar-brand hidden-sm hidden-xs" href="index.php"><img src="assets/images/logo.png" alt=""/></a>
 	  <a class="brand hidden-lg hidden-md" href="index.php"><img src="assets/images/nattu.png" alt=""/></a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav headBottom">
-		<li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
+      <ul class="nav navbar-nav headBottom" style="margin-left: -95px;">
+		<!-- <li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li> -->
    <!-- <li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li> -->
-								<li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Shop Online</a></li>
-								<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Distribution</a></li>
-								<!-- <li><a href="testimonials.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Testimonials</a></li> -->
-								<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
-								<li><?php if (!empty($_SESSION['user'])) { ?>
-                                        <a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a> 
-                                    <?php } else { ?>
-                                        <a href="login.php"><i class="fa fa-lock"></i> Login/Register </a> <?php } ?></li>
-										
+		<li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Shop Online</a></li>
+		<li><a href="shopOnline.php?product_id=1" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Mara Chekku Ground Nut Oil</a></li>
+		<li><a href="shopOnline.php?product_id=2" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Mara Chekku Sesame/Gingelly Oil</a></li>
+		<li><a href="shopOnline.php?product_id=3" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Mara Chekku Coconut Oil</a></li>
+		<li><a href="shopOnline.php?product_id=4" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Cow Ghee</a></li>
+		<li><a href="combopack.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Combo Pack</a></li>
+		<li><a href="bulkorder.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Bulk Order</a></li>
+		<li><a href="offers.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Offers </a></li>										
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

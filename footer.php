@@ -8,9 +8,9 @@
                         <p>Don't wait for a foreigner's approval to say, What We have already in our culture is the best.</p>
                         <p>NATTUPURAM with all its innocence, No adulteration, Purity with Virginity welcome everyone to create Healthy India !</p>
                         <p><strong>"Healthy Products</strong> from a <strong>Heathy Farm</strong> to make <strong>Healthy India"</strong></p>
-                        <p>"à®®à®£à¯à®µà®¾à®šà®®à¯ ; à®ªà®¾à®°à®®à¯à®ªà®°à®¿à®¯à®®à¯</p>
-                        <p>à®®à®£à®•à¯à®•à¯à®®à¯ à®ªà®¤à®¾à®°à¯à®¤à¯à®¤à®®à¯"</p>
-                        <p>- à®¨à®¾à®Ÿà¯à®Ÿà¯à®ªà¯à®ªà¯à®±à®®à¯</p>
+                        <p>"மண்வாசம் ; பாரம்பரியம்</p>
+                            <p>மணக்கும் பதார்த்தம்"</p>
+                            <p>- நாட்டுப்புறம்</p>
                     </address>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                                 <p>Cuddalore</p>
                                 <p>Pincode:607402</p>
                                 <p>Tamil Nadu, India.</p>
-                                <p>Mobile: 9585006008</p>
+                                <p>Mobile: 8884442552</p>
                                 <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
                             </address>
                         </div>
@@ -157,6 +157,7 @@
                             <!-- <li><a href="team.php" class="<?= ($menu == 'team') ? 'active' : ''; ?>"> Nattupuram Team</a></li> -->
                             <li><a href="privacypolicy.php" class="<?= ($menu == 'policy') ? 'active' : ''; ?>"> Privacy Policy</a></li>
                             <li><a href="shippingrefund.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Shipping and Delivery Policy</a></li>
+                            <li><a href="canelrefund.php" class="<?= ($menu == 'team') ? 'active' : ''; ?>"> Cancel and Refund Policy</a></li>
                             <li><a href="termscondi.php" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Terms and Condition</a></li>
                             <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li>  -->
                             <!-- <li><a href="#"><i class="fa fa-envelope"></i> care@nattupuram.com</a></li> -->

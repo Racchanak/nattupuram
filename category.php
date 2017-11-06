@@ -59,7 +59,7 @@
                 </form>
             </div>
         <?php } else { ?>
-            <div class="brands_products"><!--brands_products-->
+            <div class="brands_products">
                 <h2>Reviews</h2>
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -78,15 +78,15 @@
                         ?>
                     </ol>
                     <div class="carousel-inner" style="height: 217px;">
-    <?php
-    if (!empty($product_reviews)) {
-        foreach ($product_reviews as $key => $value) {
-            if ($key == 0) {
-                $classa = 'active';
-            } else {
-                $classa = '';
-            }
-            ?>
+                        <?php
+                        if (!empty($product_reviews)) {
+                            foreach ($product_reviews as $key => $value) {
+                                if ($key == 0) {
+                                    $classa = 'active';
+                                } else {
+                                    $classa = '';
+                                }
+                                ?>
                                 <div class="item <?php echo $classa; ?>" style="padding-left: 0px;">
                                     <div class="col-sm-12">
                                         <h2><?php echo $value['product_name']; ?></h2>
@@ -95,9 +95,9 @@
                                         <p><?php echo $value['message']; ?> ...</p> 
                                     </div>
                                 </div>
-        <?php }
-    }
-    ?>
+                            <?php }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

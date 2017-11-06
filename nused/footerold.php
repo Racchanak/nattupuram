@@ -11,7 +11,7 @@
                             <p>Reddichavadi</p>
                             <p>Cuddalore</p>
                             <p>Pincode:607402</p>
-                            <p>Mobile: 9585006008</p>
+                            <p>Mobile: 8884442552</p>
                             <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
                         </address>  
                     </div> 

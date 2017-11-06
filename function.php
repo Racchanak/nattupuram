@@ -29,10 +29,19 @@ if (isset($_POST)) {
         $enq_id = mysqli_insert_id($link);
         echo json_encode($enq_id);
     }
+    if ($action == 'contactus') {
+        extract($_POST);
+        extract($GLOBALS);
+        $query = "INSERT INTO contactus (name,emailid,subject,message,cret_date) 
+            VALUES ('" . $name . "','" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $enq_id = mysqli_insert_id($link);
+        echo json_encode($enq_id);
+    }
     if ($action == 'register') {
         extract($_POST);
         extract($GLOBALS);
-        $query = "INSERT INTO register (name,emailid,password,referal_code,cret_date) VALUES ('".$name."','".$emailid."','".md5($password)."','".date('Y-m-d H:i:s')."')";
+        $query = "INSERT INTO register (name,emailid,password,cret_date) VALUES ('".$name."','".$emailid."','".md5($password)."','".date('Y-m-d H:i:s')."')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $reg_id = mysqli_insert_id($link);
         $random_refer = 'ref'. (rand(10, 30)). '_'. $reg_id. randomString(2,$name);

@@ -323,6 +323,64 @@ function logout() {
     return false;
 }
 
+function contact_us() {
+    var name = $('#cont_name').val();
+    var email = $('#cont_emailid').val();
+    var subject = $('#cont_subject').val();
+    var msg = $('#cont_message').val();
+    var valid = 0;
+    if (name == '') {
+        $('.contact-userror-review').html('Please enter your name');
+        return false;
+    } else {
+        $('.contact-userror-review').html('');
+        valid++;
+    }
+    if (email == '') {
+        $('.contact-userror-review').html('Please enter your email id');
+        return false;
+    } else {
+        $('.contact-userror-review').html('');
+        valid++;
+    }
+    if (subject == '') {
+        $('.contact-userror-review').html('Please enter the subject');
+        return false;
+    } else {
+        $('.contact-userror-review').html('');
+        valid++;
+    }
+    if (msg == '') {
+        $('.contact-userror-review').html('Please enter your message');
+        return false;
+    } else {
+        $('.contact-userror-review').html('');
+        valid++;
+    }
+    var reg_data = {'name': name, 'email': email, 'subject': subject, 'msg': msg};
+    if (valid == 4) {
+        $.ajax({
+            url: baseUrl+'contactus',
+            type: 'POST',
+            data: reg_data,
+            success: function (res) {
+                if (res > 0) {
+                    $('.contact-userror-review').html('');
+                    $('#cont_name').val('');
+                    $('#cont_emailid').val('');
+                    $('#cont_subject').val('');
+                    $('#cont_message').val('');
+                    $('.contact-ussuccess-review').html('Thanks for Your Opinion');
+                    setTimeout(function () {
+                        $('.contact-ussuccess-review').html('');
+                    }, 1000);
+                }
+            }
+        });
+    }
+    return false;
+}
+
 function enquiry() {
     var name = $('#enq_name').val();
     var email = $('#enq_emailid').val();

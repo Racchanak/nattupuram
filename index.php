@@ -100,20 +100,6 @@ include('header.php');
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="nattuinfo">
-                    <h2>Nattupuram</h2>
-                    <p>We young energetic farmers from an agricultural family introducing 'NATTUPURAM - an Online Store' for healthy and natural food products, produced in a traditional way with rich soil fragrance of our own village. Our core vision is to reinvent the healthy life style of our ancestors and transferring the same into modern young generation.</p>
-                    <p>We setup a manufacturing unit at Reddichavadi, Cuddalore district and our first product is NATTU MARACHEKKU OIL / chekku oil / marachekku ennai / marachekku oil / Wooden ghani oil / cold pressed oil / wood pressed oil using traditional extraction methods. We also offers pure 'NATTU PASU GHEE' prepared by using our own Free Range Dairy Farm's desi cow milk. We are delivering the product to all over Tamilnadu, Pondicherry and Bangalore through online shopping for more convenient way in your busy life style.</p>
-                    <p>NATTUPURAM with all its innocence, No adulteration, Purity with Virginity, Welcome everyone to create a Healthy World !</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>	
-<section>
-    <div class="container">
-        <div class="row">
             <?php
             include('category.php');
             include('shop.php');
@@ -121,6 +107,20 @@ include('header.php');
         </div>
     </div>
 </section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="nattuinfo">
+                    <h2>Nattupuram</h2>
+                    <p>We young energetic farmers from an agricultural family introducing 'NATTUPURAM - an Online Store' for healthy and natural food products, produced in a traditional way with rich soil fragrance of our own village. Our core vision is to reinvent the healthy life style of our ancestors and transferring the same into modern young generation.</p>
+                    <p>We setup a manufacturing unit at Reddichavadi, Cuddalore district and our first product is NATTU MARACHEKKU OIL / chekku oil / marachekku ennai / marachekku oil / Wooden ghani oil / cold pressed oil / wood pressed oil using traditional extraction methods. We also offers pure 'COW GHEE' prepared by using our own Free Range Dairy Farm's desi cow milk. We are delivering the product to all over Tamilnadu, Pondicherry and Bangalore through online shopping for more convenient way in your busy life style.</p>
+                    <p>NATTUPURAM with all its innocence, No adulteration, Purity with Virginity, Welcome everyone to create a Healthy World !</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  
 <?php
 include('footer.php');
 ?>

@@ -38,10 +38,10 @@
 								In the Era of Global warming every natural resources changes for just 40˚C. In this scenario, Just think of Oil extracted under pressure with excessive heat generation, more than 100˚C ! We know Heating of Oil more than once, forms Acetylene. All these says too much of Heat, changes natural properties and think How could Refined Oil be beneficial to our health?</p> <br>
 
 							<p>
-								Don't worry! We are here. Our traditional Wood/Cold Pressed Oil - in Tamil Nattu Marachekku Ennai is the  only alternative for better health with tasty food. This Oil is dense and keeps seed's flavor, aroma and nutrients intact. We are reinventing the same in a better hygienic way and transfering the healthy life style of our ancestors to Modern generation.</p> <br>
+								Don't worry! We are here. Our traditional Wood/Cold Pressed Oil - in Tamil Nattu Marachekku Ennai is the  only alternative for better health with tasty food. This Oil is dense and keeps seed's flavor, aroma and nutrients intact. We are reinventing the same in a better hygienic way and transferring the healthy life style of our ancestors to Modern generation.</p> <br>
 
 							<p style="text-align: center;">
-								<strong>"Spend on Oil and Stay Health"</strong> than being stingy towards Oil and <strong>"Paying them in multiple for Hospitals"</strong>.</p> <br>
+								<strong>"Spend on Oil and Stay Healthy"</strong> than being stingy towards Oil and <strong>"Paying them in multiple for Hospitals"</strong>.</p> <br>
 
 							<p>
 								This Cold Pressed Oil has its essence as such like a virgin girl. Taste the health with more of anti oxidants, boosts immunity and prevents from life threatening diseases like Cancer & Heart diseases.
@@ -49,10 +49,11 @@
 							<p>
 								This Oil contains rich amount of Proteins, Minerals, Vitamin E & B family, Omega-6, No Bad Cholesterol (LDL) - Only Good Cholesterol (HDL). It also helps for easy digestion, Lungs, Liver, Kidney, Skin and Hair care too.
 							</p>
-							<p style="text-align: center;"><strong>Get NATTUPURAM !</strong></br><strong>Stay Hale & Healthy Forever !!!</strong></p>
+							<p style="text-align: center;"><strong>Get NATTUPURAM !</strong></p>
+							<p style="text-align: center;"><strong>Stay Hale & Healthy Forever !!!</strong></p>
 							<p>Don't wait for a foreigner's approval to say, What We have already in our culture is the best.</p>
-							<p>NATTUPURAM with all its innocence, No adulteration, Purity with Virginity welcome everyone to create Healthy India !</p>
-							<p style="text-align: center;"><strong>"Healthy Products</strong> from a <strong>Heathy Farm</strong> to make <strong>Healthy India"</strong></p>
+							<p>NATTUPURAM with all its innocence, No adulteration, Purity with Virginity welcome everyone to create a Healthy World !</p>
+							<p style="text-align: center;"><strong>"Healthy Products</strong> from a <strong>Heathy Farm</strong> to make a <strong>Healthy World"</strong></p>
 							<p style="text-align: center;">"மண்வாசம் ; பாரம்பரியம்</p>
 							<p style="text-align: center;">மணக்கும் பதார்த்தம்"</p>
 							<p style="text-align: center;">- நாட்டுப்புறம்</p>

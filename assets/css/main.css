@@ -2525,7 +2525,7 @@ textarea {
 }
 
 .nfacts {
-    margin-left: 30%;
+    margin-left: 10%;
     border: 3px solid #696763;
 }
 
@@ -2556,8 +2556,8 @@ textarea {
 }
 
 .navbar-brand img {
-    padding-left: 240px;
-    width: 80%;
+    width: 60%;
+    padding-left: 50px;
 }
 
 .brand img {

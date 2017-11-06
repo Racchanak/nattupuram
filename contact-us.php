@@ -8,25 +8,45 @@ include('header.php');
         <div class="row">    		
             <div class="col-sm-12"> 
                 <div class="col-sm-6">    			   			
-                    <h2 class="title text-center">Contact <strong>Us</strong></h2>
-                    <div id="gmap" class="contact-map">
+                    <div class="contact-form">
+                        <h2 class="title text-center">Contact <strong>Us</strong></h2>
+                        <div class="contact-us status alert alert-success" style="display: none"></div>
+                        <form id="main-contact-form" onsubmit="return contact_us();" class="contact-form row" name="contact-form">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="name" id="cont_name" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" name="email" id="cont_emailid" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" name="subject" id="cont_subject" class="form-control" placeholder="Subject">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea name="message" id="cont_message" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                            </div>
+                            <div class="form-group col-md-12"><span class="contact-userror-review"></span>
+                                <span class="contact-ussuccess-review"></span></div>                        
+                            <div class="form-group col-md-12">
+                                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                            </div>
+                        </form>
                     </div>
                 </div>               
-        <div class="col-sm-6">
-            <div class="contact-info">
-                <h2 class="title text-center">Contact Info</h2>
-                <address>
-                    <p>Redibro Enterprises</p>
-                    <p>No:7/26, Reddiyar Street</p>
-                    <p>Reddichavadi</p>
-                    <p>Cuddalore</p>
-                    <p>Pincode:607402</p>
-                    <p>Tamil Nadu, India.</p>
-                    <p>Mobile: 9585006008</p>
-                    <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
-                </address>
-            </div>   
-        </div>          
+                <div class="col-sm-6">
+                    <div class="contact-info">
+                        <h2 class="title text-center">Contact Info</h2>
+                        <address>
+                            <p>Redibro Enterprises</p>
+                            <p>No:7/26, Reddiyar Street</p>
+                            <p>Reddichavadi</p>
+                            <p>Cuddalore</p>
+                            <p>Pincode:607402</p>
+                            <p>Tamil Nadu, India.</p>
+                            <p>Mobile: 8884442552</p>
+                            <p>Email: care@nattupuram.com<br>salesnattupuram@gmail.com</p>
+                        </address>
+                    </div>   
+                </div>          
             </div>			 		
         </div>    	
         <!--        <div class="row">  	
