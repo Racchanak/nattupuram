@@ -2553,6 +2553,7 @@ textarea {
 
 .navbar-brand {
     padding: 0px !important;
+    text-align: center;
 }
 
 .navbar-brand img {
@@ -2627,6 +2628,7 @@ textarea {
 
 .headBottom {
     margin-top: 10px;
+    margin-left: -40px;
 }
 
 
@@ -2669,5 +2671,8 @@ textarea {
         width: 40%;
         padding: 4px 0px;
         margin-left: 60px;
+    }
+    .headBottom {
+        margin-left: 0;
     }
 }
