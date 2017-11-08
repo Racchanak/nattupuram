@@ -9,15 +9,14 @@ include('header.php');
 ?>
 <section>
     <div class="container">
-        <div class="row">
-            <?php
-            include('category.php');
-            ?>
-            <div class="col-sm-9 padding-right">
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
+                        <div class="discount">
+                                <p>10%</p>
+                            </div>
                             <img id="product_img" src="<?php echo $product[0]['main_img']; ?>" alt="" />
+                            
                             <!--<h3>ZOOM</h3>-->
                         </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">                              
@@ -115,7 +114,7 @@ include('header.php');
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->
-
+               
                 <div class="category-tab shop-details-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
@@ -356,11 +355,12 @@ include('header.php');
                                 </div>
                             </div>/recommended_items-->
 
-        </div>
-    </div>
 </div>
 </section>
 
+<?php
+            include('category.php');
+            ?>
 <?php
 include('footer.php');
 ?>
