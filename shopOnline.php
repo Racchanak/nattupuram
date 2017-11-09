@@ -43,8 +43,8 @@ include('header.php');
                                     <div class="col-sm-8" style="font-size: 25px;font-weight: 700;margin-right: 9px;margin-top: -12px;">
                                         <?php foreach ($product[0]['price'] as $key => $value) { 
                                                 if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
-                                            <span class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><?php echo $value; ?></span>
-                                            <!--<span class="halfl_amt amount" style="display: none;">Rs. 145</span>-->
+                                            <s class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><?php echo $value; ?></s>
+                                            <span>Rs. 145</span>
                                         <?php } ?> <h5>(inclusive of all taxes)</h5>
                                     </div>
                                 </div>                              
@@ -123,7 +123,7 @@ include('header.php');
                             <li><a href="#tag" data-toggle="tab">Nutritional Facts</a></li>
                             <li><a href="#character" data-toggle="tab">Characteristics</a></li>
                             <li><a href="#benefit" data-toggle="tab">Major Benefits</a></li>
-                            <!--<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>-->
+                            <li><a href="#writeeviews" data-toggle="tab">write Review</a></li>
                             <li><a href="#testimonials" data-toggle="tab">Reviews</a></li>
                         </ul>
                     </div>
@@ -160,38 +160,6 @@ include('header.php');
                                         <td><?php echo $value['facts_description']; ?></td>
                                         <td><?php echo $value['fact_result']; ?></td>
                                     </tr>
-<!--                                    <tr>
-                                        <td>Protein</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cholestrol</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Saturated Fatty Acid</td>
-                                        <td>15.97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mono Unsaturated</td>
-                                        <td>45.94</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Poly Unsaturated</td>
-                                        <td>31.95</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trans Fatty acid</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Oryzanol</td>
-                                        <td>BDL* (DL-10.0)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TBHQ (Antioxidant)</td>
-                                        <td>BDL* (DL-10.0)</td>
-                                    </tr>-->
                                     <?php } ?>
                                 </tbody>
                             </table>
@@ -214,15 +182,41 @@ include('header.php');
                                 <ul style="background: #fff;border-bottom: 1px solid #fff;">
                                     <?php foreach ($product[0]['benefit'] as $key => $value) { ?>
                                     <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;"><?php echo $value; ?></span></p></li>                                     
-<!--                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Skin & Hair Care (Rich Vit-E & Omega-6).</span></p></li>                                     
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Strengthen Immune System.</span></p></li>  
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Prevents from Heart Diseases, Alzheimer's disease & Cancer.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Maintains Cholesterol level.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Reduces High Blood Pressure.</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Helps to stabilize Blood Sugar .</span></p></li> 
-                                    <li><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">Best for Kids healthy development.</span></p></li> -->
                                     <?php } ?>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="writeeviews">
+                            <div class="brands_products user_info"><!--brands_products-->
+                                <h2 class="reh2">Write Your Review</h2>
+                                <form id="reviews">
+                                    <?php if (isset($menu) && $menu == 'prod_det') { ?>
+                                        <h1 style="margin-top: 0px;font-size: 17px;font-weight: 700;">Product : <?php echo $product[0]['product_name']; ?></h1>
+                                        <input type="hidden" id="product_name" name="product_name" value="<?php echo $product[0]['product_name']; ?>"/>
+                                        <input type="hidden" id="product_id" name="product_id" value="<?= (isset($_REQUEST['product_id'])) ? $_REQUEST['product_id'] : ''; ?>"/>
+                                    <?php } else if (isset($menu) && $menu == 'testi') { ?>
+                                        <select id="option" name="option">
+                                            <option value="">Product</option>
+                                            <?php foreach ($products as $key => $value) { ?>
+                                                <option value="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></option>
+                                            <?php } ?>
+                                            <!--                            <option value="Groundnut Oil">Groundnut Oil(Cold Press)</option>
+                                                                        <option value="Sesame Oil">Sesame Oil(Cold Press)</option>
+                                                                        <option value="Coconut Oil">Coconut Oil(Cold Press)</option>
+                                                                        <option value="Natural Ghee">Natural Ghee</option>-->
+                                        </select>
+                                        <input type="hidden" id="product_name" name="product_name" value=""/>
+                                        <img id="product_img" src="" alt="" style="display: none;" />
+                                    <?php } ?>
+                                    <div><input class="fom-div" style="height: 40px !important;" name="name" id="rev_name" type="text" placeholder="Name" /></div>
+                                    <div><input class="fom-div" style="height: 40px !important;" name="email-id" id="rev_email" type="text" placeholder="Email Id" /></div>
+                                    <!-- <div><input class="fom-div" style="height: 40px !important;" name="mobile-no" id="rev_mobile" type="text" placeholder="Mobile No" /></div> -->
+                                    <div><input class="fom-div" style="height: 40px !important;" name="city" id="rev_city" type="text" placeholder="City" /></div>
+                                    <div><textarea class="fom-div" id="rev_msg" name="typeurmsg" placeholder="Type Your Message  " ></textarea></div>
+                                    <div><span class="error-review"></span></div>
+                                    <div><span class="success-review"></span></div>
+                                    <div><button type="button" class="btn btn-default pull-right" onclick="add_review();">Submit</button></div>
+                                </form>
                             </div>
                         </div>
 
@@ -359,7 +353,7 @@ include('header.php');
 </section>
 
 <?php
-            include('category.php');
+            // include('category.php');
             ?>
 <?php
 include('footer.php');

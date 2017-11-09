@@ -1,8 +1,31 @@
-
+<div class="col-sm-3">
     <div class="left-sidebar">
-        
+        <h2>Products</h2>
         <?php // print_r($this->data['products']); exit(); ?>
-        
+        <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+            <?php foreach ($products as $key => $value) { ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title <?php echo (isset($value['product_name']) && $value['product_name'] == 'ground') ? 'active' : ''; ?>"><a href="<?php echo 'shopOnline.php?product_id=' . $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></h4>
+                    </div>
+                </div>
+            <?php } ?>
+            <!--            <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title <?php echo (isset($category) && $category == 'sesame') ? 'active' : ''; ?>"><a href="sesame.php">Sesame Oil(Cold Press)</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title <?php echo (isset($category) && $category == 'coconut') ? 'active' : ''; ?>"><a href="coconut.php">Coconut Oil(Cold Press)</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title <?php echo (isset($category) && $category == 'ghee') ? 'active' : ''; ?>"><a href="ghee.php">Natural Ghee</a></h4>
+                            </div>
+                        </div>-->
+        </div><!--/category-products-->
         <?php if (isset($menu) && $menu == 'prod_det' || $menu == 'testi') { ?>
             <div class="brands_products user_info"><!--brands_products-->
                 <h2 class="reh2">Write Your Review</h2>
@@ -32,7 +55,7 @@
                     <div><textarea class="fom-div" id="rev_msg" name="typeurmsg" placeholder="Type Your Message  " ></textarea></div>
                     <div><span class="error-review"></span></div>
                     <div><span class="success-review"></span></div>
-                    <div><button type="button" class="btn btn-default " onclick="add_review();">Submit</button></div>
+                    <div><button type="button" class="btn btn-default pull-right" onclick="add_review();">Submit</button></div>
                 </form>
             </div>
         <?php } else { ?>
@@ -90,7 +113,8 @@
         <!-- price-range -->
 
         <!-- <div class="shipping text-center">--><!--shipping 
-        <!-- 	<img src="images/home/shipping.jpg" alt="" />
+        <!--    <img src="images/home/shipping.jpg" alt="" />
         </div> --><!--/shipping-->
 
     </div>
+</div>
