@@ -43,9 +43,9 @@ include('header.php');
                                     <div class="col-sm-8" style="font-size: 25px;font-weight: 700;margin-right: 9px;margin-top: -12px;">
                                         <?php foreach ($product[0]['price'] as $key => $value) { 
                                                 if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
-                                            <s class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><?php echo $value; ?></s>
-                                            <span>Rs. 145</span>
-                                        <?php } ?> <h5>(inclusive of all taxes)</h5>
+                                            <div class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
+                                            <span><?php echo $value; ?></span></div>
+                                        <?php } ?>
                                     </div>
                                 </div>                              
                                 <div class="col-sm-12">
