@@ -1300,9 +1300,7 @@ h2.title {
 .product-information {
     border: 1px solid #F7F7F0;
     overflow: hidden;
-    padding-bottom: 15px;
-    padding-left: 40px;
-    padding-top: 35px;
+    padding: 40px 60px;
     position: relative;
 }
 
@@ -1327,13 +1325,10 @@ h2.title {
 
 .product-information span {
     display: inline-block;
-    margin-bottom: 8px;
-    margin-top: 18px;
 }
 
 .product-information span span {
     color: #FE980F;
-    float: left;
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
     font-weight: 700;
@@ -1440,7 +1435,7 @@ h2.title {
 #reviews textarea {
     background: #F0F0E9;
     border: medium none;
-    color: #A6A6A1;
+    color: #fe980f;
     height: 195px;
     margin-bottom: 25px;
     margin-top: 15px;
@@ -1778,7 +1773,6 @@ h2.title {
     display: block;
     margin-bottom: 15px;
     margin-top: 20px;
-    overflow: hidden;
 }
 
 .user_info label {
@@ -1805,13 +1799,11 @@ h2.title {
 .user_info input,
 select,
 textarea {
-    background: #F0F0E9;
-    border: 0;
-    color: #696763;
+    color: #fe980f;
     padding: 5px;
-    width: 100%;
-    border-radius: 0;
-    resize: none
+    border-radius: 5px;
+    resize: none;
+    outline: none;
 }
 
 .user_info select:focus {
@@ -2686,4 +2678,78 @@ textarea {
     .headBottom {
         margin-left: 0;
     }
+    .innerContent .content .discountAmt {
+        display: inline-block !important;
+    }
+    .discount p {
+        right: 30px;
+        top: 7px;
+        font-size: 16px;
+        padding: 8px 4px;
+    }
+    .view-product img {
+        height: auto;
+    }
+    .product-information {
+        padding: 40px 30px;
+    }
+    .product-information h2 {
+        font-size: 13px;
+    }
+    .innerContent .content h3 {
+        margin: 6px 0px;
+        font-size: 16px;
+    }
+    .innerContent .content p {
+        font-size: 11px;
+    }
+    #reviews {
+        width: auto;
+        padding: 20px;
+    }
+}
+
+.innerContent {
+    margin: 20px 0px;
+}
+
+.innerContent .content h3 {
+    margin: 0px;
+    font-size: 20px;
+}
+
+.innerContent .content s {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.innerContent .content .discountAmt {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #fe980f;
+    margin-top: -7px;
+}
+
+.innerContent .content p {
+    font-size: 15px;
+    color: #fe980f;
+}
+
+.innerContent .content .btn {
+    margin: 0;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.innerContent .content .btn-number {
+    padding: 0px;
+    width: 32px;
+}
+
+.innerContent .content .input-number {
+    margin-left: 30px;
+    width: 55px;
+    outline: none;
+    box-shadow: none;
+    border-color: #dedede;
 }
