@@ -32,9 +32,9 @@
 					<li>
 						<label><input type="radio" class="chekout" name="account_option[]" value="Guest"> Guest Checkout</label>
 					</li>
-					<li>
+					<!-- <li>
 						<a href=""><i class="fa fa-times"></i>Cancel</a>
-					</li>
+					</li> -->
 				</ul> 
 			</div><!--/checkout-options--> 
 			<div class="register-req">
@@ -197,10 +197,10 @@
 										<td><label>Apply Coupon</label></td>
 										<td><input type="text" name="apply_coupon" id="aCcoupon"/></td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<td><label><input type="radio" class="redeem" name="redeem_option[]" value="WalletCash"> Redeem Wallet Cash</label></td>
 										<td id="WalletCash" style="display: none;"><input type="text" name="redeem_Cash" id="redeemCash"/></td>
-									</tr>
+									</tr> -->
 									<tr>
 										<td><label><input type="radio" class="redeem" name="redeem_option[]" value="ReferCode"> Refferrer Code</label></td>
 										<td id="ReferCode" style="display: none;"><input type="text" name="refferrer_Code" id="referCode"/></td>

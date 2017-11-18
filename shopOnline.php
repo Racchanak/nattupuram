@@ -13,7 +13,7 @@ include('header.php');
                     <div class="col-md-5 col-xs-12">
                         <div class="view-product">
                         <div class="discount">
-                                <p>10%</p>
+                                <p><?php echo $offers['Welcome'][0]['Offersvalue']; ?>%</p>
                             </div>
                             <img id="product_img" src="<?php echo $product[0]['main_img']; ?>" alt="" />
                             
@@ -45,7 +45,7 @@ include('header.php');
                                             <?php foreach ($product[0]['price'] as $key => $value) { 
                                                 if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
                                             <div class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
-                                            <span class="discountAmt"><?php echo $value; ?></span></div>
+                                            <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
                                             <?php } ?>
                                         </div>
                                     </div>  
@@ -76,14 +76,15 @@ include('header.php');
                                         </div>
                                         <div class="col-md-10 col-xs-8">
                                             <div class="input-group">
+                                        <!-- <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/> -->
                                                 <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                    <button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
                                                         <span class="glyphicon glyphicon-minus"></span>
                                                     </button>
                                                 </span>
-                                                <span><input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="5"></span>
+                                                <span><input type="text" name="quant[1]" id="proquantity" class="form-control input-number" value="1" min="1" max="5"></span>
                                                 <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                    <button type="button" class="btn btn-default btn-number" onclick="myquantity()" data-type="plus" data-field="quant[1]">
                                                         <span class="glyphicon glyphicon-plus"></span>
                                                     </button>
                                                 </span>
@@ -466,7 +467,7 @@ include('footer.php');
 <script type="text/javascript">
     $('.amount').css('display', 'block');
     var val_qunty = $('.vol_qnty').val();
-    var sele_amt = $('.amount')[0]['outerText'];
+    var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
     $('#product_amount').val(sele_amt);
     $('#product_category').val(val_qunty);
     $('.vol_qnty').change(function () {
@@ -477,7 +478,7 @@ include('footer.php');
         $('.amount').css('display', 'none');
         $('.amount').removeClass('amount');        
         $('.' + val_qunty + '_amt').addClass('amount');
-        var sele_amt = $('.amount')[0]['outerText'];
+        var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
         $('.' + val_qunty + '_amt').css('display', 'block');
         $('#product_amount').val(sele_amt);
         $('#product_category').val(val_qunty);
@@ -527,6 +528,8 @@ $('.input-number').change(function() {
     minValue =  parseInt($(this).attr('min'));
     maxValue =  parseInt($(this).attr('max'));
     valueCurrent = parseInt($(this).val());
+    console.log(valueCurrent);
+    $('#product_quantity').val(valueCurrent);
     
     name = $(this).attr('name');
     if(valueCurrent >= minValue) {
