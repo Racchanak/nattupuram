@@ -210,10 +210,6 @@
     .footer-widget .col-sm-3 {
         display: inline-block;
     }
-    .single-widget {}
-    .product-information span {
-        display: block;
-    }
     #similar-product {
         margin-bottom: 40px;
     }
@@ -403,10 +399,6 @@
     }
     .sinlge-post-meta li {
         margin-bottom: 10px;
-    }
-    .product-information {
-        padding-left: 0;
-        text-align: center;
     }
     .product-information span span {
         float: none;

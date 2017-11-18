@@ -5,6 +5,12 @@
  // randomString(3);
  $product_id = (isset($_REQUEST['product_id']))?$_REQUEST['product_id']:'';
  $product = products_data($product_id);
+ $productDiscount = array();
+ foreach ($product[0]['price'] as $pkey => $pkvalue) {
+ 	$pprice = $pkvalue - ($pkvalue*$offers['Welcome'][0]['Offersvalue'])/100;
+ 	array_push($productDiscount, $pprice);
+ }
+ $product[0]['discount'] = $productDiscount;
  if(isset($_SESSION['user']['register_id'])) {
  	$user_id = $_SESSION['user']['register_id'];
  	$product_cart = carts_data($user_id); 
