@@ -717,8 +717,7 @@ ul.sub-menu {
 .category-products {
     border: 1px solid #F7F7F0;
     margin-bottom: 35px;
-    padding-bottom: 20px;
-    padding-top: 15px;
+    padding: 30px;
 }
 
 .left-sidebar h2,
@@ -1255,8 +1254,7 @@ h2.title {
 
 .view-product img {
     border: 1px solid #F7F7F0;
-    height: 244px;
-    width: 101%;
+    width: 100%;
 }
 
 .view-product h3 {
@@ -1320,7 +1318,6 @@ h2.title {
 .product-information p {
     color: #696763;
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 5px;
 }
 
 .product-information span {
@@ -2619,17 +2616,17 @@ textarea {
 
 .headBottom {
     margin-top: 10px;
-    margin-left: -40px;
+    margin-left: 109px;
 }
 
 .discount p {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 21px;
+    right: 15px;
+    top: 6px;
+    font-size: 17px;
     background-color: red;
     border-radius: 50%;
-    padding: 10px 5px;
+    padding: 8px 4px;
     color: #fff;
     font-weight: 800;
 }
@@ -2752,4 +2749,27 @@ textarea {
     outline: none;
     box-shadow: none;
     border-color: #dedede;
+}
+
+.offers {
+    position: absolute;
+    top: 90px;
+    right: 20%;
+    border: 5px solid #fe980f;
+    padding: 10px;
+    border-radius: 12%;
+}
+
+.offers h4 {
+    font-size: 16px;
+    color: #fe980f;
+}
+
+.offers .offerContent ol {
+    padding: 0px 15px;
+    margin: 0px;
+}
+
+.offers .offerContent ol li h5 {
+    font-size: 12px;
 }

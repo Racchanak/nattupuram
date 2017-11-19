@@ -1,15 +1,16 @@
-<div class="col-sm-3">
+<div class="col-sm-4 col-md-4">
     <div class="left-sidebar">
         <h2>Products</h2>
         <?php // print_r($this->data['products']); exit(); ?>
         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-            <?php foreach ($products as $key => $value) { ?>
+            <!-- <?php foreach ($products as $key => $value) { ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title <?php echo (isset($value['product_name']) && $value['product_name'] == 'ground') ? 'active' : ''; ?>"><a href="<?php echo 'shopOnline.php?product_id=' . $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></h4>
                     </div>
                 </div>
-            <?php } ?>
+            <?php } ?> -->
+            <iframe width="300" height="200" src="https://www.youtube.com/embed/aD9cyGgGWLo"  frameborder="0" allowfullscreen></iframe>
             <!--            <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title <?php echo (isset($category) && $category == 'sesame') ? 'active' : ''; ?>"><a href="sesame.php">Sesame Oil(Cold Press)</a></h4>

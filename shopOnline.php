@@ -10,7 +10,7 @@ include('header.php');
 <section>
     <div class="container">
                 <div class="product-details"><!--product-details-->
-                    <div class="col-md-5 col-xs-12">
+                    <div class="col-md-3 col-xs-12">
                         <div class="view-product">
                         <div class="discount">
                                 <p><?php echo $offers['Welcome'][0]['Offersvalue']; ?>%</p>
@@ -29,7 +29,7 @@ include('header.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7 col-xs-12">
+                    <div class="col-md-9 col-xs-12">
                         <div class="product-information"><!--/product-information-->
                             <img src="assets/images/product-details/new.jpg" class="newarrival" alt="" />
                             <h2><?php echo $product[0]['product_name']; ?></h2>
@@ -135,91 +135,31 @@ include('header.php');
                                     </div>                                
                                     <?php } ?>                       
                                         </div>
-                                        <div class="col-md-9 col-xs-6">
+                                        <!-- <div class="col-md-9 col-xs-6">
                                             <span style="padding: 0px 5px;color:#f9f9f9;font-size: 20px;" class="btn btn-info btn-sm" data-toggle="modal" data-target="#proOffers">Offers</span>
-                                        </div>  
+                                        </div>   -->
                                     </div>
                                 </div>
                             </div>
-                            <!-- <span>                            
-                                <div class="col-sm-12">
-                                    <div class="col-sm-2">
-                                        <label>Price:</label>
-                                    </div>
-                                    <div class="col-sm-8" style="font-size: 25px;font-weight: 700;margin-right: 9px;margin-top: -12px;">
-                                        <?php foreach ($product[0]['price'] as $key => $value) { 
-                                                if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
-                                            <div class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
-                                            <span><?php echo $value; ?></span></div>
-                                        <?php } ?>
-                                    </div>
-                                </div>                              
-                                <div class="col-sm-12">
-                                    <div class="col-sm-2">
-                                        <label>Volume:</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <select name="volume" class="vol_qnty">
-                                            <?php foreach ($product[0]['quantity'] as $key => $value) { 
-                                                if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
-                                                <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>            
-                                <div class="col-sm-12">
-                                    <div class="col-sm-6">
-                                        <label>Quantity:</label>
-                                        <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/>
-                                    </div>  
-                                </div> 
-                                <div class="col-sm-12">
-                                    <label>Free Delivery (Tamilnadu, Pondicherry & Bengaluru)</label>
-                                </div>
-                                <div class="col-sm-12">                                    
-                                    <span style="padding: 0px 5px;color:#f9f9f9;font-size: 20px;" class="btn btn-info btn-sm" data-toggle="modal" data-target="#proOffers">Offers</span>
-                                    <?php if (!empty($_SESSION['user'])) { ?>                              
-                                    <div class="col-sm-6">
-                                        <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
-                                            <input type="hidden" name="category" id="product_category" class="form-control">
-                                            <input type="hidden" name="category" id="product_user_id" class="form-control" value="<?php echo $_SESSION['user']['register_id']; ?>">
-                                            <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
-                                            <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
-                                            <input type="hidden" name="quantity" id="product_quantity" class="form-control">
-                                            <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
-                                            <button type="submit" class="btn btn-fefault cart" >
-                                                <i class="fa fa-shopping-cart"></i>
-                                                Add to cart
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <?php } else { ?>                        
-                                    <div class="col-sm-6">
-                                        <form id="main-form" onsubmit="return purchase_cart();" class="purchase-form row" name="purchase-form">
-                                            <input type="hidden" name="category" id="product_category" class="form-control">
-                                            <input type="hidden" name="category" id="product_user_id" class="form-control" value="Guest_id">
-                                            <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
-                                            <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
-                                            <input type="hidden" name="quantity" id="product_quantity" class="form-control">
-                                            <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
-                                            <button type="submit" class="btn btn-fefault cart" >
-                                                <i class="fa fa-shopping-cart"></i>
-                                                Buy Now
-                                            </button>
-                                        </form>
-                                    </div>                                
-                                    <?php } ?>                                
-                                </div>
-                            </span> -->
+                            
                                     <span class="error-product"></span>
                             <span><label>Details: </label> <?php echo $product[0]['description']; ?> </span>
-                        <!--<p><b>Availability:</b> In Stock</p>-->
-                        <!--<p><b>Condition:</b> New</p>-->
-                        <!--<p><b>Brand:</b> E-SHOPPER</p>-->
-                        <!--<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>-->
-                        </div><!--/product-information-->
+                            <div class="offers">
+                                <h4>OFFERS :</h4>
+                                <div class="offerContent">
+                                    <ol>
+                                        <li>
+                                            <h5>offer offer offer offer offer offer offer </h5>
+                                        </li>
+                                        <li>
+                                            <h5>offer offer offer offer offer offer offer </h5>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div><!--/product-details-->
+                </div>
                
                 <div class="category-tab shop-details-tab"><!--category-tab-->
                     <div class="col-sm-12">

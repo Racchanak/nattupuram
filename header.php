@@ -110,13 +110,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-	  <a class="navbar-brand hidden-sm hidden-xs" href="index.php"><img src="assets/images/logo.png" alt=""/></a>
-	  <a class="brand hidden-lg hidden-md" href="index.php"><img src="assets/images/nattu.png" alt=""/></a>
+	  <!-- <a class="navbar-brand hidden-sm hidden-xs" href="index.php"><img src="assets/images/logo.png" alt=""/></a>
+	  <a class="brand hidden-lg hidden-md" href="index.php"><img src="assets/images/nattu.png" alt=""/></a> -->
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav headBottom">
-		<!-- <li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li> -->
+		<li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
    <!-- <li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li> -->
 		<li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Shop Online</a></li>
 		<li><a href="shopOnline.php?product_id=1" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Mara Chekku Ground Nut Oil</a></li>
