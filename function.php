@@ -375,11 +375,14 @@ function offers_data($offer_id = '') {
     if($offer_id=='') {
         $offers['Welcome'] = array();
         $offers['Product'] = array();
+        $offers['Product Details'] = array();
         foreach ($arr as $key => $value) {
             if($value['category'] == 'Welcome') {
                 array_push($offers['Welcome'],$value);
             } else if($value['category'] == 'Product') {
                 array_push($offers['Product'],$value);
+            } else if($value['category'] == 'Product Details') {
+                array_push($offers['Product Details'],$value);
             }
         }
         return $offers;

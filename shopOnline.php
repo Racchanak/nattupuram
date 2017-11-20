@@ -16,8 +16,6 @@ include('header.php');
                                 <p><?php echo $offers['Welcome'][0]['Offersvalue']; ?>%</p>
                             </div>
                             <img id="product_img" src="<?php echo $product[0]['main_img']; ?>" alt="" />
-                            
-                            <!--<h3>ZOOM</h3>-->
                         </div>
                         <div id="similar-product" class="carousel slide hidden-xs" data-ride="carousel">                              
                             <!-- Wrapper for slides -->
@@ -33,8 +31,6 @@ include('header.php');
                         <div class="product-information"><!--/product-information-->
                             <img src="assets/images/product-details/new.jpg" class="newarrival" alt="" />
                             <h2><?php echo $product[0]['product_name']; ?></h2>
-                            <!--<p>ID: MCO-590</p>-->
-                            <!--<img src="images/product-details/rating.png" alt="" />-->
                             <div class="innerContent">
                                 <div class="row">
                                     <div class="content">
@@ -76,7 +72,6 @@ include('header.php');
                                         </div>
                                         <div class="col-md-10 col-xs-8">
                                             <div class="input-group">
-                                        <!-- <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/> -->
                                                 <span class="input-group-btn">
                                                     <button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
                                                         <span class="glyphicon glyphicon-minus"></span>
@@ -89,7 +84,6 @@ include('header.php');
                                                     </button>
                                                 </span>
                                             </div>
-                                            <!-- <input type="text" name="quantity" id="proquantity" onkeyup="myquantity()"/>  -->
                                         </div>  
                                     </div>
                                 </div>
@@ -134,37 +128,34 @@ include('header.php');
                                         </form>
                                     </div>                                
                                     <?php } ?>                       
-                                        </div>
+                                    </div>
                                         <!-- <div class="col-md-9 col-xs-6">
                                             <span style="padding: 0px 5px;color:#f9f9f9;font-size: 20px;" class="btn btn-info btn-sm" data-toggle="modal" data-target="#proOffers">Offers</span>
                                         </div>   -->
                                     </div>
                                 </div>
                             </div>
-                            
-                                    <span class="error-product"></span>
+                            <span class="error-product"></span>
                             <span><label>Details: </label> <?php echo $product[0]['description']; ?> </span>
                             <div class="offers">
                                 <h4>OFFERS :</h4>
                                 <div class="offerContent">
-                                    <ol>
-                                        <li>
-                                            <h5>offer offer offer offer offer offer offer </h5>
-                                        </li>
-                                        <li>
-                                            <h5>offer offer offer offer offer offer offer </h5>
-                                        </li>
-                                    </ol>
+                                    <ul>
+                                        <?php foreach ($offers['Product Details'] as $key => $value) { ?>                                            
+                                            <li>
+                                                <h4><?php echo $value['title'];?></h4>
+                                                <h5><?php echo $value['description'];?></h5>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-               
+                </div>               
                 <div class="category-tab shop-details-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <!--<li><a href="#details" data-toggle="tab">Details</a></li>-->
                             <li class="active"><a href="#companyprofile" data-toggle="tab">Manufacture method</a></li>
                             <li><a href="#tag" data-toggle="tab">Nutritional Facts</a></li>
                             <li><a href="#character" data-toggle="tab">Characteristics</a></li>
@@ -174,24 +165,15 @@ include('header.php');
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <!--                        <div class="tab-pane fade" id="details" >                            
-                                                    <div class="col-sm-12" style="margin-left: 20px;">
-                                                        <p>This natural Coconut Oil extracted by traditional Cold Press method using Mara Chekku / Wooden Ghani. Since there is no Heat generation in this process, Oil is dense and keeps all its own flavor, aroma and nutrients intact.</p>
-                                                    </div>
-                                                </div>-->
-
                         <div class="tab-pane fade active in" id="companyprofile" >
                             <div class="col-sm-12" style="margin-left: 20px;">
                                 <ul style="background: #fff;border-bottom: 1px solid #fff;">
                                     <?php foreach ($product[0]['methods'] as $key => $value) { ?>                                    
                                         <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;"><?php echo $value; ?></span></p></li> 
-<!--                                    <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">We store these unrefined oil in barrels and keep it in sunlight for 4 days. Once the sediments settle, we filter the oil manually and pack it.</span></p></li>
-                                    <li style="margin-right: 20px;"><p><i class="fa fa-crosshairs"></i><span style="margin-left: 20px;">There is no Thermal/Refining process and no additives/chemical/preservatives added.</span></p></li>-->
                                     <?php } ?>
                                 </ul>
                             </div>
                         </div>
-
                         <div class="tab-pane fade" id="tag" >
                             <table class="nfacts">
                                 <thead>
@@ -209,8 +191,7 @@ include('header.php');
                                     <?php } ?>
                                 </tbody>
                             </table>
-                        </div>                        
-
+                        </div>
                         <div class="tab-pane fade" id="character" >
                             <div class="col-sm-12" style="margin-left: 20px;">
                                 <ul style="background: #fff;border-bottom: 1px solid #fff;">
@@ -222,7 +203,6 @@ include('header.php');
                                 </ul>
                             </div>
                         </div>
-
                         <div class="tab-pane fade" id="benefit" >
                             <div class="col-sm-12" style="margin-left: 20px;">
                                 <ul style="background: #fff;border-bottom: 1px solid #fff;">
@@ -256,7 +236,6 @@ include('header.php');
                                     <?php } ?>
                                     <div><input class="fom-div" style="height: 40px !important;" name="name" id="rev_name" type="text" placeholder="Name" /></div>
                                     <div><input class="fom-div" style="height: 40px !important;" name="email-id" id="rev_email" type="text" placeholder="Email Id" /></div>
-                                    <!-- <div><input class="fom-div" style="height: 40px !important;" name="mobile-no" id="rev_mobile" type="text" placeholder="Mobile No" /></div> -->
                                     <div><input class="fom-div" style="height: 40px !important;" name="city" id="rev_city" type="text" placeholder="City" /></div>
                                     <div><textarea class="fom-div" id="rev_msg" name="typeurmsg" placeholder="Type Your Message  " ></textarea></div>
                                     <div><span class="error-review"></span></div>
@@ -265,7 +244,6 @@ include('header.php');
                                 </form>
                             </div>
                         </div>
-
                         <div class="tab-pane fade" id="testimonials" >
                             <div class="blog-post-area">                                
                                 <?php
@@ -303,129 +281,6 @@ include('header.php');
                     </div>
                 </div>
             </div><!--/category-tab-->
-            <!--
-                            <div class="recommended_items">recommended_items
-                                <h2 class="title text-center">recommended items</h2>
-            
-                                <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="item active">   
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="images/home/recommend1.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="images/home/recommend2.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="images/home/recommend3.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">  
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="images/home/recommend1.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="images/home/recommend2.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="images/home/recommend3.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                                        <i class="fa fa-angle-left"></i>
-                                    </a>
-                                    <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>            
-                                </div>
-                            </div>/recommended_items-->
-                            <div class="brands_products user_info"><!--brands_products-->
-                <h2 class="reh2">Write Your Review</h2>
-                <form id="reviews">
-                    <?php if (isset($menu) && $menu == 'prod_det') { ?>
-                        <h1 style="margin-top: 0px;font-size: 17px;font-weight: 700;">Product : <?php echo $product[0]['product_name']; ?></h1>
-                        <input type="hidden" id="product_name" name="product_name" value="<?php echo $product[0]['product_name']; ?>"/>
-                        <input type="hidden" id="product_id" name="product_id" value="<?= (isset($_REQUEST['product_id'])) ? $_REQUEST['product_id'] : ''; ?>"/>
-                    <?php } else if (isset($menu) && $menu == 'testi') { ?>
-                        <select id="option" name="option">
-                            <option value="">Product</option>
-                            <?php foreach ($products as $key => $value) { ?>
-                                <option value="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></option>
-                            <?php } ?>
-                            <!--                            <option value="Groundnut Oil">Groundnut Oil(Cold Press)</option>
-                                                        <option value="Sesame Oil">Sesame Oil(Cold Press)</option>
-                                                        <option value="Coconut Oil">Coconut Oil(Cold Press)</option>
-                                                        <option value="Natural Ghee">Natural Ghee</option>-->
-                        </select>
-                        <input type="hidden" id="product_name" name="product_name" value=""/>
-                        <img id="product_img" src="" alt="" style="display: none;" />
-                    <?php } ?>
-                    <div><input class="fom-div" style="height: 40px !important;" name="name" id="rev_name" type="text" placeholder="Name" /></div>
-                    <div><input class="fom-div" style="height: 40px !important;" name="email-id" id="rev_email" type="text" placeholder="Email Id" /></div>
-                    <!-- <div><input class="fom-div" style="height: 40px !important;" name="mobile-no" id="rev_mobile" type="text" placeholder="Mobile No" /></div> -->
-                    <div><input class="fom-div" style="height: 40px !important;" name="city" id="rev_city" type="text" placeholder="City" /></div>
-                    <div><textarea class="fom-div" id="rev_msg" name="typeurmsg" placeholder="Type Your Message  " ></textarea></div>
-                    <div><span class="error-review"></span></div>
-                    <div><span class="success-review"></span></div>
-                    <div><button type="button" class="btn btn-default " onclick="add_review();">Submit</button></div>
-                </form>
-            </div>
-
 </div>
 </section>
 
