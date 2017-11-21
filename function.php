@@ -469,7 +469,16 @@ function products_data($product_id = '') {
     while ($row = mysqli_fetch_assoc($result)) {
         $products[$pkey] = $row;
         $products[$pkey]['quantity'] = explode(',', $row['quantity']);
-        $products[$pkey]['price'] = explode(',', $row['price']);
+        if(!empty($row['sub_quantity'])) {
+            $subquantity = explode('#', $row['sub_quantity']);
+            $pricesqty = explode('#', $row['price']);
+            foreach ($products[$pkey]['quantity'] as $key => $value) {
+                $products[$pkey]['subquantity'][$value]= explode(',', $subquantity[$key]);
+                $products[$pkey]['pricesqty'][$value] = explode(',', $pricesqty[$key]); 
+            }
+        } else {
+           $products[$pkey]['price'] = explode(',', $row['price']);
+        }
         if (!empty($product_id)) {
             $products[$pkey]['methods'] = $methods;
             $products[$pkey]['facts'] = $facts;

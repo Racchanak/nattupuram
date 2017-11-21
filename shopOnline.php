@@ -36,14 +36,24 @@ include('header.php');
                                     <div class="content">
                                         <div class="col-md-2 col-xs-4">
                                             <h3>Price:</h3>
-                                        </div>
-                                        <div class="col-md-10 col-xs-8">
-                                            <?php foreach ($product[0]['price'] as $key => $value) { 
-                                                if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
-                                            <div class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
-                                            <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
-                                            <?php } ?>
-                                        </div>
+                                        </div>                                        
+                                        <?php if(empty($products[$pkey]['sub_quantity'])) { ?>
+                                            <div class="col-md-10 col-xs-8">
+                                                <?php foreach ($product[0]['price'] as $key => $value) { 
+                                                    if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
+                                                <div class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
+                                                <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
+                                                <?php } ?>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="col-md-10 col-xs-8">
+                                                <?php foreach ($product[0]['pricesqty'] as $key => $value) { 
+                                                    if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
+                                                <div class="<?php echo str_replace(' ', '', $product[0]['sub_quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
+                                                <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
+                                                <?php } ?>
+                                            </div>                                            
+                                        <?php } ?>
                                     </div>  
                                 </div>
                             </div>
@@ -53,14 +63,35 @@ include('header.php');
                                         <div class="col-md-2 col-xs-4">
                                             <h3>Volume:</h3>
                                         </div>
-                                        <div class="col-md-10 col-xs-8">
-                                            <select name="volume" class="vol_qnty">
-                                                <?php foreach ($product[0]['quantity'] as $key => $value) { 
-                                                    if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
-                                                    <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
+                                        <?php if(empty($products[$pkey]['sub_quantity'])) { ?>
+                                            <div class="col-md-10 col-xs-8">
+                                                <div class="col-xs-2">
+                                                    <select name="volume" class="vol_subqnty">
+                                                        <?php foreach ($product[0]['quantity'] as $key => $value) { 
+                                                            if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
+                                                            <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <select name="volume" class="vol_priqnty">
+                                                        <?php foreach ($product[0]['sub_quantity'] as $key => $value) { 
+                                                            if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
+                                                            <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="col-md-10 col-xs-8">
+                                                <select name="volume" class="vol_qnty">
+                                                    <?php foreach ($product[0]['quantity'] as $key => $value) { 
+                                                        if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
+                                                        <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        <?php } ?>
                                     </div>  
                                 </div>
                             </div>
@@ -291,24 +322,33 @@ include('header.php');
 include('footer.php');
 ?>
 <script type="text/javascript">
-    $('.amount').css('display', 'block');
-    var val_qunty = $('.vol_qnty').val();
-    var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
-    $('#product_amount').val(sele_amt);
-    $('#product_category').val(val_qunty);
-    $('.vol_qnty').change(function () {
+    var sub_quantity = $('#product_id').val();
+    console.log(sub_quantity);
+    if(sub_quantity!='6') {
+        $('.amount').css('display', 'block');
         var val_qunty = $('.vol_qnty').val();
-        $('.notselected').addClass('selected');
-        $('.selected').removeClass('selected');
-        $('.selected').addClass('notselected');
-        $('.amount').css('display', 'none');
-        $('.amount').removeClass('amount');        
-        $('.' + val_qunty + '_amt').addClass('amount');
         var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
-        $('.' + val_qunty + '_amt').css('display', 'block');
         $('#product_amount').val(sele_amt);
         $('#product_category').val(val_qunty);
-    });
+        $('.vol_qnty').change(function () {
+            var val_qunty = $('.vol_qnty').val();
+            $('.notselected').addClass('selected');
+            $('.selected').removeClass('selected');
+            $('.selected').addClass('notselected');
+            $('.amount').css('display', 'none');
+            $('.amount').removeClass('amount');        
+            $('.' + val_qunty + '_amt').addClass('amount');
+            var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
+            $('.' + val_qunty + '_amt').css('display', 'block');
+            $('#product_amount').val(sele_amt);
+            $('#product_category').val(val_qunty);
+        });
+    } else { 
+        $('.vol_subqnty').change(function () {
+            var val_qunty = $('.vol_subqnty').val();
+            console.log(val_qunty);
+        }); 
+    }
     function myquantity() {
         var x = $('#proquantity').val();
         $('#product_quantity').val(x);
@@ -354,7 +394,6 @@ $('.input-number').change(function() {
     minValue =  parseInt($(this).attr('min'));
     maxValue =  parseInt($(this).attr('max'));
     valueCurrent = parseInt($(this).val());
-    console.log(valueCurrent);
     $('#product_quantity').val(valueCurrent);
     
     name = $(this).attr('name');
