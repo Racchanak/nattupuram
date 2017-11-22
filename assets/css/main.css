@@ -2754,7 +2754,7 @@ textarea {
 .offers {
     position: absolute;
     top: 90px;
-    right: 20%;
+    right: 0%;
     border: 5px solid #fe980f;
     padding: 10px;
     border-radius: 12%;
