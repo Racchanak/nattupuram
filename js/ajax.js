@@ -1,3 +1,4 @@
+
 function add_review() {
     var name = $('#rev_name').val();
     var emailid = $('#rev_email').val();
@@ -598,45 +599,46 @@ function purchase_transact() {
                         type: 'POST',
                         data: trans_data,
                         success: function (transact_id) {
-                            var options = {
-                                "key": "rzp_test_vKA7gqOvxPudTU",
-                                "amount": parseInt(grand_total) * 100, // 2000 paise = INR 20
-                                "name": "Nattupuram",
-                                "description": "Transaction ID :" + transact_id,
-                                "image": "assets/images/nattupuram.jpg",
-                                "handler": function (response){
-                                    console.log(response);
-                                    if(response != '') {
-                                        console.log(response.razorpay_payment_id);
-                                        var payment_data = {'status':'Success','transact_id':parseInt($.trim(transact_id)),'payment_id':response.razorpay_payment_id}
-                                    } else {
-                                        var payment_data = {'status':'Failure','transact_id':parseInt($.trim(transact_id)),'payment_id':0}
-                                    }
-                                    $.ajax({
-                                        url: 'function.php?action=transact_payment',
-                                        type: 'POST',
-                                        data: payment_data,
-                                        success: function (res) {
-                                            console.log(res);
-                                            if(response != '') {
-                                                if(res > 0) {
-                                                    window.location.href = 'orderThank.php';
-                                                }
-                                            }
-                                            //redirect to Thank You Page.
-                                        }
-                                    });
-                                },
-                                "prefill": {
-                                    "name": add_name,
-                                    "email": add_email
-                                },
-                                "theme": {
-                                    "color": "#F37254"
-                                }
-                            };
-                            var rzp1 = new Razorpay(options);
-                                rzp1.open();
+                            $('#paymentGateway').modal('toggle');
+                            // var options = {
+                            //     "key": "rzp_test_vKA7gqOvxPudTU",
+                            //     "amount": parseInt(grand_total) * 100, // 2000 paise = INR 20
+                            //     "name": "Nattupuram",
+                            //     "description": "Transaction ID :" + transact_id,
+                            //     "image": "assets/images/nattupuram.jpg",
+                            //     "handler": function (response){
+                            //         console.log(response);
+                            //         if(response != '') {
+                            //             console.log(response.razorpay_payment_id);
+                            //             var payment_data = {'status':'Success','transact_id':parseInt($.trim(transact_id)),'payment_id':response.razorpay_payment_id}
+                            //         } else {
+                            //             var payment_data = {'status':'Failure','transact_id':parseInt($.trim(transact_id)),'payment_id':0}
+                            //         }
+                            //         $.ajax({
+                            //             url: 'function.php?action=transact_payment',
+                            //             type: 'POST',
+                            //             data: payment_data,
+                            //             success: function (res) {
+                            //                 console.log(res);
+                            //                 if(response != '') {
+                            //                     if(res > 0) {
+                            //                         window.location.href = 'orderThank.php';
+                            //                     }
+                            //                 }
+                            //                 //redirect to Thank You Page.
+                            //             }
+                            //         });
+                            //     },
+                            //     "prefill": {
+                            //         "name": add_name,
+                            //         "email": add_email
+                            //     },
+                            //     "theme": {
+                            //         "color": "#F37254"
+                            //     }
+                            // };
+                            // var rzp1 = new Razorpay(options);
+                            //     rzp1.open();
                         }
                     });
                 }

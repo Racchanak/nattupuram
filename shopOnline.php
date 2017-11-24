@@ -19,12 +19,12 @@ include('header.php');
                         </div>
                         <div id="similar-product" class="carousel slide hidden-xs" data-ride="carousel">                              
                             <!-- Wrapper for slides -->
-                            <div class="col-sm-6 wit56">
+                            <!-- <div class="col-sm-6 wit56">
                                 <img class="img-responsive sesam" src="<?php echo $product[0]['image1']; ?>" alt="">
                             </div>
                             <div class="col-sm-6 wit56">
                                 <img class="img-responsive sesam" src="<?php echo $product[0]['image2']; ?>" alt="">
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-md-9 col-xs-12">
@@ -123,11 +123,11 @@ include('header.php');
                                     </div>
                                 </div>
                             </div>
-                            <div class="innerContent">
+                            <!-- <div class="innerContent">
                                 <div class="content">
                                     <p>Free Delivery (Tamilnadu, Pondicherry & Bengaluru)</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="innerContent">
                                 <div class="row">
                                     <div class="content">
@@ -171,23 +171,26 @@ include('header.php');
                                 </div>
                             </div>
                             <span class="error-product"></span>
-                            <span><label>Details: </label> <?php echo $product[0]['description']; ?> </span>
-                            <div class="offers">
-                                <h4>OFFERS :</h4>
-                                <div class="offerContent">
-                                    <ul>
-                                        <?php foreach ($offers['Product Details'] as $key => $value) { ?>                                            
-                                            <li>
-                                                <h4><?php echo $value['title'];?></h4>
-                                                <h5><?php echo $value['description'];?></h5>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
+                            <?php if($product[0]['product_id']!='6'){ ?>
+                                <div class="offers">
+                                    <h4>OFFERS :</h4>
+                                    <div class="offerContent">
+                                        <ul>
+                                            <?php foreach ($offers['Product Details'] as $key => $value) { ?>                                            
+                                                <li>
+                                                    <h4><?php echo $value['title'];?></h4>
+                                                    <h5><?php echo $value['description'];?></h5>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } ?>
+                            <span><label>Details: </label> <?php echo $product[0]['description']; ?> </span>
                         </div>
                     </div>
-                </div>               
+                </div>  
+                <?php if(!empty($product[0]['methods'])){ ?>             
                 <div class="category-tab shop-details-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
@@ -315,6 +318,7 @@ include('header.php');
                         </div>
                     </div>
                 </div>
+                <?php } ?>
             </div><!--/category-tab-->
 </div>
 </section>

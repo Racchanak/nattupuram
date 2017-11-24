@@ -56,6 +56,26 @@
 
   </div>
 </div>
+<div id="paymentGateway" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Coming Soon.....</h4>
+      </div>
+      <div class="modal-body">
+        <h2>Payment Gateway Integration is in Progress.</h2>
+        <p>Sorry for Your Inconvenience</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <!-- Modal -->
 <div id="proOffers" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -183,6 +203,29 @@
 <script src="assets/js/price-range.js"></script>
 <script src="assets/js/jquery.prettyPhoto.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/oc2/dist/owl.carousel.min.js"></script>
 <script src="js/ajax.js"></script>
+<script>
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:1,
+            nav:false
+        },
+        1000:{
+            items:1,
+            nav:true,
+            loop:false
+        }
+    }
+});
+</script>
 </body>
 </html>

@@ -643,8 +643,12 @@ ul.sub-menu {
     background: #FE980F;
 }
 
-.item {
-    padding-left: 100px;
+.owl-nav {
+    display : none;
+}
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span { 
+    background: #fe980e !important;
 }
 
 .pricing {
@@ -1800,7 +1804,8 @@ textarea {
     padding: 5px;
     border-radius: 5px;
     resize: none;
-    outline: none;
+    outline: none;    
+    background-color: #fff;
 }
 
 .user_info select:focus {
@@ -1867,7 +1872,6 @@ textarea {
 }
 
 .checkout-options .nav li {
-    float: left;
     margin-right: 45px;
     color: #696763;
     font-size: 18px;
@@ -2550,8 +2554,8 @@ textarea {
 }
 
 .brand img {
-    width: 25%;
-    padding: 4px 15px;
+    width: 32%;
+    margin-bottom: -58px;
 }
 
 .fbicon li {
@@ -2772,4 +2776,43 @@ textarea {
 
 .offers .offerContent ol li h5 {
     font-size: 12px;
+}
+.registerUserName{
+    background-color: #f1f1e9;
+    padding: 25px;
+}
+.registerAccount{
+    width: 275px;
+    margin: 0px auto;
+    padding: 70px 0px 0px;
+}
+.registerAccount input{
+    border: 1px solid #a9a9a0;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 5px;
+    outline: none;
+}
+.registerAccount .btn{
+    margin: 5px;
+    color: #fff;
+    border-radius: 4px;
+}
+.guestAccount{
+    width: 275px;
+    margin: 0px auto;
+    padding: 70px 0px 0px;
+}
+.guestAccount input{
+    border: 1px solid #a9a9a0;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 5px;
+    outline: none;
+    width: auto;
+}
+.guestAccount .btn{
+    margin: 5px;
+    color: #fff;
+    border-radius: 4px;
 }

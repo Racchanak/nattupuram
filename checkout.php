@@ -22,29 +22,33 @@
 				<input type="text" placeholder="Email*" id="sess_email" value="<?php echo $_SESSION['user']['emailid'];?>">
 				<input type="text" placeholder="Name *" id="sess_name" value="<?php echo $_SESSION['user']['name'];?>">
 			<?php } else { ?>
-			<div class="checkout-options">
-				<h3>New User</h3>
-				<p>Checkout options</p>
-				<ul class="nav">
-					<li>
-						<label><input type="radio" class="chekout" name="account_option[]" value="Register"> Register Account</label>
-					</li>
-					<li>
-						<label><input type="radio" class="chekout" name="account_option[]" value="Guest"> Guest Checkout</label>
-					</li>
-					<!-- <li>
-						<a href=""><i class="fa fa-times"></i>Cancel</a>
-					</li> -->
-				</ul> 
+			<div class="registerUserName">
+				<div class="row">
+					<div class="checkout-options col-md-6">
+					<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
+					<h3>New User</h3>
+					<p>Checkout options</p>
+					<ul class="nav">
+						<li>
+							<label><input type="radio" class="chekout" name="account_option[]" value="Register"> Register Account</label>
+						</li>
+						<li>
+							<label><input type="radio" class="chekout" name="account_option[]" value="Guest"> Guest Checkout</label>
+						</li>
+						
+						<!-- <li>
+							<a href=""><i class="fa fa-times"></i>Cancel</a>
+						</li> -->
+					</ul> 
 			</div><!--/checkout-options--> 
-			<div class="register-req">
-				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
+			<div class="col-md-6">
+				
 			    <input type="hidden" id="gOrderId" value="<?php echo $_COOKIE['Guest_cart']; ?>">
 				<input type="hidden" id="add_email" value="">
 				<input type="hidden" id="add_name" value="">	
-				<div class="col-sm-12">                  
-			        <div class="col-sm-6" class="checkout_method" id="Register" style="display: none;">
-			            <form id="main-form" onsubmit="return checkoutRegisterLogin();" class="purchase-form row" name="purchase-form">
+				<div>                  
+			        <div class="registerAccount" class="checkout_method" id="Register" style="display: none;">
+			            <form id="main-form" onsubmit="return checkoutRegisterLogin();" class="purchase-form" name="purchase-form">
 							<input type="hidden" name="user_id" id="user_id" value="Guest_id">
 	                        <input type="text" id="login_email" name="email" placeholder="Email Address" />
 	                        <input type="password" id="login_password" name="password" placeholder="Password" />
@@ -54,9 +58,9 @@
 			                </button>
 			            </form>			
 			        </div>                     
-			        <div class="col-sm-6" class="checkout_method" id="Guest" style="display: none;">
+			        <div class="guestAccount" class="checkout_method" id="Guest" style="display: none;">
 						<p>Guest Details</p>
-			            <form id="main-form" onsubmit="return checkoutGuestLogin();" class="purchase-form row" name="purchase-form">
+			            <form id="main-form" onsubmit="return checkoutGuestLogin();" class="purchase-form " name="purchase-form">
 							<input type="hidden" name="user_id" id="user_id" value="Guest_id">
 							<input type="text" placeholder="Name *" id="guestname" value="">	
 							<input type="text" placeholder="Email*" id="guestemail" value="">
@@ -70,7 +74,11 @@
 			            </form>
 			        </div>
 		        </div>
-			</div> <!--/register-req-->
+			</div>
+				</div>
+			</div>
+
+			 <!--/register-req-->
 			<?php } ?>	
 			<div class="step-one">
 				<h2 class="heading">Step - 2</h2>

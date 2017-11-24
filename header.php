@@ -12,6 +12,8 @@
     <link href="assets/css/price-range.css" rel="stylesheet">
     <link href="assets/css/animate.css" rel="stylesheet">
 	<link href="assets/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/js/oc2/dist/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/js/oc2/dist/assets/owl.theme.default.min.css">
 	<link href="assets/css/responsive.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -123,8 +125,8 @@
 		<li><a href="shopOnline.php?product_id=2" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Mara Chekku Sesame/Gingelly Oil</a></li>
 		<li><a href="shopOnline.php?product_id=3" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Mara Chekku Coconut Oil</a></li>
 		<li><a href="shopOnline.php?product_id=4" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Cow Ghee</a></li>
-		<li><a href="combopack.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Combo Pack</a></li>
-		<li><a href="bulkorder.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Bulk Order</a></li>
+		<li><a href="shopOnline.php?product_id=6" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Combo Pack</a></li>
+		<li><a href="bulk-order.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Bulk Order</a></li>
 		<li><a href="offers.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Offers </a></li>										
       </ul>
     </div><!-- /.navbar-collapse -->

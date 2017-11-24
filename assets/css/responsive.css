@@ -101,7 +101,12 @@
 
 /* xs */
 
-@media (max-width: 767px) {
+@media (max-width: 767px) {    
+
+    .offers {
+        position: relative;
+        top: -20px;
+    }
     .header_top .col-sm-6:first-child {
         display: inline-block;
         float: left;

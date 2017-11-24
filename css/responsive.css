@@ -276,6 +276,10 @@ ul.sub-menu{
 	display: inline-block;
 }
 
+.offers {
+	position: relative;
+}
+
 }
 
 /* XS Portrait */
