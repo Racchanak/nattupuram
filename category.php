@@ -5,15 +5,15 @@
         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
             <div class="owl-carousel owl-theme">
                 <div class="item"><img src="assets/images/gallery/1.jpg" alt="" style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/2.jpg" alt=""  style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/3.jpg" alt=""  style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/4.jpg" alt=""  style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/5.jpg" alt=""  style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/6.jpg" alt=""  style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/7.jpg" alt=""  style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/8.jpg" alt=""  style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/9.jpg" alt=""  style="height: 350px;"/></div>
-                <div class="item"><img src="assets/images/gallery/10.jpg" alt=""  style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/2.jpg" alt="" style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/3.jpg" alt="" style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/4.jpg" alt="" style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/5.jpg" alt="" style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/6.jpg" alt="" style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/7.jpg" alt="" style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/8.jpg" alt="" style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/9.jpg" alt="" style="height: 350px;"/></div>
+                <div class="item"><img src="assets/images/gallery/10.jpg" alt="" style="height: 350px;"/></div>
                 <!-- <div class="item"><h4>11</h4></div>
                 <div class="item"><h4>12</h4></div> -->
             </div>
