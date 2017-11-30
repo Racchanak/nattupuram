@@ -28,9 +28,8 @@
                             </div>
                         </div> 
                         <div class="col-sm-12"> 
-                            <p>Encourages their customers to bring in their friends and families to experience the real taste of our traditional items.</p>
+                            <p>Nattupuram, Encourages their customers to bring in their friends and families to experience the real taste of our traditional items.</p>
                             <p>Every referral purchase will earn our customers 50 Rs which can be used on their upcoming purchases.</p>  
-                            <p>Five referal purchase would earn flat 250 Rs for our customers.</p>  
                             <p>A simple three step process mentioned below will provide more clarity on the same,</p>
                             <ol>
                                 <li>Login to your account at NativeSpecial.com, if not registered already please do register so that you can be part of this referal program.</li>
