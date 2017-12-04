@@ -11,7 +11,6 @@
 				  <li class="active">Check out</li>
 				</ol>
 			</div><!--/breadcrums-->
-
 			<div class="step-one">
 				<h2 class="heading">Step - 1</h2>
 			</div>
@@ -34,15 +33,13 @@
 						</li>
 						<li>
 							<label><input type="radio" class="chekout" name="account_option[]" value="Guest"> Guest Checkout</label>
-						</li>
-						
+						</li>						
 						<!-- <li>
 							<a href=""><i class="fa fa-times"></i>Cancel</a>
 						</li> -->
 					</ul> 
 			</div><!--/checkout-options--> 
-			<div class="col-md-6">
-				
+			<div class="col-md-6">				
 			    <input type="hidden" id="gOrderId" value="<?php echo $_COOKIE['Guest_cart']; ?>">
 				<input type="hidden" id="add_email" value="">
 				<input type="hidden" id="add_name" value="">	
@@ -77,7 +74,6 @@
 			</div>
 				</div>
 			</div>
-
 			 <!--/register-req-->
 			<?php } ?>	
 			<div class="step-one">
@@ -136,20 +132,24 @@
 			<div class="review-payment">
 				<h2>Review & Payment</h2>
 			</div>
-
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-							<td class="image">Order No</td>
-							<td class="description">Product Name</td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
+			<div class="reviewBox">
+				<div class="orangeBox">
+					<div class="boxData">
+						<p>Order No</p>
+					</div>
+					<div class="boxData">
+						<p>Product Name</p>
+					</div>
+					<div class="boxData">
+						<p>Price</p>
+					</div>
+					<div class="boxData">
+						<p>Quantity</p>
+					</div>
+					<div class="boxData">
+						<p>Total</p>
+					</div>
+				</div>
                             <?php 
                             	$order_id = array(); 
                             	$grand_total = 0; 
@@ -158,97 +158,55 @@
                             		$total_value = $grand_total;
                             		array_push($order_id,$value['order_id']);
                             	?>
-						<tr>
-							<td class="cart_product">
-								<p>Web ID: <?php echo $value['order_id']; ?></p>
-							</td>
-							<td class="cart_description">
-								<h4><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></h4>
-							</td>
-							<td class="cart_price">
-								<p><?php echo $value['price']; ?></p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-								<p><?php echo $value['quantity']; ?></p>
-									<!-- <a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a> -->
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price"><?php echo $value['total']; ?></p>
-							</td>
-                            <?php if (!empty($_SESSION['user'])) { ?>  
-								<td class="cart_delete">
-									<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-								</td>
-							<?php } ?>
-						</tr>
+				<div class="dataBox">
+					<div class="boxData">
+					<p>Web ID: <?php echo $value['order_id']; ?></p>
+					</div>
+					<div class="boxData">
+						<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
+					</div>
+					<div class="boxData">
+						<p><?php echo $value['price']; ?></p>
+					</div>
+					<div class="boxData">
+						<p><?php echo $value['quantity']; ?></p>
+					</div>
+					<div class="boxData">
+						<p><?php echo $value['total']; ?></p>
+					</div>
+				</div>
 						<?php } ?>
-						<!-- <tr>
-							<td colspan="4">&nbsp;</td>
-							<td colspan="2">
-								<table class="table table-condensed total-result">
-									<tr>
-										<td>Total</td>
-										<input type="hidden" id="grand_total" value="<?php //echo $grand_total; ?>" name="">
-										<td><span><?php //echo $grand_total; ?></span></td>
-									</tr>
-								</table>
-							</td>
-						</tr> -->
-						<tr>
-							<td colspan="4">
-								<table class="table table-condensed total-result">
-									<tr>
-										<td><label>Apply Coupon</label></td>
-										<td><input type="text" name="apply_coupon" id="aCcoupon"/></td>
-									</tr>
-									<!-- <tr>
-										<td><label><input type="radio" class="redeem" name="redeem_option[]" value="WalletCash"> Redeem Wallet Cash</label></td>
-										<td id="WalletCash" style="display: none;"><input type="text" name="redeem_Cash" id="redeemCash"/></td>
-									</tr> -->
-									<tr>
-										<td><label><input type="radio" class="redeem" name="redeem_option[]" value="ReferCode"> Refferrer Code</label></td>
-										<td id="ReferCode" style="display: none;"><input type="text" name="refferrer_Code" id="referCode"/></td>
-									</tr>
-									<tr>
-										<td>&nbsp;</td>										
-										<td>
-											<form id="main-form" onsubmit="return applyDiscounts();" class="purchase-form row" name="purchase-form">
-												<button type="submit" class="btn btn-fefault cart" ><i class="fa fa-shopping-cart"></i>Apply</button>
-					                    	</form>
-					                    </td>								
-									</tr>
-								</table>
-							</td>
-							<td colspan="2">
-								<table class="table table-condensed total-result">
-									<tr>
-										<td>Order Sub Total</td>
-										<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
-										<td><?php echo $grand_total; ?></td>
-									</tr>
-									<tr>
-										<td>Discount</td>
-										<td><span id="discount_value">0</span></td>
-									</tr>
-									<tr class="shipping-cost">
-										<td>Shipping Cost</td>
-										<td>Free</td>										
-									</tr>
-									<tr>
-										<td><label>Total</label></td>
-										<input type="hidden" id="totalValue" value="<?php echo $total_value; ?>">
-										<td><span id="total_value"><?php echo $total_value; ?></span></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+						</div>
+						<div class="reviewBox borderTop">
+				<div class="dataBox">
+					<div class="boxBottom padLeft">
+						<p>Apply Coupon</p>
+						<p>Refferrer Code</p>
+					</div>
+					<div class="boxBottom">
+						<input type="text" name="apply_coupon" id="aCcoupon"/>
+						<input type="text" name="refferrer_Code" id="referCode"/>
+						<form id="main-form" onsubmit="return applyDiscounts();" class="purchase-form " name="purchase-form">
+							<button type="submit" class="btn btn-fefault applyBtn" ><i class="fa fa-shopping-cart"></i>Apply</button>
+					    </form>
+					</div>
+					<div class="boxBottom ">
+						<div class="total">
+							<p>Order Sub Total</p>
+							<p>Discount</p>
+							<p>Shipping Cost</p>							
+						</div>
+					</div>
+					<div class="boxBottom ">
+						<div class="total">
+							<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
+										<p><?php echo $grand_total; ?></p>
+							<p id="discount_value">0</p>
+							<p> Free</p>
+						</div>
+					</div>					
+				</div>
+				</div>
 			<div class="payment-options">
 				<?php $order_ids = implode(',', $order_id); ?>
 				<!-- <a class="btn btn-default update" href="">Update</a> -->

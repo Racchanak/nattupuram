@@ -266,6 +266,7 @@ function add_register() {
                     $('#reg_password').val('');
                     $('.success-review').html('Thanks for Your Registration');
                     setTimeout(function () {
+                        window.location.href = 'products.php';
                         $('.success-review').html('');
                     }, 1000);
                 }
@@ -646,5 +647,26 @@ function purchase_transact() {
         });
         return false;
     } 
+    return false;
+}
+
+function referral_email() {
+
+    var email = $('#newsletter').val();
+    if(email!='') {
+        $('.newsletterrror').html('Please enter email id');
+        return false;
+    } else {
+        $.ajax({
+            url: baseUrl+'referral_email',
+            type: 'POST',
+            data: reg_data,
+            success: function (res) {
+                if (res > 0) {
+                    console.log(res);
+                }
+            }
+        });
+    }
     return false;
 }

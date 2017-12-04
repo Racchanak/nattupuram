@@ -47,18 +47,13 @@ if (isset($_POST)) {
         $random_refer = 'ref'. (rand(10, 30)). '_'. $reg_id. randomString(2,$name);
         $refupdate = "UPDATE register SET referal_code='".$random_refer."' WHERE register_id=".$reg_id;
         $ref_result = mysqli_query($link, $refupdate) or die('Error in Query.' . mysqli_error($link));
-        $curr_user = array();
-        $curr_user['register_id'] = $arr[0]['register_id'];
-        $curr_user['name'] = $arr[0]['name'];
-        $curr_user['emailid'] = $arr[0]['emailid'];
-        $_SESSION['user'] = $curr_user;
         $subject = "Registration Confirmation";
         $message = "<html>
         <head>
         <title>HTML email</title>
         </head>
         <body>
-        <p>Hi ".$curr_user['name'] .",</p>
+        <p>Hi ".$name .",</p>
         <p>You have successfully registered with Nattupuram.</p>
         <p>Thank you<br><br>Regards,<br><a href='http://www.nattupuram.com/alpha'>Nattupuram</a></p>
         </body>
@@ -69,7 +64,12 @@ if (isset($_POST)) {
         // More headers
         $headers .= 'From: <salesnattupuram@gmail.com>' . "\r\n";
         $headers .= 'Cc: salesnattupuram@gmail.com' . "\r\n";
-        mail($curr_user['emailid'],$subject,$message,$headers);
+        mail($emailid,$subject,$message,$headers);
+        $curr_user = array();
+        $curr_user['register_id'] = $reg_id;
+        $curr_user['name'] = $name;
+        $curr_user['emailid'] = $emailid;
+        $_SESSION['user'] = $curr_user;
         echo json_encode($reg_id);
     }
     if ($action == 'product_cart') {
@@ -191,6 +191,12 @@ if (isset($_POST)) {
         } else {
             echo json_encode(0);
         }        
+    }
+    if ($action == 'referral_email') {
+        extract($_POST);
+        extract($GLOBALS);
+        print_r($_POST);
+        exit();
     }
     if ($action == 'applyuserDiscount') {
         extract($_POST);

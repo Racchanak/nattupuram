@@ -50,7 +50,7 @@ include('header.php');
                                                 <?php foreach ($product[0]['pricesqty'] as $prikey => $pricesqty) { 
                                                         foreach ($pricesqty as $key => $value) { 
                                                             if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
-                                                            <div class="<?php echo str_replace(' ', '', $product[0]['sub_quantity'][$prikey][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
+                                                            <div class="<?php echo str_replace(' ', '', $product[0]['subquantity'][$prikey][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
                                                             <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
                                                 <?php   } 
                                                       } ?>
@@ -357,10 +357,13 @@ include('footer.php');
         $('#'+val_qunty).css('display','block');
         $('.vol_subqnty').change(function () {
             var val_qunty = $('.vol_subqnty').val();
+            console.log(val_qunty);
             $('.vol_priqnty').css('display','none');
             $('#'+val_qunty).css('display','block');
             var vol_priqnty = $('.vol_priqnty').val();
             console.log(val_qunty);
+            console.log(vol_priqnty);
+            // $('.amount').css('display', 'none');
         }); 
     }
     function myquantity() {

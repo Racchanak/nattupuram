@@ -2816,3 +2816,71 @@ textarea {
     color: #fff;
     border-radius: 4px;
 }
+.reviewBox {
+    border: 1px solid #eee;
+}
+.orangeBox {
+    background-color: #fe980e;
+    padding: 15px;
+}
+.boxData {
+    width: 18%;
+    display: inline-block;
+    text-align: center;
+}
+
+.boxData p {
+    margin: 0;
+    color: #fff;
+    font-size: 18px;
+}
+.dataBox{
+    padding: 15px;
+}
+.dataBox .boxData p{
+     margin: 0;
+    color: #333;
+    font-size: 18px;
+}
+.borderTop {
+    border-top: 0;
+}
+.dataBox .boxBottom {
+    width: 22%;
+    display: inline-block;
+    vertical-align: top;
+}
+#aCcoupon {
+    margin: 15px 0px;
+}
+.padLeft{
+        padding-left: 52px;
+}
+.dataBox .boxBottom p{
+        margin: 20px 0px;
+}
+
+.dataBox .boxBottom input{
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #c1b8b8;
+    padding: 3px 7px;
+    }
+.applyBtn {
+    background: #FE980F;
+    border: 0 none;
+    border-radius: 0;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin: 13px 0px;
+    border-radius: 4px;
+   
+}
+.total p {
+        padding-left: 145px;
+    margin: 8px 0px !important;
+}
+.borderBottom{
+    border: 1px solid eee;
+}

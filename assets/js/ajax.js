@@ -1,3 +1,4 @@
+
 function add_review() {
     var name = $('#rev_name').val();
     var emailid = $('#rev_email').val();
@@ -5,7 +6,7 @@ function add_review() {
     var msg = $('#rev_msg').val();
     var product = $('#product_name').val();
     var product_img = $('#product_img').attr('src');
-    var product_id = $('#product_id').attr('src');
+    var product_id = $('#product_id').val();
     var valid = 0;
     if (product == '') {
         $('.error-review').html('Please Select the Product');
@@ -126,6 +127,105 @@ $('#product_filter').change(function () {
     });
 });
 
+$('.chekout').click(function(){
+    var checkout = $("input[name='account_option[]']:checked")[0].value;    
+    if(checkout=='Guest') {
+        $('#'+checkout).css('display', 'block');
+        $('#Register').css('display', 'none');
+    } else if(checkout=='Register') {
+        $('#Guest').css('display', 'none');
+        $('#'+checkout).css('display', 'block');        
+    }
+});
+
+$('.redeem').click(function(){
+    var redeem = $("input[name='redeem_option[]']:checked")[0].value;    
+    if(redeem=='WalletCash') {
+        $('#referCode').val('');
+        $('#'+redeem).css('display', 'block');
+        $('#ReferCode').css('display', 'none');
+    } else if(redeem=='ReferCode') {
+        $('#redeemCash').val('');
+        $('#WalletCash').css('display', 'none');
+        $('#'+redeem).css('display', 'block');        
+    }
+});
+
+$('.regisCheck').click(function(){
+    $('#regisCheck').css('display','block');
+    $('#gRegister').val('RegisterGuest');
+});
+
+function checkoutGuestLogin() {
+    var name = $('#guestname').val();
+    var emailid = $('#guestemail').val();
+    var password = $('#guestresPassword').val();
+    var gOrderId = $('#gOrderId').val(); 
+    var ges_data = {'name': name, 'emailid': emailid, 'password': password, 'gOrderId':gOrderId};
+    $.ajax({
+        url: 'function.php?action=guestLoginregister',
+        type: 'POST',
+        data: ges_data,
+        success: function (res) {
+            var guestRegist = JSON.parse(res);
+            console.log(guestRegist);
+            $('.error-review').html('');
+            $('#user_id').val(guestRegist.register_id);
+            $('#add_name').val(guestRegist.name);
+            $('#add_email').val(guestRegist.emailid);
+            $('#gOrderId').val(guestRegist.order_id); 
+            $('#gRegister').val('GuestRegister');
+            $('#regisCheck').css('display','none');
+            $('#guestresPassword').val('');
+        }
+    });
+    return false;    
+}
+
+function checkoutRegisterLogin() {
+    var emailid = $('#login_email').val();
+    var password = $('#login_password').val();
+    var gOrderId = $('#gOrderId').val(); 
+    var reg_data = {'emailid': emailid, 'password': password, 'gOrderId':gOrderId };
+    $.ajax({
+        url: 'function.php?action=userLoginregister',
+        type: 'POST',
+        data: reg_data,
+        success: function (res) {
+            if (res == 0) {
+                $('.error-review').html('Please enter valid username and password');
+            } else {
+                var guestRegist = JSON.parse(res);
+                $('.error-review').html('');
+                $('#user_id').val(guestRegist.register_id);
+                $('#add_name').val(guestRegist.name);
+                $('#add_email').val(guestRegist.emailid);
+                $('#gOrderId').val(guestRegist.order_id); 
+            }
+        }
+    });
+    return false;    
+}
+
+function applyDiscounts() {
+    var aCcoupon = $('#aCcoupon').val();
+    var redeemCash = $('#redeemCash').val();
+    var referCode = $('#referCode').val();
+    var user_id = $('#user_id').val();  
+    var order_ids = $('#order_ids').val();
+    var grand_total = $('#grand_total').val();
+    var apply_data = {'aCcoupon': aCcoupon, 'redeemCash': redeemCash, 'referCode':referCode, 'user_id':user_id,'order_ids':order_ids, 'grand_total':grand_total };
+    $.ajax({
+        url: 'function.php?action=applyuserDiscount',
+        type: 'POST',
+        data: apply_data,
+        success: function (res) {
+            console.log(res);
+        }
+    });
+    return false;    
+}
+
 function add_register() {
     var name = $('#reg_name').val();
     var emailid = $('#reg_email').val();
@@ -200,9 +300,10 @@ function login_check() {
             type: 'POST',
             data: reg_data,
             success: function (res) {
-                console.log(res);
                 if (res > 0) {
                     window.location.href = 'products.php';
+                } else if (res == 0) {
+                    $('.error-review').html('Please enter valid username and password');
                 }
             }
         });
@@ -220,6 +321,64 @@ function logout() {
             }
         }
     });
+    return false;
+}
+
+function contact_us() {
+    var name = $('#cont_name').val();
+    var email = $('#cont_emailid').val();
+    var subject = $('#cont_subject').val();
+    var msg = $('#cont_message').val();
+    var valid = 0;
+    if (name == '') {
+        $('.contact-userror-review').html('Please enter your name');
+        return false;
+    } else {
+        $('.contact-userror-review').html('');
+        valid++;
+    }
+    if (email == '') {
+        $('.contact-userror-review').html('Please enter your email id');
+        return false;
+    } else {
+        $('.contact-userror-review').html('');
+        valid++;
+    }
+    if (subject == '') {
+        $('.contact-userror-review').html('Please enter the subject');
+        return false;
+    } else {
+        $('.contact-userror-review').html('');
+        valid++;
+    }
+    if (msg == '') {
+        $('.contact-userror-review').html('Please enter your message');
+        return false;
+    } else {
+        $('.contact-userror-review').html('');
+        valid++;
+    }
+    var reg_data = {'name': name, 'email': email, 'subject': subject, 'msg': msg};
+    if (valid == 4) {
+        $.ajax({
+            url: baseUrl+'contactus',
+            type: 'POST',
+            data: reg_data,
+            success: function (res) {
+                if (res > 0) {
+                    $('.contact-userror-review').html('');
+                    $('#cont_name').val('');
+                    $('#cont_emailid').val('');
+                    $('#cont_subject').val('');
+                    $('#cont_message').val('');
+                    $('.contact-ussuccess-review').html('Thanks for Your Opinion');
+                    setTimeout(function () {
+                        $('.contact-ussuccess-review').html('');
+                    }, 1000);
+                }
+            }
+        });
+    }
     return false;
 }
 
@@ -294,8 +453,7 @@ function purchase_cart() {
         return false;
     } else {
         $('.error-review').html('');   
-        console.log(product_user_id);
-        if(product_user_id!='Guest_id') {     
+        if(product_user_id!='Guest_id') {        
             var product_data = {'product_user_id':product_user_id, 'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
             $.ajax({
                 url: 'function.php?action=product_cart',
@@ -310,9 +468,8 @@ function purchase_cart() {
             return false;
         } else {   
             var product_data = {'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
-            
             $.ajax({
-                url: 'function.php?action=product_cart',
+                url: 'function.php?action=guest_order',
                 type: 'POST',
                 data: product_data,
                 success: function (res) {
@@ -320,8 +477,10 @@ function purchase_cart() {
                         console.log(res);
                         res = Number(res);
                         console.log(res);
-                        document.cookie = 'Guest_cart=' + parseInt(res);
-                        window.location.href = 'cart.php';
+                        document.cookie = 'Guest_cart=' + res;
+                        setTimeout(function () {
+                            window.location.href = 'checkout.php';
+                        }, 1000);
                     }
                 }
             });
@@ -351,7 +510,7 @@ function purchase_order() {
     return false;
 }
 
-function purchase_transaction() {
+function purchase_transact() {
     var user_id = $('#user_id').val();
     var add_email = $('#add_email').val();  
     var add_name = $('#add_name').val();  
@@ -364,9 +523,140 @@ function purchase_transaction() {
     var country = $('#country').val();  
     var mobile = $('#mobile').val();  
     var grand_total = $('#grand_total').val();  
-    var order_ids = $('#order_ids').val();  
+    var order_ids = $('#order_ids').val();
+    var valid = 0;
+    if (add_email == '') {
+        $('.error-checkout').html('Please enter your email id');
+        $('#add_email').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (add_name == '') {
+        $('.error-checkout').html('Please enter your name');
+        $('#add_name').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (address1 == '') {
+        $('.error-checkout').html('Please enter the address');
+        $('#address1').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (city == '') {
+        $('.error-checkout').html('Please select the city');
+        $('#city').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (zipcode == '') {
+        $('.error-checkout').html('Please enter the pincode');
+        $('#zipcode').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (state == '') {
+        $('.error-checkout').html('Please select the state');
+        $('#state').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
+    if (country == '') {
+        $('.error-checkout').html('Please select the state');
+        $('#country').focus();
+        return false;
+    } else {
+        $('.error-checkout').html('');
+        valid++;
+    }
     //address for user id
-    var address_data = {'user_id':user_id, 'address1': address1, 'address2': address2, 'city': $city, 'zipcode':zipcode};
-    console.log(order_data);
+    var address_data = { 'user_id':user_id, 'phone':mobile,'address1': address1, 'address2': address2, 'city': city, 'state':state, 'country':country,'zipcode':zipcode, 'name':add_name };
+    console.log(address_data);
+    if(valid==7) {
+        $.ajax({
+            url: 'function.php?action=user_address',
+            type: 'POST',
+            data: address_data,
+            success: function (add_id) {
+                console.log(add_id);
+                if(add_id > 0) {
+                    var trans_data = { 'billing_addid':parseInt($.trim(add_id)), 'user_id':user_id, 'total_amt':grand_total,'order_ids':order_ids};
+                    console.log(trans_data);
+                    $.ajax({
+                        url: 'function.php?action=product_transaction',
+                        type: 'POST',
+                        data: trans_data,
+                        success: function (transact_id) {
+                            $('#paymentGateway').modal('toggle');
+                            // var options = {
+                            //     "key": "rzp_test_vKA7gqOvxPudTU",
+                            //     "amount": parseInt(grand_total) * 100, // 2000 paise = INR 20
+                            //     "name": "Nattupuram",
+                            //     "description": "Transaction ID :" + transact_id,
+                            //     "image": "assets/images/nattupuram.jpg",
+                            //     "handler": function (response){
+                            //         console.log(response);
+                            //         if(response != '') {
+                            //             console.log(response.razorpay_payment_id);
+                            //             var payment_data = {'status':'Success','transact_id':parseInt($.trim(transact_id)),'payment_id':response.razorpay_payment_id}
+                            //         } else {
+                            //             var payment_data = {'status':'Failure','transact_id':parseInt($.trim(transact_id)),'payment_id':0}
+                            //         }
+                            //         $.ajax({
+                            //             url: 'function.php?action=transact_payment',
+                            //             type: 'POST',
+                            //             data: payment_data,
+                            //             success: function (res) {
+                            //                 console.log(res);
+                            //                 if(response != '') {
+                            //                     if(res > 0) {
+                            //                         window.location.href = 'orderThank.php';
+                            //                     }
+                            //                 }
+                            //                 //redirect to Thank You Page.
+                            //             }
+                            //         });
+                            //     },
+                            //     "prefill": {
+                            //         "name": add_name,
+                            //         "email": add_email
+                            //     },
+                            //     "theme": {
+                            //         "color": "#F37254"
+                            //     }
+                            // };
+                            // var rzp1 = new Razorpay(options);
+                            //     rzp1.open();
+                        }
+                    });
+                }
+            }
+        });
+        return false;
+    } 
+    return false;
+}
 
+function newsletter() {
+
+    var email = $('#newsletter').val();
+    if(email!='') {
+        $('.newsletterrror').html('Please enter email id');
+        return false;
+    } else {
+
+    }
+    return false;
 }
