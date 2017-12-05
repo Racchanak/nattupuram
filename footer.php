@@ -46,8 +46,8 @@
       </div>
       <div class="modal-body">
         <h2><?php echo $offers['Welcome'][0]['description']; ?></h2>
-        <h4><?php echo $offers['Welcome'][0]['coupon_code']; ?></h4>
-        <p><?php echo $offers['Welcome'][0]['coupon_text']; ?></p>
+        <p><?php echo $offers['Welcome'][0]['coupon_code']; ?></p>
+        <h4><?php echo $offers['Welcome'][0]['coupon_text']; ?></h4>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

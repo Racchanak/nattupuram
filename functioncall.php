@@ -8,10 +8,21 @@ $offers = offers_data('');
 $product_id = (isset($_REQUEST['product_id'])) ? $_REQUEST['product_id'] : '';
 $product = products_data($product_id);
 $productDiscount = array();
+$productOffersvalue = array();
 if ($product[0]['product_id'] != 6) {
     foreach ($product[0]['price'] as $pkey => $pkvalue) {
-        $pprice = $pkvalue - ($pkvalue * $offers['Welcome'][0]['Offersvalue']) / 100;
+        if($product[0]['quantity'][$pkey]==' 3 Liter') {
+            $pprice = ($pkvalue - ($pkvalue * $offers['Welcome'][0]['Offersvalue']) / 100) - $offers['Product Details'][0]['Offersvalue'];
+            $Offerprice = $offers['Welcome'][0]['Offersvalue'] . ' - Rs.' . $offers['Product Details'][0]['Offersvalue'];
+        } else if($product[0]['quantity'][$pkey]==' 5 Liter') {
+            $pprice = ($pkvalue - ($pkvalue * $offers['Welcome'][0]['Offersvalue']) / 100) - $offers['Product Details'][1]['Offersvalue'];            
+            $Offerprice = $offers['Welcome'][0]['Offersvalue'] . ' - Rs.' . $offers['Product Details'][1]['Offersvalue'];
+        } else {
+            $pprice = $pkvalue - ($pkvalue * $offers['Welcome'][0]['Offersvalue']) / 100;            
+            $Offerprice = $offers['Welcome'][0]['Offersvalue'];
+        }
         array_push($productDiscount, $pprice);
+        array_push($productOffersvalue, $Offerprice);
     }
 } else {
     foreach ($product[0]['pricesqty'] as $pkey => $pkvalue) {
@@ -22,6 +33,7 @@ if ($product[0]['product_id'] != 6) {
     }
 }
 $product[0]['discount'] = $productDiscount;
+$product[0]['Offersvalue'] = $productOffersvalue;
 if (isset($_SESSION['user']['register_id'])) {
     $user_id = $_SESSION['user']['register_id'];
     $product_cart = carts_data($user_id);

@@ -13,7 +13,7 @@ include('header.php');
                     <div class="col-md-3 col-xs-12">
                         <div class="view-product">
                         <div class="discount">
-                                <p><?php echo $offers['Welcome'][0]['Offersvalue']; ?></p>
+                                <p>-<?php echo $offers['Welcome'][0]['Offersvalue']; ?></p>
                             </div>
                             <img id="product_img" src="<?php echo $product[0]['main_img']; ?>" alt="" />
                         </div>
@@ -35,13 +35,18 @@ include('header.php');
                                 <div class="row">
                                     <div class="content">
                                         <div class="col-md-2 col-xs-4">
-                                            <h3>Price:</h3>
+                                            <h3 style="color: #000;font-weight: 200;">Price:</h3>
                                         </div>                                        
                                         <?php if(empty($product[0]['sub_quantity'])) { ?>
                                             <div class="col-md-10 col-xs-8">
                                                 <?php foreach ($product[0]['price'] as $key => $value) { 
                                                     if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
                                                 <div class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
+                                                <div class="offersdiscount" style="position: absolute;margin-left: 13%;margin-top: -7%;">
+                                                    <p style="right: 0px;top: -32px;font-size: 10px;color: #fe1a0e;">
+                                                    -<?php echo $product[0]['Offersvalue'][$key]; ?>
+                                                    </p>
+                                                </div>
                                                 <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
                                                 <?php } ?>
                                             </div>
@@ -51,6 +56,9 @@ include('header.php');
                                                         foreach ($pricesqty as $key => $value) { 
                                                             if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
                                                             <div class="<?php echo str_replace(' ', '', $product[0]['subquantity'][$prikey][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
+                                                            <div class="offersdiscount" style="position: absolute;margin-left: 13%;margin-top: -7%;">
+                                                                <p style="right: 0px;top: -32px;font-size: 10px;color: #fe1a0e;">10%</p>
+                                                            </div>
                                                             <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
                                                 <?php   } 
                                                       } ?>
@@ -63,7 +71,7 @@ include('header.php');
                                 <div class="row">
                                     <div class="content">
                                         <div class="col-md-2 col-xs-4">
-                                            <h3>Volume:</h3>
+                                            <h3 style="color: #000;font-weight: 200;">Volume:</h3>
                                         </div>
                                         <?php if(!empty($product[0]['sub_quantity'])) {  ?>
                                             <div class="col-md-10 col-xs-8">
@@ -88,12 +96,17 @@ include('header.php');
                                             </div>
                                         <?php } else { ?>
                                             <div class="col-md-10 col-xs-8">
-                                                <select name="volume" class="vol_qnty">
+                                                <?php if($product[0]['product_id']==5) { ?>                                                
+                                                <input type="hidden" name="volume" class="vol_qnty" value="<?php echo $value; ?>">
+                                                <div><?php echo $product[0]['quantity'][0]; ?></div> 
+                                                <?php } else { ?>
+                                                <select name="volume" class="vol_qnty" <?php if($product[0]['product_id']==5) { echo "style='display:none'"; } else { echo "style='display:block'"; } ?>>
                                                     <?php foreach ($product[0]['quantity'] as $key => $value) { 
                                                         if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
                                                         <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
                                                     <?php } ?>
                                                 </select>
+                                                <?php } ?>
                                             </div>
                                         <?php } ?>
                                     </div>  
@@ -103,7 +116,7 @@ include('header.php');
                                 <div class="row">
                                     <div class="content">
                                         <div class="col-md-2 col-xs-4">
-                                            <h3>Quantity:</h3>
+                                            <h3 style="color: #000;font-weight: 200;">Quantity:</h3>
                                         </div>
                                         <div class="col-md-10 col-xs-8">
                                             <div class="input-group">
@@ -171,7 +184,7 @@ include('header.php');
                                 </div>
                             </div>
                             <span class="error-product"></span>
-                            <?php if($product[0]['product_id']!='6'){ ?>
+                            <?php if($product[0]['product_id']==1 || $product[0]['product_id']==2 || $product[0]['product_id']==3){ ?>
                                 <div class="offers">
                                     <h4>OFFERS :</h4>
                                     <div class="offerContent">
@@ -345,9 +358,11 @@ include('footer.php');
             $('.selected').addClass('notselected');
             $('.amount').css('display', 'none');
             $('.amount').removeClass('amount');        
+            console.log(val_qunty);
             $('.' + val_qunty + '_amt').addClass('amount');
             var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
-            $('.' + val_qunty + '_amt').css('display', 'block');
+            $('.' + val_qunty + '_amt').css('display', 'block');            
+            console.log(sele_amt);
             $('#product_amount').val(sele_amt);
             $('#product_category').val(val_qunty);
         });
