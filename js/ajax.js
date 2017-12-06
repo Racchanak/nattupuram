@@ -653,20 +653,15 @@ function purchase_transact() {
 function referral_email() {
 
     var email = $('#newsletter').val();
-    if(email!='') {
-        $('.newsletterrror').html('Please enter email id');
-        return false;
-    } else {
-        $.ajax({
-            url: baseUrl+'referral_email',
-            type: 'POST',
-            data: reg_data,
-            success: function (res) {
-                if (res > 0) {
-                    console.log(res);
-                }
+    $.ajax({
+        url: 'function.php?action=referral_email',
+        type: 'POST',
+        data: {'email':email},
+        success: function (res) {
+            if (res > 0) {
+                console.log(res);
             }
-        });
-    }
+        }
+    });
     return false;
 }

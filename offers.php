@@ -28,14 +28,14 @@
                             </div>
                         </div> 
                         <div class="col-sm-12"> 
-                            <p>Nattupuram, Encourages their customers to bring in their friends and families to experience the real taste of our traditional items.</p>
-                            <p>Every referral purchase will earn our customers 50 Rs which can be used on their upcoming purchases.</p>  
-                            <p>A simple three step process mentioned below will provide more clarity on the same,</p>
+                            <p>Nattupuram.com - Encourages their customers to bring in their friends and families to experience the real taste of our traditional items.</p>
+                            <p>Every Referral purchase will earn Flat 12% discount for both Referrer and Referred friend on their bill amount.</p>  
+                            <p>Please follow the below mentioned steps to avail the 'Referral Offer'</p>
                             <ol>
-                                <li>Login to your account at Nattupuram.com, if not registered already please do register so that you can be part of this referal program.</li>
-                                <li>Click on the link REFERAL BONUS and send the invitation notice to your friends.</li> 
-                                <li>Now your referred friend can register and place order with flat 50Rs discount.</li>  
-                                <li>Once your friend completes his order referrer will get flat 50 Rs added to their account which will get deducted during the checkoutAs always we are looking forward for the support from our customers to make this referal program a success.</li>
+                                <li>Login to your account at Nattupuram.com, if not registered already please do register so that you can be part of this Referral program.</li>
+                                <li>Click on the link REFERRAL BONUS and send the invitation notice to your friends & families.</li> 
+                                <li>Now your referred friend can register and place order with flat 12% discount.</li>  
+                                <li>Once your friend completes his order, Referrer will get flat 12% discount coupon to their account registered mail id, which will be used for their upcoming purchase.</li>
                             </ol> 
                             <!-- <form id="main-contact-form" onsubmit="return contact_us();" class="contact-form row" name="contact-form"> -->
                             <form id="newsletter-validate-detail" onsubmit="return referral_email();" style="text-align: center" name="newsletter-form">
