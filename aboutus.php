@@ -7,8 +7,7 @@
 	
 	<section>
 		<div class="container">
-			<div class="row">
-				
+			<div class="row">				
 				<?php
 					include('category.php');
 				?>
@@ -36,13 +35,10 @@
 							</a>
 							<p>
 								In the Era of Global warming every natural resources changes for just 40˚C. In this scenario, Just think of Oil extracted under pressure with excessive heat generation, more than 100˚C ! We know Heating of Oil more than once, forms Acetylene. All these says too much of Heat, changes natural properties and think How could Refined Oil be beneficial to our health?</p> <br>
-
 							<p>
 								Don't worry! We are here. Our traditional Wood/Cold Pressed Oil - in Tamil Nattu Marachekku Ennai is the  only alternative for better health with tasty food. This Oil is dense and keeps seed's flavor, aroma and nutrients intact. We are reinventing the same in a better hygienic way and transferring the healthy life style of our ancestors to Modern generation.</p> <br>
-
 							<p style="text-align: center;">
 								<strong>"Spend on Oil and Stay Healthy"</strong> than being stingy towards Oil and <strong>"Paying them in multiple for Hospitals"</strong>.</p> <br>
-
 							<p>
 								This Cold Pressed Oil has its essence as such like a virgin girl. Taste the health with more of anti oxidants, boosts immunity and prevents from life threatening diseases like Cancer & Heart diseases.
 							</p>

@@ -54,7 +54,7 @@ include('header.php');
                                             <div class="col-md-10 col-xs-8">
                                                 <?php foreach ($product[0]['pricesqty'] as $prikey => $pricesqty) { 
                                                         foreach ($pricesqty as $key => $value) { 
-                                                            if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
+                                                            if($prikey=='3 Liter' && $key==0) { $amount = 'amount'; } else { $amount = ''; }?>
                                                             <div class="<?php echo str_replace(' ', '', $product[0]['subquantity'][$prikey][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
                                                             <div class="offersdiscount" style="position: absolute;margin-left: 13%;margin-top: -7%;">
                                                                 <p style="right: 0px;top: -32px;font-size: 10px;color: #fe1a0e;">10%</p>
@@ -85,9 +85,9 @@ include('header.php');
                                                 </div>
                                                 <div class="col-xs-2">
                                                     <?php foreach ($product[0]['subquantity'] as $subkey => $subqnr) { ?>
-                                                        <select name="volume" class="vol_priqnty" id="<?php echo str_replace(' ', '', $subkey   ); ?>" style="display: none;">
+                                                        <select name="volume" class="vol_priqnty" id="<?php echo str_replace(' ', '', $subkey); ?>" style="display: none;">
                                                             <?php foreach ($subqnr as $key => $value) { 
-                                                                if($key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
+                                                                if($subkey=='3 Liter' && $key==0) { $select = 'selected'; } else { $select = 'notselected'; }?>
                                                                 <option value="<?php echo str_replace(' ', '', $value)?>" class="<?php echo $select; ?>"><?php echo $value; ?></option>
                                                             <?php } ?>
                                                         </select>
@@ -96,7 +96,7 @@ include('header.php');
                                             </div>
                                         <?php } else { ?>
                                             <div class="col-md-10 col-xs-8">
-                                                <?php if($product[0]['product_id']==5) { ?>                                                
+                                                <?php if($product[0]['product_id']==5) { ?>    
                                                 <input type="hidden" name="volume" class="vol_qnty" value="<?php echo $value; ?>">
                                                 <div><?php echo $product[0]['quantity'][0]; ?></div> 
                                                 <?php } else { ?>
@@ -357,29 +357,68 @@ include('footer.php');
             $('.selected').removeClass('selected');
             $('.selected').addClass('notselected');
             $('.amount').css('display', 'none');
-            $('.amount').removeClass('amount');        
-            console.log(val_qunty);
+            $('.amount').removeClass('amount'); 
             $('.' + val_qunty + '_amt').addClass('amount');
             var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
             $('.' + val_qunty + '_amt').css('display', 'block');            
-            console.log(sele_amt);
             $('#product_amount').val(sele_amt);
             $('#product_category').val(val_qunty);
         });
     } else { 
         var val_qunty = $('.vol_subqnty').val();
-        console.log(val_qunty);
+        var vol_priqnty = $('.vol_priqnty').val();
+        var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
+        $('.amount').css('display', 'block');
+        $('#product_amount').val(sele_amt);
+        $('#product_category').val(val_qunty+'_'+vol_priqnty);
         $('#'+val_qunty).css('display','block');
         $('.vol_subqnty').change(function () {
-            var val_qunty = $('.vol_subqnty').val();
-            console.log(val_qunty);
             $('.vol_priqnty').css('display','none');
-            $('#'+val_qunty).css('display','block');
+            var val_qunty = $('.vol_subqnty').val();
+            $('.notselected').addClass('selected');
+            $('.selected').removeClass('selected');
+            $('.selected').addClass('notselected');
+            $('.amount').css('display', 'none');
+            $('.amount').removeClass('amount'); 
             var vol_priqnty = $('.vol_priqnty').val();
+            $('.' + vol_priqnty + '_amt').css('display', 'block'); 
+            $('.' + vol_priqnty + '_amt').addClass('amount');
+            var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];   
+            $('#product_amount').val(sele_amt);
+            $('#product_category').val(val_qunty+'_'+vol_priqnty);   
             console.log(val_qunty);
             console.log(vol_priqnty);
-            // $('.amount').css('display', 'none');
-        }); 
+            console.log(sele_amt);   
+            $('#'+val_qunty).css('display','block'); 
+            $('.vol_priqnty').change(function () {
+                var val_qunty = $('.vol_subqnty').val();
+                var vol_priqnty = $('.vol_priqnty').val();
+                $('.notselected').addClass('selected');
+                $('.selected').removeClass('selected');
+                $('.selected').addClass('notselected');
+                $('.amount').css('display', 'none');
+                $('.amount').removeClass('amount'); 
+                $('.' + vol_priqnty + '_amt').css('display', 'block'); 
+                $('.' + vol_priqnty + '_amt').addClass('amount');
+                var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];   
+                $('#product_amount').val(sele_amt);
+                $('#product_category').val(val_qunty+'_'+vol_priqnty);               
+            });      
+        });         
+        $('.vol_priqnty').change(function () {
+            var val_qunty = $('.vol_subqnty').val();
+            var vol_priqnty = $('.vol_priqnty').val();
+            $('.notselected').addClass('selected');
+            $('.selected').removeClass('selected');
+            $('.selected').addClass('notselected');
+            $('.amount').css('display', 'none');
+            $('.amount').removeClass('amount'); 
+            $('.' + vol_priqnty + '_amt').addClass('amount');
+            var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
+            $('.' + vol_priqnty + '_amt').css('display', 'block');            
+            $('#product_amount').val(sele_amt);
+            $('#product_category').val(val_qunty+'_'+vol_priqnty);             
+        });
     }
     function myquantity() {
         var x = $('#proquantity').val();
