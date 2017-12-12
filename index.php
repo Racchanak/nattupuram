@@ -111,6 +111,58 @@ include('header.php');
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
+                <div class="brands_products">
+                    <h2>Reviews</h2>
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <!-- <ol class="carousel-indicators">
+                            <?php
+                            if (!empty($product_reviews)) {
+                                foreach ($product_reviews as $key => $value) {
+                                    if ($key == 0) {
+                                        $classa = 'active';
+                                    } else {
+                                        $classa = '';
+                                    }
+                                    ?>                        
+                                    <li data-target="#slider-carousel" data-slide-to="<?php echo $key; ?>" class="<?php echo $classa; ?>"></li>
+                                <?php }
+                            }
+                            ?>
+                        </ol> -->
+                        <div class="carousel-inner" style="height: 200px;">
+                            <?php
+                            if (!empty($product_reviews)) {
+                                foreach ($product_reviews as $key => $value) {
+                                    if ($key == 0) {
+                                        $classa = 'active';
+                                    } else {
+                                        $classa = '';
+                                    }
+                                    ?>
+                                    <div class="item <?php echo $classa; ?>" style="padding-left: 0px;">
+                                        <div class="col-sm-12">
+                                            <!-- <h2><?php //echo $value['product_name']; ?></h2> -->
+                                            <h2 style="margin-top: 0px;color: #73736b"><?php echo $value['name']; ?>, <?php echo $value['city']; ?></h2>
+                                            <p style="padding: 0px 20px;"><?php echo $value['message']; ?> ...</p> 
+                                        </div>
+                                    </div>
+
+                                <?php }
+                            }
+                            ?>
+                            <div class="arrow" style="position: relative;">
+                                <div class="left-arrow" style="position: absolute;top: 70px;left: 0;">
+                                    <img src="assets/images/left-arrow.png">
+                                </div>
+                                <div class="right-arrow" style="position: absolute;top: 70px;right: 0;">
+                                    <img src="assets/images/right-arrow.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
                 <div class="nattuinfo">
                     <h2>Nattupuram</h2>
                     <p>We young energetic farmers from an agricultural family introducing 'NATTUPURAM - an Online Store' for healthy and natural food products, produced in a traditional way with rich soil fragrance of our own village. Our core vision is to reinvent the healthy life style of our ancestors and transferring the same into modern young generation.</p>

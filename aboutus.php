@@ -9,9 +9,9 @@
 		<div class="container">
 			<div class="row">				
 				<?php
-					include('category.php');
+					// include('category.php');
 				?>
-				<div class="col-sm-9">
+				<div class="col-sm-12">
 					<div class="blog-post-area">
 						<!-- <h2 class="title text-center">Latest From our Blog</h2> -->
 						<div class="single-blog-post">

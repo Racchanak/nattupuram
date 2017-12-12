@@ -30,7 +30,7 @@
 	<div class="container">
 		<div class="row mar0">
 			<div class="col-md-6 col-xs-2 pad0">
-				<a class="navbar-brand hidden-lg hidden-md" href="index.php"><img src="assets/images/logo.png" alt=""/></a>
+				<!-- <a class="navbar-brand hidden-lg hidden-md" href="index.php"><img src="assets/images/logo.png" alt=""/></a> -->
 				<a class="brand  hidden-xs hidden-sm" href="index.php"><img src="assets/images/nattu.png" alt=""/></a>	
 			</div>
 			<div class="col-md-6 col-xs-10">

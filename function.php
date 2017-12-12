@@ -196,6 +196,9 @@ if (isset($_POST)) {
         extract($_POST);
         extract($GLOBALS);
         print_r($_POST);
+        $query = "INSERT INTO register (name,emailid,password,cret_date) VALUES ('".$name."','".$emailid."','".md5($password)."','".date('Y-m-d H:i:s')."')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $reg_id = mysqli_insert_id($link);
         exit();
     }
     if ($action == 'applyuserDiscount') {
@@ -381,14 +384,23 @@ function offers_data($offer_id = '') {
     if($offer_id=='') {
         $offers['Welcome'] = array();
         $offers['Product'] = array();
-        $offers['Product Details'] = array();
+        $offers['Oil'] = array();
+        $offers['Ghee'] = array();
+        $offers['Combo 3C'] = array();
+        $offers['Combo 5C'] = array();
         foreach ($arr as $key => $value) {
             if($value['category'] == 'Welcome') {
                 array_push($offers['Welcome'],$value);
             } else if($value['category'] == 'Product') {
                 array_push($offers['Product'],$value);
-            } else if($value['category'] == 'Product Details') {
-                array_push($offers['Product Details'],$value);
+            } else if($value['category'] == 'Oil') {
+                array_push($offers['Oil'],$value);
+            } else if($value['category'] == 'Ghee') {
+                array_push($offers['Ghee'],$value);
+            } else if($value['category'] == 'Combo 3C') {
+                array_push($offers['Combo 3C'],$value);
+            } else if($value['category'] == 'Combo 5C') {
+                array_push($offers['Combo 5C'],$value);
             }
         }
         return $offers;

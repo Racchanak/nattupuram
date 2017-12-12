@@ -13,7 +13,7 @@ include('header.php');
                     <div class="col-md-3 col-xs-12">
                         <div class="view-product">
                         <div class="discount">
-                                <p>-<?php echo $offers['Welcome'][0]['Offersvalue']; ?></p>
+                                <p>-<?php echo $product[0]['welcome']; ?></p>
                             </div>
                             <img id="product_img" src="<?php echo $product[0]['main_img']; ?>" alt="" />
                         </div>
@@ -57,9 +57,9 @@ include('header.php');
                                                             if($prikey=='3 Liter' && $key==0) { $amount = 'amount'; } else { $amount = ''; }?>
                                                             <div class="<?php echo str_replace(' ', '', $product[0]['subquantity'][$prikey][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
                                                             <div class="offersdiscount" style="position: absolute;margin-left: 13%;margin-top: -7%;">
-                                                                <p style="right: 0px;top: -32px;font-size: 10px;color: #fe1a0e;">10%</p>
+                                                                <p style="right: 0px;top: -32px;font-size: 10px;color: #fe1a0e;">-<?php echo $product[0]['Offersvalue'][$prikey][$key]; ?>%</p>
                                                             </div>
-                                                            <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
+                                                            <span class="discountAmt"><?php echo $product[0]['discount'][$prikey][$key]; ?></span></div>
                                                 <?php   } 
                                                       } ?>
                                             </div>                                            
@@ -184,18 +184,34 @@ include('header.php');
                                 </div>
                             </div>
                             <span class="error-product"></span>
-                            <?php if($product[0]['product_id']==1 || $product[0]['product_id']==2 || $product[0]['product_id']==3){ ?>
+                            <?php if(($product[0]['product_id']==1 || $product[0]['product_id']==2 || $product[0]['product_id']==3) && !empty($offers['Oil'])){ ?>
                                 <div class="offers">
                                     <h4>OFFERS :</h4>
                                     <div class="offerContent">
                                         <ul>
-                                            <?php foreach ($offers['Product Details'] as $key => $value) { ?>                                            
+                                            <?php foreach ($offers['Oil'] as $key => $value) { ?>                                            
                                                 <li>
                                                     <h4><?php echo $value['title'];?></h4>
                                                     <h5><?php echo $value['description'];?></h5>
                                                 </li>
                                             <?php } ?>
                                         </ul>
+                                    </div>
+                                </div>
+                            <?php } else if($product[0]['product_id']==6) { //print_r($pOffVal); ?>
+                                <div class="offers">
+                                    <h4>OFFERS :</h4>
+                                    <div class="offerContent">
+                                        <ol>           
+                                            <?php foreach ($product[0]['pricesqty'] as $prikey => $pricesqty) { 
+                                                    foreach ($pricesqty as $key => $value) { 
+                                                        if($prikey=='3 Liter' && $key==0) { $amount = 'rightoffers'; } else { $amount = ''; }?>
+                                            <li id="<?php echo str_replace(' ', '', $product[0]['subquantity'][$prikey][$key]); ?>_off" class=" <?php echo $amount; ?>" style="display: none;">
+                                                <h4 id="offerTitle" style="width: 11em;"><?php echo $product[0]['subquantity'][$prikey][$key];?></h4>
+                                                <h5 id="offerDesc"><?php echo $pOffVal[$prikey][$key]['description'];?></h5>
+                                            </li>
+                                            <?php } }?>
+                                        </ol>
                                     </div>
                                 </div>
                             <?php } ?>
@@ -277,10 +293,6 @@ include('header.php');
                                             <?php foreach ($products as $key => $value) { ?>
                                                 <option value="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></option>
                                             <?php } ?>
-                                            <!--                            <option value="Groundnut Oil">Groundnut Oil(Cold Press)</option>
-                                                                        <option value="Sesame Oil">Sesame Oil(Cold Press)</option>
-                                                                        <option value="Coconut Oil">Coconut Oil(Cold Press)</option>
-                                                                        <option value="Natural Ghee">Natural Ghee</option>-->
                                         </select>
                                         <input type="hidden" id="product_name" name="product_name" value=""/>
                                         <img id="product_img" src="" alt="" style="display: none;" />
@@ -305,13 +317,6 @@ include('header.php');
                                             <div class="single-blog-post">
                                                 <h3>
                                                     <span style="margin-left: -33px;margin-right: 47%;"><?php echo $value['name']; ?> - <?php echo $value['city']; ?></span>
-                                                       <!--  <span style="float: right;color: #FE980F;padding-right: 35px;">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                        </span> -->
                                                 </h3>
                                                 <div class="col-sm-2">
                                                     <a href="javascript:;">
@@ -366,9 +371,10 @@ include('footer.php');
         });
     } else { 
         var val_qunty = $('.vol_subqnty').val();
-        var vol_priqnty = $('.vol_priqnty').val();
+        var vol_priqnty = $('#'+val_qunty).val();
         var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
         $('.amount').css('display', 'block');
+        $('#'+vol_priqnty+'_off').css('display','block');
         $('#product_amount').val(sele_amt);
         $('#product_category').val(val_qunty+'_'+vol_priqnty);
         $('#'+val_qunty).css('display','block');
@@ -380,19 +386,24 @@ include('footer.php');
             $('.selected').addClass('notselected');
             $('.amount').css('display', 'none');
             $('.amount').removeClass('amount'); 
-            var vol_priqnty = $('.vol_priqnty').val();
+            $('.rightoffers').css('display', 'none');
+            $('.rightoffers').removeClass('amount');             
+            var vol_priqnty = $('#'+val_qunty).val();
+            $('#'+vol_priqnty+'_off').css('display','block');
+            $('#'+ vol_priqnty + '_off').addClass('rightoffers');
             $('.' + vol_priqnty + '_amt').css('display', 'block'); 
             $('.' + vol_priqnty + '_amt').addClass('amount');
             var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];   
             $('#product_amount').val(sele_amt);
             $('#product_category').val(val_qunty+'_'+vol_priqnty);   
-            console.log(val_qunty);
-            console.log(vol_priqnty);
-            console.log(sele_amt);   
             $('#'+val_qunty).css('display','block'); 
             $('.vol_priqnty').change(function () {
                 var val_qunty = $('.vol_subqnty').val();
-                var vol_priqnty = $('.vol_priqnty').val();
+                var vol_priqnty = $('#'+val_qunty).val();
+                $('.rightoffers').css('display', 'none');
+                $('.rightoffers').removeClass('amount'); 
+                $('#'+vol_priqnty+'_off').css('display','block');
+                $('#'+ vol_priqnty + '_off').addClass('rightoffers');
                 $('.notselected').addClass('selected');
                 $('.selected').removeClass('selected');
                 $('.selected').addClass('notselected');
@@ -407,7 +418,11 @@ include('footer.php');
         });         
         $('.vol_priqnty').change(function () {
             var val_qunty = $('.vol_subqnty').val();
-            var vol_priqnty = $('.vol_priqnty').val();
+            var vol_priqnty = $('#'+val_qunty).val();
+            $('.rightoffers').css('display', 'none');
+            $('.rightoffers').removeClass('amount'); 
+            $('#'+vol_priqnty+'_off').css('display','block');
+            $('#'+ vol_priqnty + '_off').addClass('rightoffers');
             $('.notselected').addClass('selected');
             $('.selected').removeClass('selected');
             $('.selected').addClass('notselected');

@@ -55,10 +55,6 @@
                             <?php foreach ($products as $key => $value) { ?>
                                 <option value="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></option>
                             <?php } ?>
-                            <!--                            <option value="Groundnut Oil">Groundnut Oil(Cold Press)</option>
-                                                        <option value="Sesame Oil">Sesame Oil(Cold Press)</option>
-                                                        <option value="Coconut Oil">Coconut Oil(Cold Press)</option>
-                                                        <option value="Natural Ghee">Natural Ghee</option>-->
                         </select>
                         <input type="hidden" id="product_name" name="product_name" value=""/>
                         <img id="product_img" src="" alt="" style="display: none;" />
@@ -73,7 +69,7 @@
                     <div><button type="button" class="btn btn-default pull-right" onclick="add_review();">Submit</button></div>
                 </form>
             </div>
-        <?php } else { ?>
+        <?php } else { ?><!-- 
             <div class="brands_products">
                 <h2>Reviews</h2>
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
@@ -91,7 +87,7 @@
                             <?php }
                         }
                         ?>
-                    </ol>
+                    </ol> 
                     <div class="carousel-inner" style="height: 217px;">
                         <?php
                         if (!empty($product_reviews)) {
@@ -104,9 +100,8 @@
                                 ?>
                                 <div class="item <?php echo $classa; ?>" style="padding-left: 0px;">
                                     <div class="col-sm-12">
-                                        <h2><?php echo $value['product_name']; ?></h2>
-                                        <h1 style="margin-top: 0px;font-size: 2em;"><?php echo $value['name']; ?></h1> 
-                                        <h4><?php echo $value['city']; ?></h4>
+                                         <h2><?php //echo $value['product_name']; ?></h2>
+                                        <h4 style="margin-top: 0px;"><?php echo $value['name']; ?>,<?php echo $value['city']; ?></h4>
                                         <p><?php echo $value['message']; ?> ...</p> 
                                     </div>
                                 </div>
@@ -115,7 +110,7 @@
                         ?>
                     </div>
                 </div>
-            </div>
+            </div> -->
 <?php } ?>
         <!-- </div>  brands_products 
         <div class="price-range">  price-range 

@@ -449,44 +449,38 @@ function purchase_cart() {
     var product_name = $('#product_name').val();
     var product_id = $('#product_id').val();
     var product_user_id = $('#product_user_id').val();
-    if (product_quantity == '') {
-        $('.error-product').html('Please enter your message');
+    $('.error-review').html('');   
+    if(product_user_id!='Guest_id') {        
+        var product_data = {'product_user_id':product_user_id, 'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
+        $.ajax({
+            url: 'function.php?action=product_cart',
+            type: 'POST',
+            data: product_data,
+            success: function (res) {
+                if (res > 0) {
+                    window.location.href = 'cart.php';
+                }
+            }
+        });
         return false;
-    } else {
-        $('.error-review').html('');   
-        if(product_user_id!='Guest_id') {        
-            var product_data = {'product_user_id':product_user_id, 'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
-            $.ajax({
-                url: 'function.php?action=product_cart',
-                type: 'POST',
-                data: product_data,
-                success: function (res) {
-                    if (res > 0) {
-                        window.location.href = 'cart.php';
-                    }
+    } else {   
+        var product_data = {'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
+        $.ajax({
+            url: 'function.php?action=guest_order',
+            type: 'POST',
+            data: product_data,
+            success: function (res) {
+                if (res > 0) {
+                    console.log(res);
+                    res = Number(res);
+                    console.log(res);
+                    document.cookie = 'Guest_cart=' + res;
+                    setTimeout(function () {
+                        window.location.href = 'checkout.php';
+                    }, 1000);
                 }
-            });
-            return false;
-        } else {   
-            var product_data = {'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
-            $.ajax({
-                url: 'function.php?action=guest_order',
-                type: 'POST',
-                data: product_data,
-                success: function (res) {
-                    if (res > 0) {
-                        console.log(res);
-                        res = Number(res);
-                        console.log(res);
-                        document.cookie = 'Guest_cart=' + res;
-                        setTimeout(function () {
-                            window.location.href = 'checkout.php';
-                        }, 1000);
-                    }
-                }
-            });
-            return false;      
-        }  
+            }
+        });
     }
     return false;
 }   
@@ -653,6 +647,7 @@ function purchase_transact() {
 function referral_email() {
 
     var email = $('#newsletter').val();
+    
     $.ajax({
         url: 'function.php?action=referral_email',
         type: 'POST',

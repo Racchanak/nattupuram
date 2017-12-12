@@ -184,7 +184,7 @@
 						<p>Refferrer Code</p>
 					</div>
 					<div class="boxBottom">
-						<input type="text" name="apply_coupon" id="aCcoupon"/>
+						<!-- <input type="text" name="apply_coupon" id="aCcoupon"/> -->
 						<input type="text" name="refferrer_Code" id="referCode"/>
 						<form id="main-form" onsubmit="return applyDiscounts();" class="purchase-form " name="purchase-form">
 							<button type="submit" class="btn btn-fefault applyBtn" ><i class="fa fa-shopping-cart"></i>Apply</button>
