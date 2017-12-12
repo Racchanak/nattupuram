@@ -97,7 +97,7 @@ include('header.php');
                                         <?php } else { ?>
                                             <div class="col-md-10 col-xs-8">
                                                 <?php if($product[0]['product_id']==5) { ?>    
-                                                <input type="hidden" name="volume" class="vol_qnty" value="<?php echo $value; ?>">
+                                                <input type="hidden" name="volume" class="vol_qnty" value="<?php echo $product[0]['quantity'][0]; ?>">
                                                 <div><?php echo $product[0]['quantity'][0]; ?></div> 
                                                 <?php } else { ?>
                                                 <select name="volume" class="vol_qnty" <?php if($product[0]['product_id']==5) { echo "style='display:none'"; } else { echo "style='display:block'"; } ?>>
@@ -349,7 +349,7 @@ include('footer.php');
 ?>
 <script type="text/javascript">
     var sub_quantity = $('#product_id').val();
-    console.log(sub_quantity);
+    myquantity();
     if(sub_quantity!='6') {
         $('.amount').css('display', 'block');
         var val_qunty = $('.vol_qnty').val();
