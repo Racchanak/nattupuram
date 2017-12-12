@@ -134,11 +134,11 @@
 			</div>
 			<div class="reviewBox">
 				<div class="orangeBox">
+				<div class="boxDatanew">
+					<p>Product Name</p>
+				</div>	
 					<div class="boxData">
-						<p>Order No</p>
-					</div>
-					<div class="boxData">
-						<p>Product Name</p>
+						<p>Shipping</p>
 					</div>
 					<div class="boxData">
 						<p>Price</p>
@@ -159,11 +159,11 @@
                             		array_push($order_id,$value['order_id']);
                             	?>
 				<div class="dataBox">
-					<div class="boxData">
-					<p>Web ID: <?php echo $value['order_id']; ?></p>
+					<div class="boxDatanew">
+						<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
 					</div>
 					<div class="boxData">
-						<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
+						<p><?php echo $value['price']; ?></p>
 					</div>
 					<div class="boxData">
 						<p><?php echo $value['price']; ?></p>
@@ -178,9 +178,8 @@
 						<?php } ?>
 						</div>
 						<div class="reviewBox borderTop">
-				<div class="dataBox">
+				<div class="dataBox1 dataBox">
 					<div class="boxBottom padLeft">
-						<p>Apply Coupon</p>
 						<p>Refferrer Code</p>
 					</div>
 					<div class="boxBottom">

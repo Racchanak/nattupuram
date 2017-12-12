@@ -644,10 +644,11 @@ ul.sub-menu {
 }
 
 .owl-nav {
-    display : none;
+    display: none;
 }
 
-.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span { 
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
     background: #fe980e !important;
 }
 
@@ -1804,7 +1805,7 @@ textarea {
     padding: 5px;
     border-radius: 5px;
     resize: none;
-    outline: none;    
+    outline: none;
     background-color: #fff;
 }
 
@@ -2777,33 +2778,39 @@ textarea {
 .offers .offerContent ol li h5 {
     font-size: 12px;
 }
-.registerUserName{
+
+.registerUserName {
     background-color: #f1f1e9;
     padding: 25px;
 }
-.registerAccount{
+
+.registerAccount {
     width: 275px;
     margin: 0px auto;
     padding: 70px 0px 0px;
 }
-.registerAccount input{
+
+.registerAccount input {
     border: 1px solid #a9a9a0;
     padding: 5px;
     border-radius: 3px;
     margin: 5px;
     outline: none;
 }
-.registerAccount .btn{
+
+.registerAccount .btn {
     margin: 5px;
     color: #fff;
     border-radius: 4px;
 }
-.guestAccount{
+
+.guestAccount {
     width: 275px;
     margin: 0px auto;
     padding: 70px 0px 0px;
 }
-.guestAccount input{
+
+.guestAccount input {
     border: 1px solid #a9a9a0;
     padding: 5px;
     border-radius: 3px;
@@ -2811,22 +2818,38 @@ textarea {
     outline: none;
     width: auto;
 }
-.guestAccount .btn{
+
+.guestAccount .btn {
     margin: 5px;
     color: #fff;
     border-radius: 4px;
 }
+
 .reviewBox {
     border: 1px solid #eee;
 }
+
 .orangeBox {
     background-color: #fe980e;
     padding: 15px;
 }
+
 .boxData {
-    width: 18%;
+    width: 15%;
     display: inline-block;
     text-align: center;
+    padding: 15px;
+}
+
+.dataBox1 {
+    padding: 20px;
+}
+
+.boxDatanew {
+    width: 38%;
+    display: inline-block;
+    text-align: left;
+    padding: 15px;
 }
 
 .boxData p {
@@ -2834,38 +2857,54 @@ textarea {
     color: #fff;
     font-size: 18px;
 }
-.dataBox{
-    padding: 15px;
+
+.boxDatanew p {
+    margin: 0;
+    color: #fff;
+    font-size: 17px;
 }
-.dataBox .boxData p{
-     margin: 0;
+
+.dataBox .boxData p {
+    margin: 0;
     color: #333;
     font-size: 18px;
 }
+
+.dataBox .boxDatanew p {
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.dataBox .boxDatanew p a {
+    color: #333;
+}
+
 .borderTop {
     border-top: 0;
 }
+
 .dataBox .boxBottom {
     width: 22%;
     display: inline-block;
     vertical-align: top;
 }
+
 #aCcoupon {
     margin: 15px 0px;
 }
-.padLeft{
-        padding-left: 52px;
-}
-.dataBox .boxBottom p{
-        margin: 20px 0px;
+
+.padLeft {
+    padding-left: 52px;
 }
 
-.dataBox .boxBottom input{
+.dataBox .boxBottom input {
     outline: none;
     border-radius: 5px;
     border: 1px solid #c1b8b8;
     padding: 3px 7px;
-    }
+}
+
 .applyBtn {
     background: #FE980F;
     border: 0 none;
@@ -2875,12 +2914,13 @@ textarea {
     font-size: 15px;
     margin: 13px 0px;
     border-radius: 4px;
-   
 }
+
 .total p {
-        padding-left: 145px;
+    padding-left: 145px;
     margin: 8px 0px !important;
 }
-.borderBottom{
+
+.borderBottom {
     border: 1px solid eee;
 }

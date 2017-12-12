@@ -225,7 +225,9 @@ $('.owl-carousel').owlCarousel({
             loop:false
         }
     }
+   
 });
 </script>
+
 </body>
 </html>
