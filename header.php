@@ -38,7 +38,7 @@
 					<ul>
 						<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Become a distributor</a></li>
 						<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
-						<li><a href="galley.php" class="<?= ($menu == 'gallery') ? 'active' : ''; ?>"> Gallery</a></li>
+						<li><a href="gallery.php" class="<?= ($menu == 'gallery') ? 'active' : ''; ?>"> Gallery</a></li>
 						<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
 						<li><?php if (!empty($_SESSION['user'])) { ?>
 						<a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a>
