@@ -20,15 +20,16 @@ if ($product[0]['product_id'] != 6) {
             if($product[0]['product_id']==4) {            
                 $pprice = $pkvalue - ($pkvalue * $offers['Ghee'][0]['Offersvalue']) / 100;            
                 $Offerprice = $offers['Ghee'][0]['Offersvalue'];
+                $product[0]['welcome'] = $Offerprice;
             } else {   
                 $pprice = $pkvalue - ($pkvalue * $offers['Welcome'][0]['Offersvalue']) / 100;            
-                $Offerprice = $offers['Welcome'][0]['Offersvalue'];                
+                $Offerprice = $offers['Welcome'][0]['Offersvalue'];  
+                $product[0]['welcome'] = $Offerprice;              
             }
         }
         array_push($productDiscount, $pprice);
         array_push($productOffersvalue, $Offerprice);
     }
-    $product[0]['welcome'] = $Offerprice[0];
 } else {
     foreach ($product[0]['pricesqty'] as $pkey => $pkvalue) {
         $productDiscount[$pkey] = array();
