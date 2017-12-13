@@ -178,12 +178,9 @@
 						<?php } ?>
 			</div>
 			<div class="reviewBox borderTop">
-				<div class="dataBox1 dataBox">
+				<div class=" dataBox">
 					<div class="boxBottom padLeft">
 						<p>Refferrer Code</p>
-					</div>
-					<div class="boxBottom">
-						<!-- <input type="text" name="apply_coupon" id="aCcoupon"/> -->
 						<input type="text" name="refferrer_Code" id="referCode"/>
 						<form id="main-form" onsubmit="return applyDiscounts();" class="purchase-form " name="purchase-form">
 							<button type="submit" class="btn btn-fefault applyBtn" ><i class="fa fa-shopping-cart"></i>Apply</button>
@@ -191,22 +188,26 @@
 					</div>
 					<div class="boxBottom ">
 						<div class="total">
-							<p>Order Sub Total</p>
+							<p>Shipping cost</p>
+							<h6> Free</h6>							
+						</div>
+					</div>
+					
+					<div class="boxBottom ">
+						<div class="total">
 							<p>Discount</p>
-							<p>Shipping Cost</p>							
+							<h6 id="discount_value">0</h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">
 						<div class="total">
+							<p>Order Sub Total</p>
 							<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
-										<p><?php echo $grand_total; ?></p>
-							<p id="discount_value">0</p>
-							<p> Free</p>
+							<h6><?php echo $grand_total; ?></h6>							
 						</div>
-					</div>					
-				</div>
-				</div>
-			<div class="payment-options">
+					</div>
+					<div class="boxBottom ">
+					<div class="payment-options">
 				<?php $order_ids = implode(',', $order_id); ?>
 				<!-- <a class="btn btn-default update" href="">Update</a> -->
 				<form id="main-form" onsubmit="return purchase_transact();" class="purchase-form row" name="purchase-form">
@@ -216,16 +217,11 @@
                         Check Out
                     </button>
                 </form>
-				<!-- <span>
-					<label><input type="checkbox"> Direct Bank Transfer</label>
-				</span>
-				<span>
-					<label><input type="checkbox"> Check Payment</label>
-				</span>
-				<span>
-					<label><input type="checkbox"> Paypal</label>
-				</span> -->
-			</div>
+				</div>
+			</div>	
+				</div>
+				</div>
+			
 		</div>
 	</section> <!--/#cart_items-->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>

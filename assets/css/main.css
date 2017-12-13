@@ -1370,6 +1370,7 @@ h2.title {
     font-size: 15px;
     margin-bottom: 10px;
     margin-left: 20px;
+    border-radius: 3px;
 }
 
 .shop-details-tab {
@@ -1979,11 +1980,6 @@ textarea {
     font-weight: 300;
     margin-top: 45px;
     margin-bottom: 20px
-}
-
-.payment-options {
-    margin-bottom: 125px;
-    margin-top: -25px
 }
 
 .payment-options span label {
@@ -2820,7 +2816,7 @@ textarea {
     width: auto;
 }
 
-.guestAccount .btn {
+.dataBox .boxBottom input .guestAccount .btn {
     margin: 5px;
     color: #fff;
     border-radius: 4px;
@@ -2883,10 +2879,11 @@ textarea {
 
 .borderTop {
     border-top: 0;
+    padding: 20px;
 }
 
 .dataBox .boxBottom {
-    width: 22%;
+    width: 18%;
     display: inline-block;
     vertical-align: top;
 }
@@ -2896,7 +2893,7 @@ textarea {
 }
 
 .padLeft {
-    padding-left: 52px;
+    padding-left: 20px;
 }
 
 .dataBox .boxBottom input {
@@ -2904,6 +2901,8 @@ textarea {
     border-radius: 5px;
     border: 1px solid #c1b8b8;
     padding: 3px 7px;
+    color: #fff;
+    width: 120px;
 }
 
 .applyBtn {
@@ -2917,11 +2916,26 @@ textarea {
     border-radius: 4px;
 }
 
+.dataBox .boxBottom .btn:hover {
+    color: #fff;
+}
+
 .total p {
-    padding-left: 145px;
+    padding-left: 70px;
     margin: 8px 0px !important;
+    text-align: center;
+}
+
+.total h6 {
+    padding-left: 70px;
+    text-align: center;
+    font-size: 20px;
 }
 
 .borderBottom {
     border: 1px solid eee;
+}
+
+.boxBottom .payment-options {
+    margin: 14px 70px;
 }
