@@ -228,7 +228,7 @@ include('header.php');
                             <li><a href="#character" data-toggle="tab">Characteristics</a></li>
                             <li><a href="#benefit" data-toggle="tab">Major Benefits</a></li>
                             <li><a href="#writeeviews" data-toggle="tab">write Review</a></li>
-                            <li><a href="#testimonials" data-toggle="tab">Reviews</a></li>
+                            <!-- <li><a href="#testimonials" data-toggle="tab">Reviews</a></li> -->
                         </ul>
                     </div>
                     <div class="tab-content">

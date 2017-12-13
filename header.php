@@ -72,6 +72,9 @@
 			<img src="assets/images/medal.png" alt="" data-toggle="tooltip" data-placement="top" title="Quality guaranteed">
 			<h3 class="hidden-xs hidden-sm">Quality guaranteed</h3>
 		</div>
+		<div class="midContent">
+			<a href="cart.php"><h3 class="btn btn-primary pull-right"><i class="fa fa-shopping-cart"></i> Cart</h3></a>
+		</div>
 	</div>
 	<header id="header"><!--header-->
 		<nav class="navbar navbar-default">

@@ -13,47 +13,50 @@
 				</ol>
 			</div>
 			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-							<td class="description">Item</td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-                    <?php 
-                    	$cart_id = array(); 
-                    	$grand_total = 0; 
-                    	foreach ($product_cart as $key => $value) { 
-                    		$grand_total+= $value['total']; 
-                    		array_push($cart_id,$value['cart_id']);
-                    	?>
-						<tr>
-							<td class="cart_description">
-								<h4><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></h4>
-								<p>Web ID: <?php echo $value['cart_id']; ?></p>
-							</td>
-							<td class="cart_price">
+				<div class="reviewBox">
+					<div class="orangeBox">
+						<div class="boxData">
+							<p>Order No</p>
+						</div>
+						<div class="boxDatanew">
+							<p>Product Name</p>
+						</div>	
+						<div class="boxData">
+							<p>Price</p>
+						</div>
+						<div class="boxData">
+							<p>Quantity</p>
+						</div>
+						<div class="boxData">
+							<p>Total</p>
+						</div>
+					</div>
+	                <?php 
+	                	$cart_id = array(); 
+	                	$grand_total = 0; 
+	                	foreach ($product_cart as $key => $value) { 
+	                		$grand_total+= $value['total']; 
+	                		array_push($cart_id,$value['cart_id']);
+	                	?>
+						<div class="dataBox">
+							<div class="boxData">
+								<p>Web ID: <?php echo $value['order_id']; ?></p>
+							</div>
+							<div class="boxDatanew">
+								<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
+							</div>
+							<div class="boxData">
 								<p><?php echo $value['price']; ?></p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
+							</div>
+							<div class="boxData">
 								<p><?php echo $value['quantity']; ?></p>
-								</div>
-							</td>
-							<td class="cart_total">
+							</div>
+							<div class="boxData">
 								<p class="cart_total_price"><?php echo $value['total']; ?></p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-<?php } ?>
-					</tbody>
-				</table>
+							</div>
+						</div>
+					<?php } ?>
+				</div>
 			</div>
 		</div>
 	</section> <!--/#cart_items-->

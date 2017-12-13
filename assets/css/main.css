@@ -2588,9 +2588,10 @@ textarea {
 }
 
 .headMiddle {
-    width: 725px;
+    width: 70%;
     margin: 0 auto;
     padding: 15px 0px;
+    margin-left: 25%;
 }
 
 .midContent {
