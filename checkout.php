@@ -166,9 +166,26 @@
 						<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
 					</div>
 					<div class="boxData">
+						<p class="greyContent"><s><?php echo $value['price']; ?></s></p>
 						<p><?php echo $value['price']; ?></p>
+						<p class="redContent">30.00% OFF</p>
+						 <p class="greyContent">Discount <?php echo $value['price']; ?></p>
+
 					</div>
 					<div class="boxData">
+					<div class="input-group">
+                        <span class="input-group-btn">
+							<button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
+								<span class="glyphicon glyphicon-minus"></span>
+							</button>
+                    	</span>
+                        	<span><input type="text" name="quant[1]" id="proquantity" class="form-control input-number" value="1" min="1" max="5"></span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" onclick="myquantity()" data-type="plus" data-field="quant[1]">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                    </div>
 						<p><?php echo $value['quantity']; ?></p>
 					</div>
 					<div class="boxData">
@@ -179,12 +196,17 @@
 			</div>
 			<div class="reviewBox borderTop">
 				<div class=" dataBox">
-					<div class="boxBottom padLeft">
-						<p>Refferrer Code</p>
-						<input type="text" name="refferrer_Code" id="referCode"/>
+					<div class="boxBottomnew">
+						<input type="text" name="refferrer_Code" placeholder="Refferrer Code" id="referCode"/>
 						<form id="main-form" onsubmit="return applyDiscounts();" class="purchase-form " name="purchase-form">
-							<button type="submit" class="btn btn-fefault applyBtn" ><i class="fa fa-shopping-cart"></i>Apply</button>
+							<button type="submit" class="btn btn-fefault applyBtn" ><i class="fa fa-check" aria-hidden="true"></i>Apply</button>
 					    </form>
+					</div>
+					<div class="boxBottom ">
+						<div class="total">
+							<p>Value of Product</p>
+							<h6> Free</h6>							
+						</div>
 					</div>
 					<div class="boxBottom ">
 						<div class="total">
@@ -225,6 +247,7 @@
 		</div>
 	</section> <!--/#cart_items-->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <?php
 	include('footer.php');
 ?>
