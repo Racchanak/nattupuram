@@ -13,7 +13,7 @@ if (isset($_REQUEST['product'])) {
 if (isset($_POST)) {
     if ($action == 'reviews') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "INSERT INTO review (name,product_id,emailid,city,message,cret_date,product_name,product_img) 
 			VALUES ('" . $name . "',".$product_id.",'" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "','" . $product . "','" . $product_img . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
@@ -22,7 +22,7 @@ if (isset($_POST)) {
     }
     if ($action == 'enquiry') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "INSERT INTO enquiry (name,emailid,subject,message,cret_date) 
             VALUES ('" . $name . "','" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
@@ -31,7 +31,7 @@ if (isset($_POST)) {
     }
     if ($action == 'contactus') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "INSERT INTO contactus (name,emailid,subject,message,cret_date) 
             VALUES ('" . $name . "','" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
@@ -40,7 +40,7 @@ if (isset($_POST)) {
     }
     if ($action == 'register') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "INSERT INTO register (name,emailid,password,cret_date) VALUES ('".$name."','".$emailid."','".md5($password)."','".date('Y-m-d H:i:s')."')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $reg_id = mysqli_insert_id($link);
@@ -74,7 +74,7 @@ if (isset($_POST)) {
     }
     if ($action == 'product_cart') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "INSERT INTO product_cart (user_id,product_id,product_name,category,quantity,price,total,cret_date) 
             VALUES ('" . $product_user_id . "','" . $product_id . "','" . $product_name . "','" . $product_category . "','" . $product_quantity . "','" . $product_amount . "','" . ($product_quantity*$product_amount) . "','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
@@ -83,7 +83,7 @@ if (isset($_POST)) {
     }
     if ($action == 'product_order') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $cart_ids = explode(',', $cart_ids);
         foreach ($cart_ids as $key => $value) {
             $cart_detials = carts_data($user_id,$value);
@@ -95,7 +95,7 @@ if (isset($_POST)) {
     }
     if ($action == 'user_address') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         if(isset($_SESSION['user']['register_id'])) {
             $query = "INSERT INTO user_address (user_id,name,phoneno,address1,address2,country,city, state,pincode,cret_date) VALUES ('" . $user_id . "','" . $_SESSION['user']['name'] . "','" . $phone. "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $country . "', '" . $zipcode . "', '" . date('Y-m-d H:i:s') . "')";
         } else if(isset($_COOKIE['Guest_cart'])) { 
@@ -107,7 +107,7 @@ if (isset($_POST)) {
     }
     if ($action == 'product_transaction') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         if(isset($_SESSION['user']['register_id'])) {
             $query = "INSERT INTO product_transaction (user_id, billing_addid, total_amt,cret_date) VALUES ('" . $user_id . "','" . $billing_addid . "','" . $total_amt. "', '" . date('Y-m-d H:i:s') . "')";
         } else if(isset($_COOKIE['Guest_cart'])) { 
@@ -124,7 +124,7 @@ if (isset($_POST)) {
     }
     if ($action == 'guest_order') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "INSERT INTO product_order (product_id,product_name,category,quantity,price,total,delivery_status, order_status,cret_date) VALUES ('" . $product_id . "', '" . $product_name . "','".$product_category."', '" . $product_quantity . "','" . $product_amount . "','" . ($product_quantity*$product_amount) . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $order_id = mysqli_insert_id($link);
@@ -132,7 +132,7 @@ if (isset($_POST)) {
     }
     if ($action == 'guestLoginregister') { //gOrderId
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         session_start();
         $query = "INSERT INTO register (name,emailid,password,cret_date) VALUES ('".$name."','".$emailid."','".md5($password)."','".date('Y-m-d H:i:s')."')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
@@ -170,7 +170,7 @@ if (isset($_POST)) {
     }
     if ($action == 'userLoginregister') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         session_start();
         $query = "SELECT * FROM register WHERE emailid='" . $emailid . "' AND password='" . md5($password) . "'";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
@@ -194,7 +194,7 @@ if (isset($_POST)) {
     }
     if ($action == 'referral_email') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         print_r($_POST);
         $query = "INSERT INTO register (name,emailid,password,cret_date) VALUES ('".$name."','".$emailid."','".md5($password)."','".date('Y-m-d H:i:s')."')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
@@ -203,7 +203,7 @@ if (isset($_POST)) {
     }
     if ($action == 'applyuserDiscount') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         //Order_details
         $order_id = explode(',', $order_ids);
         $grand_total = 0;
@@ -281,7 +281,7 @@ if (isset($_POST)) {
     }
     if ($action == 'transact_payment') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "UPDATE product_transaction SET transaction_status='".$status."', payment_id='".$payment_id."' WHERE transaction_id=".$transact_id;
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         if ($status == 'Success') {
@@ -314,7 +314,7 @@ if (isset($_POST)) {
     }
     if ($action == 'userlogin') {
         extract($_POST);
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "SELECT * FROM register WHERE emailid='" . $emailid . "' AND password='" . md5($password) . "'";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $arr = array();
@@ -333,7 +333,7 @@ if (isset($_POST)) {
         }
     }
     if ($action == 'product') {
-        extract($GLOBALS);
+        $link = $GLOBALS['link'];  
         $query = "SELECT * FROM `review` WHERE product_name='" . $product . "'";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $arr = array();
@@ -359,7 +359,7 @@ function randomString($length,$string) {
 }
 
 function reviews_data() {
-    extract($GLOBALS);
+    $link = $GLOBALS['link'];  
     $query = "SELECT * FROM `review`";
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $arr = array();
@@ -370,7 +370,7 @@ function reviews_data() {
 }
 
 function offers_data($offer_id = '') {
-    extract($GLOBALS);
+    $link = $GLOBALS['link'];  
     if($offer_id=='') {
         $query = "SELECT * FROM `Offers`";
     } else {
@@ -410,7 +410,7 @@ function offers_data($offer_id = '') {
 }
 
 function carts_data($user_id,$cart_id = '') {
-    extract($GLOBALS);
+    $link = $GLOBALS['link'];  
     if($cart_id=='') {
         $query = "SELECT * FROM `product_cart` WHERE user_id='".$user_id."'";
     } else {
@@ -425,7 +425,7 @@ function carts_data($user_id,$cart_id = '') {
 }
 
 function order_data($user_id,$cart_id = '',$order_id='') {
-    extract($GLOBALS);
+    $link = $GLOBALS['link'];  
     if($cart_id!='') {
         $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."' AND cart_id='".$cart_id."'";
     } else if ($order_id!='') {
@@ -441,11 +441,10 @@ function order_data($user_id,$cart_id = '',$order_id='') {
     return $arr;
 }
 
-function products_data($product_id = '') {
-    extract($GLOBALS);
-    $link = $link;
+function products_data($product_id='') {
+    $link = $GLOBALS['link'];  
     $query = "SELECT * FROM `products`";
-    if (!empty($product_id)) {
+    if ($product_id!='') {
         $mquery = "SELECT * FROM `product_methods` WHERE product_id='" . $product_id . "'";
         $mresult = mysqli_query($link, $mquery) or die('Error in Query.' . mysqli_error($link));
         $methods = array();
@@ -480,7 +479,7 @@ function products_data($product_id = '') {
             $reviews[] = $rrow;
         }
         $query = "SELECT * FROM `products` WHERE product_id='" . $product_id . "'";
-    }
+    } 
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $products = array();
     $pkey = 0;
