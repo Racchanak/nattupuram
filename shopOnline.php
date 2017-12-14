@@ -13,7 +13,7 @@ include('header.php');
                     <div class="col-md-3 col-xs-12">
                         <div class="view-product">
                         <div class="discount">
-                                <p>-<?php echo $product[0]['welcome']; ?></p>
+                                <p><?php echo $product[0]['welcome']; ?></p>
                             </div>
                             <img id="product_img" src="<?php echo $product[0]['main_img']; ?>" alt="" />
                         </div>
@@ -41,10 +41,10 @@ include('header.php');
                                             <div class="col-md-10 col-xs-8">
                                                 <?php foreach ($product[0]['price'] as $key => $value) { 
                                                     if($key==0) { $amount = 'amount'; } else { $amount = ''; }?>
-                                                <div class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
+                                                <div class="<?php echo str_replace(' ', '', $product[0]['quantity'][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;">Rs.<s><?php echo $value; ?></s>
                                                 <div class="offersdiscount" style="position: absolute;margin-left: 13%;margin-top: -7%;">
                                                     <p style="right: 0px;top: -32px;font-size: 10px;color: #fe1a0e;">
-                                                    -<?php echo $product[0]['Offersvalue'][$key]; ?>
+                                                    <?php echo $product[0]['Offersvalue'][$key]; ?>
                                                     </p>
                                                 </div>
                                                 <span class="discountAmt"><?php echo $product[0]['discount'][$key]; ?></span></div>
@@ -55,9 +55,9 @@ include('header.php');
                                                 <?php foreach ($product[0]['pricesqty'] as $prikey => $pricesqty) { 
                                                         foreach ($pricesqty as $key => $value) { 
                                                             if($prikey=='3 Liter' && $key==0) { $amount = 'amount'; } else { $amount = ''; }?>
-                                                            <div class="<?php echo str_replace(' ', '', $product[0]['subquantity'][$prikey][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;"><s>Rs. <?php echo $value; ?></s>
+                                                            <div class="<?php echo str_replace(' ', '', $product[0]['subquantity'][$prikey][$key]); ?>_amt <?php echo $amount; ?>" style="display: none;">Rs.<s><?php echo $value; ?></s>
                                                             <div class="offersdiscount" style="position: absolute;margin-left: 13%;margin-top: -7%;">
-                                                                <p style="right: 0px;top: -32px;font-size: 10px;color: #fe1a0e;">-<?php echo $product[0]['Offersvalue'][$prikey][$key]; ?>%</p>
+                                                                <p style="right: 0px;top: -32px;font-size: 10px;color: #fe1a0e;"><?php echo $product[0]['Offersvalue'][$prikey][$key]; ?>%</p>
                                                             </div>
                                                             <span class="discountAmt"><?php echo $product[0]['discount'][$prikey][$key]; ?></span></div>
                                                 <?php   } 
@@ -153,7 +153,8 @@ include('header.php');
                                             <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
                                             <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
                                             <input type="hidden" name="quantity" id="product_quantity" class="form-control">
-                                            <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
+                                            <input type="hidden" name="amount" id="product_amount" class="form-control">
+                                            <input type="hidden" name="origiAmt" id="product_origiAmt" class="form-control">
                                             <button type="submit" class="btn btn-fefault cart" >
                                                 <i class="fa fa-shopping-cart"></i>
                                                 Add to cart
@@ -168,7 +169,8 @@ include('header.php');
                                             <input type="hidden" name="category" id="product_name" class="form-control" value="<?php echo $product[0]['product_name']; ?>">
                                             <input type="hidden" name="quantity" id="product_id" class="form-control" value="<?php echo $product[0]['product_id']; ?>">
                                             <input type="hidden" name="quantity" id="product_quantity" class="form-control">
-                                            <input type="hidden" name="amount" id="product_amount" class="form-control">                                        
+                                            <input type="hidden" name="amount" id="product_amount" class="form-control">
+                                            <input type="hidden" name="origiAmt" id="product_origiAmt" class="form-control">
                                             <button type="submit" class="btn btn-fefault cart" >
                                                 <i class="fa fa-shopping-cart"></i>
                                                 Buy Now
@@ -354,6 +356,8 @@ include('footer.php');
         $('.amount').css('display', 'block');
         var val_qunty = $('.vol_qnty').val();
         var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
+        var sele_oriAmt = $('.amount').find('s')[0]['outerText'];
+        $('#product_origiAmt').val(sele_oriAmt);
         $('#product_amount').val(sele_amt);
         $('#product_category').val(val_qunty);
         $('.vol_qnty').change(function () {
@@ -365,7 +369,9 @@ include('footer.php');
             $('.amount').removeClass('amount'); 
             $('.' + val_qunty + '_amt').addClass('amount');
             var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
-            $('.' + val_qunty + '_amt').css('display', 'block');            
+            $('.' + val_qunty + '_amt').css('display', 'block');  
+            var sele_oriAmt = $('.amount').find('s')[0]['outerText'];
+            $('#product_origiAmt').val(sele_oriAmt);          
             $('#product_amount').val(sele_amt);
             $('#product_category').val(val_qunty);
         });
@@ -376,6 +382,8 @@ include('footer.php');
         $('.amount').css('display', 'block');
         $('#'+vol_priqnty+'_off').css('display','block');
         $('#product_amount').val(sele_amt);
+        var sele_oriAmt = $('.amount').find('s')[0]['outerText'];
+        $('#product_origiAmt').val(sele_oriAmt);
         $('#product_category').val(val_qunty+'_'+vol_priqnty);
         $('#'+val_qunty).css('display','block');
         $('.vol_subqnty').change(function () {
@@ -393,7 +401,9 @@ include('footer.php');
             $('#'+ vol_priqnty + '_off').addClass('rightoffers');
             $('.' + vol_priqnty + '_amt').css('display', 'block'); 
             $('.' + vol_priqnty + '_amt').addClass('amount');
-            var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];   
+            var sele_amt = $('.amount').find('.discountAmt')[0]['outerText']; 
+            var sele_oriAmt = $('.amount').find('s')[0]['outerText'];
+            $('#product_origiAmt').val(sele_oriAmt);  
             $('#product_amount').val(sele_amt);
             $('#product_category').val(val_qunty+'_'+vol_priqnty);   
             $('#'+val_qunty).css('display','block'); 
@@ -413,6 +423,8 @@ include('footer.php');
                 $('.' + vol_priqnty + '_amt').addClass('amount');
                 var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];   
                 $('#product_amount').val(sele_amt);
+                var sele_oriAmt = $('.amount').find('s')[0]['outerText'];
+                $('#product_origiAmt').val(sele_oriAmt);
                 $('#product_category').val(val_qunty+'_'+vol_priqnty);               
             });      
         });         
@@ -432,6 +444,8 @@ include('footer.php');
             var sele_amt = $('.amount').find('.discountAmt')[0]['outerText'];
             $('.' + vol_priqnty + '_amt').css('display', 'block');            
             $('#product_amount').val(sele_amt);
+            var sele_oriAmt = $('.amount').find('s')[0]['outerText'];
+            $('#product_origiAmt').val(sele_oriAmt);
             $('#product_category').val(val_qunty+'_'+vol_priqnty);             
         });
     }
