@@ -2588,13 +2588,19 @@ textarea {
     position: relative;
     left: 24%;
     top: -6px;
+    width: 880px;
+}
+
+.fa-shopping-cart {
+    margin-right: 30px;
+    font-size: 15px;
 }
 
 .btnStyle {
     background: transparent !important;
     margin-left: 54px !important;
     margin-top: 8px !important;
-    padding: 8px 30px !important;
+    padding: 8px !important;
     border: 1px solid #000 !important;
     border-radius: 0;
     color: #000 !important;
@@ -2602,6 +2608,7 @@ textarea {
 
 .midContent {
     display: inline-block;
+    position: relative;
 }
 
 .midContent img {
@@ -2641,6 +2648,23 @@ textarea {
     padding: 8px 4px;
     color: #fff;
     font-weight: 800;
+}
+
+.cartValue {
+    position: absolute;
+    top: 9px;
+    right: 65px;
+}
+
+.cartValue p {
+    background-color: #fd2525;
+    border-radius: 50%;
+    font-size: 9px;
+    width: 14px;
+    height: 14px;
+    padding-left: 4px;
+    color: #fff;
+    padding-top: 1px;
 }
 
 
@@ -2833,7 +2857,7 @@ textarea {
 }
 
 .reviewBox {
-    border: 1px solid #eee;
+    border: 1px solid #fe980e;
 }
 
 .orangeBox {
@@ -2842,7 +2866,7 @@ textarea {
 }
 
 .boxData {
-    width: 15%;
+    width: 13%;
     display: inline-block;
     text-align: center;
     padding: 15px;
@@ -2905,7 +2929,7 @@ textarea {
 }
 
 .dataBox .boxBottom {
-    width: 15%;
+    width: 13%;
     display: inline-block;
     vertical-align: middle;
 }
@@ -2946,13 +2970,11 @@ textarea {
 }
 
 .total p {
-    padding-left: 50px;
     margin: 8px 0px !important;
     text-align: center;
 }
 
 .total h6 {
-    padding-left: 50px;
     text-align: center;
     font-size: 20px;
 }
@@ -2962,5 +2984,5 @@ textarea {
 }
 
 .boxBottom .payment-options {
-    margin: 14px 70px;
+    margin: 14px 0px;
 }

@@ -147,6 +147,9 @@
 						<p>Quantity</p>
 					</div>
 					<div class="boxData">
+						<p>GST</p>
+					</div>
+					<div class="boxData">
 						<p>Total</p>
 					</div>
 				</div>
@@ -189,6 +192,9 @@
 						<p><?php echo $value['quantity']; ?></p>
 					</div>
 					<div class="boxData">
+						<p>5%</p>
+					</div>
+					<div class="boxData">
 						<p><?php echo $value['total']; ?></p>
 					</div>
 				</div>
@@ -219,6 +225,12 @@
 						<div class="total">
 							<p>Discount</p>
 							<h6 id="discount_value">0</h6>							
+						</div>
+					</div>
+					<div class="boxBottom ">
+						<div class="total">
+							<p>GST</p>
+							<h6>5%</h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">
