@@ -74,6 +74,9 @@
 		</div>
 		<div class="midContent">
 			<a href="cart.php"><h3 class="btn btn-primary btnStyle"><i class="fa fa-shopping-cart"></i> Cart</h3></a>
+			<div class="cartValue">
+				<p>2</p>
+			</div>
 		</div>
 	</div>
 	<header id="header"><!--header-->
