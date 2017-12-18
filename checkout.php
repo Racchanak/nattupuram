@@ -132,8 +132,122 @@
 			<div class="review-payment">
 				<h2>Review & Payment</h2>
 			</div>
-			<div class="reviewBox">
-				<div class="orangeBox">
+			<div class="responsive hidden-lg hidden-md">
+				<div class="row">
+					<div class="col-sm-3 col-xs-3 padding-right">
+						<div class="orangeBox">
+							<div class="content">
+								<p>Order No</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-5 pad0">
+						<div class="contentValue">
+							<p>Web ID: <?php echo $value['order_id']; ?></p>
+						</div>
+					</div>
+					<div class="col-sm-4 col-xs-4 pad0">
+							
+					</div>
+				</div>
+			</div>
+			<div class="responsive hidden-lg hidden-md">
+				<div class="row">
+					<div class="col-sm-3 col-xs-3 padding-right">
+						<div class="orangeBox">
+							<div class="content">
+								<p>Product Name</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-5 pad0">
+						<div class="contentValue">
+						<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
+						</div>
+					</div>
+					<div class="col-sm-4 col-xs-4 pad0">
+							
+					</div>
+				</div>
+			</div>
+			<div class="responsive hidden-lg hidden-md">
+				<div class="row">
+					<div class="col-sm-3 col-xs-3 padding-right">
+						<div class="orangeBox">
+							<div class="content">
+								<p>Price</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-5 pad0">
+						<div class="contentValue">
+							<p><?php echo $value['price']; ?></p>
+						</div>
+					</div>
+					<div class="col-sm-4 col-xs-4 pad0">
+							
+					</div>
+				</div>
+			</div>
+			<div class="responsive hidden-lg hidden-md">
+				<div class="row">
+					<div class="col-sm-3 col-xs-3 padding-right">
+						<div class="orangeBox">
+							<div class="content">
+								<p>Quantity</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-5 pad0">
+						<div class="contentValue">
+							<p><?php echo $value['quantity']; ?></p>
+						</div>
+					</div>
+					<div class="col-sm-4 col-xs-4 pad0">
+							
+					</div>
+				</div>
+			</div>
+			<div class="responsive hidden-lg hidden-md">
+				<div class="row">
+					<div class="col-sm-3 col-xs-3 padding-right">
+						<div class="orangeBox">
+							<div class="content">
+								<p>GST</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-5 pad0">
+						<div class="contentValue">
+							<p>5%</p>
+						</div>
+					</div>
+					<div class="col-sm-4 col-xs-4 pad0">
+							
+					</div>
+				</div>
+			</div>
+			<div class="responsive hidden-lg hidden-md">
+				<div class="row">
+					<div class="col-sm-3 col-xs-3 padding-right">
+						<div class="orangeBox">
+							<div class="content">
+								<p>Total</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5 col-xs-5 pad0">
+						<div class="contentValue">
+							<p><?php echo $value['total']; ?></p>
+						</div>
+					</div>
+					<div class="col-sm-4 col-xs-4 pad0">
+							
+					</div>
+				</div>
+			</div>
+			<div class="reviewBox  hidden-xs hidden-sm">
+				<div class="orangeBox"> 
 					<div class="boxData">
 						<p>Order No</p>
 					</div>
@@ -161,7 +275,7 @@
                             		$total_value = $grand_total;
                             		array_push($order_id,$value['order_id']);
                             	?>
-				<div class="dataBox">
+				<div class="dataBox hidden-xs hidden-sm">
 					<div class="boxData">
 						<p>Web ID: <?php echo $value['order_id']; ?></p>
 					</div>
@@ -200,7 +314,7 @@
 				</div>
 						<?php } ?>
 			</div>
-			<div class="reviewBox borderTop">
+			<div class="reviewBox borderTop  hidden-xs hidden-sm">
 				<div class=" dataBox">
 					<div class="boxBottomnew">
 						<input type="text" name="refferrer_Code" placeholder="Refferrer Code" id="referCode"/>
