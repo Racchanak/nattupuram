@@ -238,7 +238,7 @@
 					</div>
 					<div class="col-sm-5 col-xs-5 pad0">
 						<div class="contentValue">
-							<p><?php echo $value['total']; ?></p>
+							\<p><?php echo $value['total']; ?></p>
 						</div>
 					</div>
 					<div class="col-sm-4 col-xs-4 pad0">
