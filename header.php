@@ -29,11 +29,11 @@
 <div class="topHeader">
 	<div class="container">
 		<div class="row mar0">
-			<div class="col-md-6 col-xs-2 pad0">
+			<div class="col-md-6 hidden-xs hidden-sm pad0">
 				<!-- <a class="navbar-brand hidden-lg hidden-md" href="index.php"><img src="assets/images/logo.png" alt=""/></a> -->
 				<a class="brand  hidden-xs hidden-sm" href="index.php"><img src="assets/images/nattu.png" alt=""/></a>	
 			</div>
-			<div class="col-md-6 col-xs-10">
+			<div class="col-md-6 col-xs-12">
 				<div class="topHeaderContent">
 					<ul>
 						<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Become a distributor</a></li>
@@ -73,7 +73,13 @@
 			<h3 class="hidden-xs hidden-sm">Quality guaranteed</h3>
 		</div>
 		<div class="midContent">
-			<a href="cart.php"><h3 class="btn btn-primary btnStyle"><i class="fa fa-shopping-cart"></i> Cart</h3></a>
+			<a class="hidden-xs" href="cart.php"><h3 class="btn btn-primary btnStyle" ><i class="fa fa-shopping-cart"></i> Cart</h3></a>
+			<div class="cartValue hidden-xs">
+				<p>2</p>
+			</div>
+		</div>
+		<div class="midContent hidden-lg hidden-md hidden-sm">
+			<a href="cart.php"><i class="fa fa-shopping-cart"></i></a>
 			<div class="cartValue">
 				<p>2</p>
 			</div>

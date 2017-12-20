@@ -611,6 +611,25 @@ ul.sub-menu {
     .contact-pills li a {
         font-size: 13px !important;
     }
+    .responsive {
+        border: 1px solid #f5983b;
+    }
+    .orangeBox {
+        padding: 15px 2px !important;
+    }
+    .orangeBox .content p {
+        margin: 0;
+        color: #fff;
+        font-size: 10px;
+    }
+    .contentValue {
+        border-right: 1px solid #f5983b;
+        padding: 13.4px;
+    }
+    .contentValue p {
+        margin: 0;
+        font-size: 12px;
+    }
 }
 
 .footer-bottom p {
@@ -2671,11 +2690,28 @@ textarea {
 /* responsive */
 
 @media (max-width:767px) {
+    .breadcrumbs .breadcrumb {
+        margin-bottom: 15px;
+    }
     .midContent img {
         pointer-events: all;
     }
+    i.fa.fa-shopping-cart {
+        position: absolute;
+        right: -12px;
+        top: -20px;
+        font-size: 20px;
+        color: #c7c7c7;
+    }
+    .cartValue {
+        top: -27px;
+        right: 12px;
+    }
     .headMiddle {
-        width: 200px;
+        width: 250px;
+        left: 0;
+        top: 4px;
+        margin: 0 auto;
     }
     .navbar-brand img {
         padding-left: 0px;
@@ -2707,6 +2743,7 @@ textarea {
         width: 40%;
         padding: 4px 0px;
         margin-left: 60px;
+        margin-bottom: 0;
     }
     .headBottom {
         margin-left: 0;
