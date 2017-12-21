@@ -1,0 +1,15 @@
+.lgnbtn{
+	background-color: #da5967;
+	padding: 10px 10px;
+	display: block;
+	color: #fff;
+	font-weight: bold;
+	font-size: 22px
+}
+.lgnbtn :hover {
+	background-color: #ea6674;
+	text-decoration: none
+}
+.spl_error{
+    color: #ea6674;
+}

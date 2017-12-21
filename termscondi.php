@@ -7,8 +7,8 @@
 	<section>
 		<div class="container">
 			<div class="row">				
-				<?php include('category.php'); ?>
-				<div class="col-sm-9">
+				<?php //include('category.php'); ?>
+				<div class="col-sm-12">
 					<div class="blog-post-area">
 						<h2 class="title text-center">Terms and Condition</h2>
 						<div class="single-blog-post">
