@@ -132,122 +132,8 @@
 			<div class="review-payment">
 				<h2>Review & Payment</h2>
 			</div>
-			<div class="responsive hidden-lg hidden-md">
-				<div class="row">
-					<div class="col-sm-3 col-xs-3 padding-right">
-						<div class="orangeBox">
-							<div class="content">
-								<p>Order No</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-5 col-xs-5 pad0">
-						<div class="contentValue">
-							<p>Web ID: <?php echo $value['order_id']; ?></p>
-						</div>
-					</div>
-					<div class="col-sm-4 col-xs-4 pad0">
-							
-					</div>
-				</div>
-			</div>
-			<div class="responsive hidden-lg hidden-md">
-				<div class="row">
-					<div class="col-sm-3 col-xs-3 padding-right">
-						<div class="orangeBox">
-							<div class="content">
-								<p>Product Name</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-5 col-xs-5 pad0">
-						<div class="contentValue">
-						<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
-						</div>
-					</div>
-					<div class="col-sm-4 col-xs-4 pad0">
-							
-					</div>
-				</div>
-			</div>
-			<div class="responsive hidden-lg hidden-md">
-				<div class="row">
-					<div class="col-sm-3 col-xs-3 padding-right">
-						<div class="orangeBox">
-							<div class="content">
-								<p>Price</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-5 col-xs-5 pad0">
-						<div class="contentValue">
-							<p><?php echo $value['price']; ?></p>
-						</div>
-					</div>
-					<div class="col-sm-4 col-xs-4 pad0">
-							
-					</div>
-				</div>
-			</div>
-			<div class="responsive hidden-lg hidden-md">
-				<div class="row">
-					<div class="col-sm-3 col-xs-3 padding-right">
-						<div class="orangeBox">
-							<div class="content">
-								<p>Quantity</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-5 col-xs-5 pad0">
-						<div class="contentValue">
-							<p><?php echo $value['quantity']; ?></p>
-						</div>
-					</div>
-					<div class="col-sm-4 col-xs-4 pad0">
-							
-					</div>
-				</div>
-			</div>
-			<div class="responsive hidden-lg hidden-md">
-				<div class="row">
-					<div class="col-sm-3 col-xs-3 padding-right">
-						<div class="orangeBox">
-							<div class="content">
-								<p>GST</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-5 col-xs-5 pad0">
-						<div class="contentValue">
-							<p>5%</p>
-						</div>
-					</div>
-					<div class="col-sm-4 col-xs-4 pad0">
-							
-					</div>
-				</div>
-			</div>
-			<div class="responsive hidden-lg hidden-md">
-				<div class="row">
-					<div class="col-sm-3 col-xs-3 padding-right">
-						<div class="orangeBox">
-							<div class="content">
-								<p>Total</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-5 col-xs-5 pad0">
-						<div class="contentValue">
-							\<p><?php echo $value['total']; ?></p>
-						</div>
-					</div>
-					<div class="col-sm-4 col-xs-4 pad0">
-							
-					</div>
-				</div>
-			</div>
-			<div class="reviewBox  hidden-xs hidden-sm">
-				<div class="orangeBox"> 
+			<div class="reviewBox">
+				<div class="orangeBox">
 					<div class="boxData">
 						<p>Order No</p>
 					</div>
@@ -269,13 +155,19 @@
 				</div>
                             <?php 
                             	$order_id = array(); 
-                            	$grand_total = 0; 
+                            	$grand_total = 0;  
+                            	$grand_discount = 0; 
+                            	$grand_originalAmt = 0;
+                            	// print_r($product_order);
                             	foreach ($product_order as $key => $value) { 
                             		$grand_total+= $value['total']; 
+                            		$grand_originalAmt += $value['originalAmt'];
+                            		$discount_value = $value['originalAmt']-$value['price'];
+                            		$grand_discount += $discount_value;
                             		$total_value = $grand_total;
                             		array_push($order_id,$value['order_id']);
                             	?>
-				<div class="dataBox hidden-xs hidden-sm">
+				<div class="dataBox">
 					<div class="boxData">
 						<p>Web ID: <?php echo $value['order_id']; ?></p>
 					</div>
@@ -283,14 +175,14 @@
 						<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
 					</div>
 					<div class="boxData">
-						<p class="greyContent"><s><?php echo $value['price']; ?></s></p>
+						<p class="greyContent"><s><?php echo $value['originalAmt']; ?></s></p>
 						<p><?php echo $value['price']; ?></p>
-						<p class="redContent">30.00% OFF</p>
-						 <p class="greyContent">Discount <?php echo $value['price']; ?></p>
+						<p class="redContent"><?php echo $value['offersdiscount']; ?> OFF</p>
+						 <p class="greyContent">Discount <?php echo $discount_value; ?></p>
 
 					</div>
 					<div class="boxData">
-					<div class="input-group">
+					<!-- <div class="input-group">
                         <span class="input-group-btn">
 							<button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
 								<span class="glyphicon glyphicon-minus"></span>
@@ -302,7 +194,7 @@
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </span>
-                    </div>
+                    </div> -->
 						<p><?php echo $value['quantity']; ?></p>
 					</div>
 					<div class="boxData">
@@ -314,7 +206,7 @@
 				</div>
 						<?php } ?>
 			</div>
-			<div class="reviewBox borderTop  hidden-xs hidden-sm">
+			<div class="reviewBox borderTop">
 				<div class=" dataBox">
 					<div class="boxBottomnew">
 						<input type="text" name="refferrer_Code" placeholder="Refferrer Code" id="referCode"/>
@@ -325,7 +217,8 @@
 					<div class="boxBottom ">
 						<div class="total">
 							<p>Value of Product</p>
-							<h6> Free</h6>							
+							<input type="hidden" id="grand_originalAmt" value="<?php echo $grand_originalAmt; ?>" name="">
+							<h6><?php echo $grand_originalAmt; ?></h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">
@@ -338,7 +231,8 @@
 					<div class="boxBottom ">
 						<div class="total">
 							<p>Discount</p>
-							<h6 id="discount_value">0</h6>							
+							<input type="hidden" id="grand_discount" value="<?php echo $grand_discount; ?>" name="">
+							<h6><?php echo $grand_discount; ?></h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">

@@ -449,9 +449,13 @@ function purchase_cart() {
     var product_name = $('#product_name').val();
     var product_id = $('#product_id').val();
     var product_user_id = $('#product_user_id').val();
+    var originalAmt = $('#product_origiAmt').val();
+    var offersdiscount = $('#product_offer').val();
+    var sele_gstAmt = $('#product_gstAmt').val();
+    var sele_gstValue = $('#product_gstValue').val();
     $('.error-review').html('');   
     if(product_user_id!='Guest_id') {        
-        var product_data = {'product_user_id':product_user_id, 'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
+        var product_data = {'product_user_id':product_user_id, 'originalAmt':originalAmt, 'offersdiscount':offersdiscount,'sele_gstAmt':sele_gstAmt, 'sele_gstValue':sele_gstValue,'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
         $.ajax({
             url: 'function.php?action=product_cart',
             type: 'POST',
@@ -464,7 +468,7 @@ function purchase_cart() {
         });
         return false;
     } else {   
-        var product_data = {'product_amount': product_amount, 'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
+        var product_data = {'product_amount': product_amount, 'originalAmt':originalAmt, 'offersdiscount':offersdiscount,'sele_gstAmt':sele_gstAmt,'sele_gstValue':sele_gstValue,'product_category': product_category, 'product_quantity': product_quantity, 'product_name': product_name, 'product_id':product_id};
         $.ajax({
             url: 'function.php?action=guest_order',
             type: 'POST',

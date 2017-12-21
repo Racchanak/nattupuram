@@ -4,12 +4,12 @@ $title = 'Home';
 $menu = 'home';
 include('header.php');
 // include('menu.php');
-?>	
-<section id="slider"><!--slider-->
-    <div class="container">
+?>  
+<!-- <section id="slider"> --><!--slider-->
+    <!-- <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel"> -->
                     <!-- <ol class="carousel-indicators">
                         <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                         <li data-target="#slider-carousel" data-slide-to="1"></li>
@@ -18,13 +18,13 @@ include('header.php');
                         <li data-target="#slider-carousel" data-slide-to="4"></li>
                         <li data-target="#slider-carousel" data-slide-to="5"></li>
                     </ol> -->
-                    <div class="carousel-inner">
+                    <!-- <div class="carousel-inner">
                         <div class="item active">
                             <div class="col-sm-12">
-                                <img src="assets/images/nattupuramold.jpg" class="img img-responsive" alt="" />
+                                <img src="assets/images/nattupuramold.jpg" class="img img-responsive" alt="" /> -->
                                 <!-- <img src="images/home/pricing.png"  class="pricing" alt="" /> -->
-                            </div>
-                        </div>
+                            <!-- </div>
+                        </div> -->
                         <!-- <div class="item">
                             <div class="col-sm-6">
                                 <h1>NATTUPURAM</h1>
@@ -85,18 +85,18 @@ include('header.php');
                         -->         <!-- <img src="images/home/pricing.png" class="pricing" alt="" /> -->
                        <!--      </div>
                         </div> -->
-                    </div>
+                    <!-- </div> -->
 <!--                     <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
                         <i class="fa fa-angle-left"></i>
                     </a>
                     <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
                         <i class="fa fa-angle-right"></i>
                     </a>
- -->                </div>
+ -->               <!--  </div>
             </div>
         </div>
     </div>
-</section><!--/slider-->	
+</section> --><!--/slider-->    
 <section>
     <div class="container">
         <div class="row">
@@ -134,14 +134,6 @@ include('header.php');
                             <?php }
                         }
                         ?>
-                    </div>
-                    <div class="arrow">
-                        <div class="left-arrow" style="position: absolute;top: 70px;left: 0;">
-                            <img src="assets/images/left-arrow.png">
-                        </div>
-                        <div class="right-arrow" style="position: absolute;top: 70px;right: 0;">
-                            <img src="assets/images/right-arrow.png">
-                        </div>
                     </div>
                 </div>
             </div>
