@@ -46,37 +46,61 @@ else
         $target_dir = "../assets/images/product-details";
         $img_dir = "assets/images/product-details";
         
+
         $main_img_file_name = $_FILES["wimg"]["name"];
         if($main_img_file_name){
             $main_img_upload_path = $target_dir."/".$main_img_file_name;
             $main_img_temp_name = $_FILES['wimg']["tmp_name"];
             move_uploaded_file($main_img_temp_name,$main_img_upload_path);
+            $main_img_path = $img_dir."/".$main_img_file_name;
+        } else {
+            $main_img_path = $_POST['main_img'];
         }
         $image1_file_name = $_FILES["gimg"]["name"];
         if($image1_file_name){            
             $image1_upload_path = $target_dir."/".$image1_file_name;
             $image1_temp_name = $_FILES['gimg']["tmp_name"];
             move_uploaded_file($image1_temp_name,$image1_upload_path);
+            $image1_path = $img_dir."/".$image1_file_name;
+        } else {
+            $image1_path =  $_POST['image1'];
         }
         $image2_file_name = $_FILES["image2"]["name"];
         if($image2_file_name){
             $image2_upload_path = $target_dir."/".$image2_file_name;
             $image2_temp_name = $_FILES['image2']["tmp_name"];
             move_uploaded_file($image1_temp_name,$image2_upload_path);
+            $image2_path = $img_dir ."/".$image2_file_name;
+        } else {
+            $image2_path =$_POST['image2'];
         }
 
         
 
 
         
-        $main_img_path = $img_dir."/".$main_img_file_name;
-        $image1_path = $img_dir."/".$image1_file_name;
-        $image2_path = $img_dir ."/".$image2_file_name;
+        
+        
+        
 
         $product_name = $_POST['product_name'];
 
         
         
+
+        
+        $input1_1 = $_POST['container_input1_1'];
+        $input1_2 = $_POST['container_input1_2'];
+        $input2_1 = $_POST['container_input2_1'];
+        $input2_2 = $_POST['container_input2_2'];
+
+        $sub_quantity1_1 = implode(', ', $input1_1);
+        $sub_quantity1_2 = implode(', ', $input1_2);
+        $sub_quantity2_1 = implode(', ', $input2_1);
+        $sub_quantity2_2 = implode(', ', $input2_2);
+
+        $sub_quantity = $sub_quantity1_1 ." # ".$sub_quantity2_1;
+        $sub_quantity_price = $sub_quantity1_2 ." # ".$sub_quantity2_2;
 
         $price_array = array(
             liter1_price => $_POST['liter1_price'],
@@ -89,7 +113,11 @@ else
             gram250_price => $_POST['gram250_price']
         );
         $price_filter = array_filter($price_array);
-        $price = implode(', ', $price_filter);
+        if(!empty($sub_quantity_price)){
+            $price = $sub_quantity_price;
+        } else {
+            $price = implode(', ', $price_filter);
+        }
 
         // print_r($price);
         $quantity_array = array(
@@ -102,8 +130,21 @@ else
             gram500 => $_POST['gram500'],
             gram250 => $_POST['gram250']
         );
+
+
+
         $quantity_filter = array_filter($quantity_array);
-        $quantity = implode(', ', $quantity_filter);
+        if(!empty($sub_quantity)){
+            if(empty($input1_1)){
+                $quantity = "5 Liter";
+            } else if(empty($input2_1)) {
+                $quantity = "3 Liter";
+            }else {
+                $quantity = "3 Liter, 5 Liter";
+            }
+        } else {
+            $quantity = implode(', ', $quantity_filter);
+        }
 
         $product_characteristics_array = $_POST['product_characteristics'];
         $product_characteristics = array_filter($product_characteristics_array);
@@ -165,6 +206,7 @@ else
                 mysqli_query($GLOBALS['link'], $sql);
             }
 
+
             $i = 0;
             $j = 0;
             foreach($product_facts as $status)
@@ -198,13 +240,41 @@ else
         if($edit!=0) {
             $res = select_specific_products($edit);
             extract($res[0]);
+            // $sub_quantity_explode_hash = explode("#", $sub_quantity);
+            // // print_r($sub_quantity_explode_hash);
+            // $price_explode_hash = explode("#", $price);
+            // // print_r($price_explode_hash);
+            // foreach ($sub_quantity_explode_hash as $key_value) {
+            //     $i = 0;
+            //     echo $key_value[i];
+            //     $i++;
+            // }
+            // die();
             $product_benefits = select_specific_product_benefits($edit);
             $product_characteristics = select_specific_product_characteristics($edit);
             $product_facts = select_specific_product_facts($edit);
             $product_methods = select_specific_product_methods($edit);
+            $j = 0;
+            foreach($quantity as $status)
+            {
+                if($status != '') {
+                    if($j < sizeof($quantity)) {
+                        $quantity_value = $quantity[$j];
+                        echo $quantity_value;
+                        // if ($quantity_value == "1 Liter") {
+                        //     echo "checked";
+                        //  }
+                        $j++;
+                    }
+                }
+            } 
+            $quantity_array = explode(', ', $quantity);
+            $price_array = explode(', ', $price);
+            
         }
     }
 ?>  
+
       <div class="col-lg-9 padding-0">
         <div class="right-sec">
             <h3>Add Product Details</h3>
@@ -213,6 +283,8 @@ else
           <form role="form" id="social" name="social" class="form-inline" action="update-product.php" enctype="multipart/form-data" method="post" onSubmit="return product_validate()">
             <input type="hidden" class="editid" name="edit_id" value="<?php if(isset($product_id)) echo $product_id; else echo 0; ?>" />
             <input type="hidden" class="imageid" name="main_img" value="<?php if(isset($main_img)) echo $main_img; ?>" />
+            <input type="hidden" class="imageid" name="image1" value="<?php if(isset($image1)) echo $image1; ?>" />
+            <input type="hidden" class="imageid" name="image2" value="<?php if(isset($image2)) echo $image2; ?>" />
              <div class="row">
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-group error-msg">
@@ -310,8 +382,44 @@ else
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="liter1" id="liter1" value="1 Liter" <?php $record = explode(",",$quantity); foreach ($record as $value) { if ($value == "1 Liter"){ echo "checked"; } } ?>>&nbsp;&nbsp;1 Liter
-                          <input placeholder="1 Liter Price" class="form-control" id="liter1_price" name="liter1_price" onkeypress="return isNumberKey(event);">
+                          <input type="checkbox" class="form-check-input" name="liter1" id="liter1" value="1 Liter" <?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "1 Liter" ) {
+                                echo "checked";
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?> >&nbsp;&nbsp;1 Liter
+                          <input placeholder="1 Liter Price" class="form-control" id="liter1_price" name="liter1_price" onkeypress="return isNumberKey(event);" value="<?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                             if ($quantity_array_value == "1 Liter" ) {
+                                echo $price_array_value;
+                             }
+                            
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>">
                           <span id="liter1_priceError" class="apply"></span>
                         </label>
                     </div>
@@ -319,8 +427,44 @@ else
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="ml500" id="ml500" value="500ML" <?php $record = explode(",",$quantity); foreach ($record as $value) { if ($value == "500ML"){ echo "checked"; } } ?>>&nbsp;&nbsp;500ML
-                          <input placeholder="500 ML Price" class="form-control" id="ml500_price" name="ml500_price" onkeypress="return isNumberKey(event);">
+                          <input type="checkbox" class="form-check-input" name="ml500" id="ml500" value="500ML" <?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "500ML" ) {
+                                echo "checked";
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>>&nbsp;&nbsp;500ML
+                          <input placeholder="500 ML Price" class="form-control" id="ml500_price" name="ml500_price" onkeypress="return isNumberKey(event);" value="<?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                             if ($quantity_array_value == "500ML" ) {
+                                echo $price_array_value;
+                             }
+                            
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>">
                           <span id="ml500_priceError" class="apply"></span>
                         </label>
                     </div>
@@ -330,8 +474,44 @@ else
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="ml200" id="ml200" value="200ML" <?php $record = explode(",",$quantity); foreach ($record as $value) { if ($value == "200ML"){ echo "checked"; } } ?>>&nbsp;&nbsp;200ML
-                          <input placeholder="200 ML Price" class="form-control" id="ml200_price" name="ml200_price" onkeypress="return isNumberKey(event);">
+                          <input type="checkbox" class="form-check-input" name="ml200" id="ml200" value="200ML" value="200ML" <?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "200ML" ) {
+                                echo "checked";
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>>&nbsp;&nbsp;200ML
+                          <input placeholder="200 ML Price" class="form-control" id="ml200_price" name="ml200_price" onkeypress="return isNumberKey(event);" value="<?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                             if ($quantity_array_value == "200ML" ) {
+                                echo $price_array_value;
+                             }
+                            
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>">
                           <span id="ml200_priceError" class="apply"></span>
                         </label>
                     </div>
@@ -339,8 +519,44 @@ else
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="liter3" id="liter3" value="3 Liter" <?php $record = explode(",",$quantity); foreach ($record as $value) { if ($value == "3 Liter"){ echo "checked"; } } ?>>&nbsp;&nbsp;3 Liter
-                          <input placeholder="3 Liter Price" class="form-control" id="liter3_price" name="liter3_price" onkeypress="return isNumberKey(event);">
+                          <input type="checkbox" class="form-check-input" name="liter3" id="liter3" value="3 Liter" <?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "3 Liter" ) {
+                                echo "checked";
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>>&nbsp;&nbsp;3 Liter
+                          <input placeholder="3 Liter Price" class="form-control" id="liter3_price" name="liter3_price" onkeypress="return isNumberKey(event);" value="<?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "3 Liter" ) {
+                                echo $price_array_value;
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>">
                           <span id="liter3_priceError" class="apply"></span>
                         </label>
                     </div>
@@ -350,8 +566,44 @@ else
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="liter5" id="liter5" value="5 Liter" <?php $record = explode(",",$quantity); foreach ($record as $value) { if ($value == "5 Liter"){ echo "checked"; } } ?>>&nbsp;&nbsp;5 Liter
-                          <input placeholder="5 Liter Price" class="form-control" id="liter5_price" name="liter5_price" onkeypress="return isNumberKey(event);">
+                          <input type="checkbox" class="form-check-input" name="liter5" id="liter5" value="5 Liter" <?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "5 Liter" ) {
+                                echo "checked";
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>>&nbsp;&nbsp;5 Liter
+                          <input placeholder="5 Liter Price" class="form-control" id="liter5_price" name="liter5_price" onkeypress="return isNumberKey(event);" value="<?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "5 Liter" ) {
+                                echo $price_array_value;
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>">
                           <span id="liter5_priceError" class="apply"></span>
                         </label>
                     </div>
@@ -362,8 +614,44 @@ else
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="kg1" id="kg1" value="1 KG" <?php $record = explode(",",$quantity); foreach ($record as $value) { if ($value == "1 KG"){ echo "checked"; } } ?>>&nbsp;&nbsp;1 KG
-                          <input placeholder="1 KG Price" class="form-control" id="kg1_price" name="kg1_price" style="display: inline-block;" onkeypress="return isNumberKey(event);">
+                          <input type="checkbox" class="form-check-input" name="kg1" id="kg1" value="1 KG" <?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "1 KG" ) {
+                                echo "checked";
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>>&nbsp;&nbsp;1 KG
+                          <input placeholder="1 KG Price" class="form-control" id="kg1_price" name="kg1_price" style="display: inline-block;" onkeypress="return isNumberKey(event);" value="<?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "1 KG" ) {
+                                echo $price_array_value;
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>">
                           <span id="kg1_priceError" class="apply"></span>
                         </label>
                     </div>
@@ -371,8 +659,44 @@ else
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="gram500" id="gram500" value="500 Gram" <?php $record = explode(",",$quantity); foreach ($record as $value) { if ($value == "500 Gram"){ echo "checked"; } } ?>>&nbsp;&nbsp;500 Gram
-                          <input placeholder="500 Gram Price" class="form-control" id="gram500_price" name="gram500_price" onkeypress="return isNumberKey(event);">
+                          <input type="checkbox" class="form-check-input" name="gram500" id="gram500" value="500 Gram" <?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "500 Gram" ) {
+                                echo "checked";
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>>&nbsp;&nbsp;500 Gram
+                          <input placeholder="500 Gram Price" class="form-control" id="gram500_price" name="gram500_price" onkeypress="return isNumberKey(event);" value="<?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "500 Gram" ) {
+                                echo $price_array_value;
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>">
                           <span id="gram500_priceError" class="apply"></span>
                         </label>
                     </div>
@@ -382,9 +706,64 @@ else
                 <div class="col-lg-6 col-md-6 pad-rt-0">
                     <div class="form-check">
                         <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" name="gram250" id="gram250" value="250 Gram" <?php $record = explode(",",$quantity); foreach ($record as $value) { if ($value == "250 Gram"){ echo "checked"; } } ?>>&nbsp;&nbsp;250 Gram
-                          <input placeholder="250 Gram Price" class="form-control" id="gram250_price" name="gram250_price" onkeypress="return isNumberKey(event);">
+                          <input type="checkbox" class="form-check-input" name="gram250" id="gram250" value="250 Gram" <?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "250 Gram" ) {
+                                echo "checked";
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>>&nbsp;&nbsp;250 Gram
+                          <input placeholder="250 Gram Price" class="form-control" id="gram250_price" name="gram250_price" onkeypress="return isNumberKey(event);" va
+                          value="<?php $i = 0;
+            $j = 0;
+            foreach($quantity_array as $status)
+            {
+                if($status != '') {
+                    if($i < sizeof($price_array)) {
+                        if($j < sizeof($quantity_array)) {
+                            $quantity_array_value = $quantity_array[$j];
+                            $price_array_value = $price_array[$i];
+                            
+                            if ($quantity_array_value == "250 Gram" ) {
+                                echo $price_array_value;
+                             }
+                            $j++;
+                        }
+                        $i++;
+                    }
+                }
+            } ?>">
                         </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row oil_class">
+                <div class="col-lg-6 pad-lft-0 key-highlight">
+                    <div class="form-group error-msg">
+                        <h5>3 Liter Sub Quantity</h5>
+                            <div id="container1"></div>
+                            <input class="btn btn-default" type="button" id="addButton1" type="button" value="+"/>                             
+                    </div>
+                </div>
+            </div>
+            <div class="row oil_class">
+                <div class="col-lg-6 pad-lft-0 key-highlight">
+                    <div class="form-group error-msg">
+                        <h5>5 Liter Sub Quantity</h5>
+                            <div id="container2"></div>
+                            <input class="btn btn-default" type="button" id="addButton2" type="button" value="+"/>
                     </div>
                 </div>
             </div>
@@ -446,7 +825,7 @@ else
                             <?php                           
                             if(isset($product_facts) && !empty($product_facts)){
                                 foreach ($product_facts as $value) {
-                                    echo '<input  name="product_facts[]" type="text" class="form-control custom-ht" value = "'.$value['facts_description'].'"/><br/><input  name="product_facts[]" type="text" class="form-control custom-ht" value = "'.$value['fact_result'].'"/>';
+                                    echo '<input  name="product_facts[]" type="text" class="form-control custom-ht" value = "'.$value['facts_description'].'"/><br/><input  name="fact_result[]" type="text" class="form-control custom-ht" value = "'.$value['fact_result'].'"/>';
                                 }
                             }
                             ?>
@@ -881,4 +1260,38 @@ include_once('common/page_footer.php');
             }
         });
     });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#addButton1").bind("click", function () {
+
+            var div = "<div />";
+            var row = get_values1("");
+            div +=row;
+            // div.html(GetDynamicTextBox(""));
+            $("#container1").append(div);
+            
+        });
+    });
+    function get_values1(value) {
+        var txtlength = $("#container1").find('input').length;
+        // console.log($("#TextBoxContainer").find('input').length);
+        return '<input placeholder="example( 1LCoconut-1LGroundnut-1LSesame )"  name="container_input1_1[]" type="text" class="form-control custom-ht" required/><br/><br/><input placeholder="Total Price" name="container_input1_2[]" type="text" class="form-control custom-ht" required/><br/><br/>';
+    }
+    $(function () {
+        $("#addButton2").bind("click", function () {
+
+            var div = "<div />";
+            var row = get_values2("");
+            div +=row;
+            // div.html(GetDynamicTextBox(""));
+            $("#container2").append(div);
+            
+        });
+    });
+    function get_values2(value) {
+        var txtlength = $("#container2").find('input').length;
+        // console.log($("#TextBoxContainer").find('input').length);
+        return '<input placeholder="example( 1LCoconut-2LSesame-2LGroundnut )" name="container_input2_1[]" type="text" class="form-control custom-ht" required/><br/><br/><input placeholder="Total Price"  name="container_input2_2[]" type="text" class="form-control custom-ht" required /><br/><br/>';
+    }
 </script>
