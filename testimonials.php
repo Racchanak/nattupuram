@@ -8,9 +8,9 @@
 		<div class="container">
 			<div class="row">				
 				<?php
-					include('category.php');
+					//include('category.php');
 				?>
-				<div class="col-sm-9">
+				<div class="col-sm-12">
 					<div class="blog-post-area">
                         <div class="col-sm-12">
                         	<div class="col-sm-9">

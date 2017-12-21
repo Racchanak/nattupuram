@@ -173,7 +173,7 @@ include('header.php');
                                             <input type="hidden" name="origiAmt" id="product_origiAmt" class="form-control">
                                             <button type="submit" class="btn btn-fefault cart" >
                                                 <i class="fa fa-shopping-cart"></i>
-                                                Buy Now
+                                                Add to cart
                                             </button>
                                         </form>
                                     </div>                                

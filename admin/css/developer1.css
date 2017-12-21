@@ -1,0 +1,73 @@
+.cancel {
+	padding: 9px 31px;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 3px;
+	font-size: 16px;
+	display: inline-block;
+	margin-top: 20px;
+	text-align: center;
+	background-color:#da5967;
+	margin-right: 14px;
+}
+.save{
+	padding: 9px 31px;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 3px;
+	font-size: 16px;
+	display: inline-block;
+	margin-top: 20px;
+	text-align: center;
+	background-color: #7cac54;
+	margin-right: 14px;
+}
+.save-publish {
+	background-color: #da5967;
+}
+.save:hover, .save:focus{
+	background-color: #a8dd7c
+}
+.save-publish:hover, .save-publish:focus {
+	background-color: #F46474;
+}
+.error
+{
+	color:#F00;
+	display:block;
+}
+.close {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  text-decoration: none;
+  cursor:pointer !important;
+}
+.close:hover {
+	
+  color: #000000;
+  text-decoration: none;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  cursor: pointer;
+}
+.publish.unpub{
+	background-color: #DA5967 !important;
+}
+.button-holder a.unpub:hover
+{
+	background-color: #DA5950 !important;
+}
+.button-holder a:hover
+{
+	background-color: #3DAF50 !important;
+}
+
+.container .fade {
+    opacity: 0;
+    transition: opacity 0.25s linear 3s !important;
+}
