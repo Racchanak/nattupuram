@@ -76,7 +76,18 @@ else
         $product_name = $_POST['product_name'];
 
         
-        
+        $input1_1 = $_POST['container_input1_1'];
+        $input1_2 = $_POST['container_input1_2'];
+        $input2_1 = $_POST['container_input2_1'];
+        $input2_2 = $_POST['container_input2_2'];
+
+        $sub_quantity1_1 = implode(', ', $input1_1);
+        $sub_quantity1_2 = implode(', ', $input1_2);
+        $sub_quantity2_1 = implode(', ', $input2_1);
+        $sub_quantity2_2 = implode(', ', $input2_2);
+
+        $sub_quantity = $sub_quantity1_1 ." # ".$sub_quantity2_1;
+        $sub_quantity_price = $sub_quantity1_2 ." # ".$sub_quantity2_2;
 
         $price_array = array(
             liter1_price => $_POST['liter1_price'],
@@ -89,7 +100,11 @@ else
             gram250_price => $_POST['gram250_price']
         );
         $price_filter = array_filter($price_array);
-        $price = implode(', ', $price_filter);
+        if(!empty($sub_quantity_price)){
+            $price = $sub_quantity_price;
+        } else {
+            $price = implode(', ', $price_filter);
+        }
 
         // print_r($price);
         $quantity_array = array(
@@ -102,8 +117,21 @@ else
             gram500 => $_POST['gram500'],
             gram250 => $_POST['gram250']
         );
+
+
+
         $quantity_filter = array_filter($quantity_array);
-        $quantity = implode(', ', $quantity_filter);
+        if(!empty($sub_quantity)){
+            if(empty($input1_1)){
+                $quantity = "5 Liter";
+            } else if(empty($input2_1)) {
+                $quantity = "3 Liter";
+            }else {
+                $quantity = "3 Liter, 5 Liter";
+            }
+        } else {
+            $quantity = implode(', ', $quantity_filter);
+        }
 
         $product_characteristics_array = $_POST['product_characteristics'];
         $product_characteristics = array_filter($product_characteristics_array);
@@ -371,6 +399,24 @@ else
                           <input type="checkbox" class="form-check-input" name="gram250" id="gram250" value="250 Gram">&nbsp;&nbsp;250 Gram
                           <input placeholder="250 Gram Price" class="form-control" id="gram250_price" name="gram250_price" onkeypress="return isNumberKey(event);">
                         </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row oil_class">
+                <div class="col-lg-6 pad-lft-0 key-highlight">
+                    <div class="form-group error-msg">
+                        <h5>3 Liter Sub Quantity</h5>
+                            <div id="container1"></div>
+                            <input class="btn btn-default" type="button" id="addButton1" type="button" value="+"/>                             
+                    </div>
+                </div>
+            </div>
+            <div class="row oil_class">
+                <div class="col-lg-6 pad-lft-0 key-highlight">
+                    <div class="form-group error-msg">
+                        <h5>5 Liter Sub Quantity</h5>
+                            <div id="container2"></div>
+                            <input class="btn btn-default" type="button" id="addButton2" type="button" value="+"/>
                     </div>
                 </div>
             </div>
@@ -832,4 +878,38 @@ include_once('common/page_footer.php');
             }
         });
     });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#addButton1").bind("click", function () {
+
+            var div = "<div />";
+            var row = get_values1("");
+            div +=row;
+            // div.html(GetDynamicTextBox(""));
+            $("#container1").append(div);
+            
+        });
+    });
+    function get_values1(value) {
+        var txtlength = $("#container1").find('input').length;
+        // console.log($("#TextBoxContainer").find('input').length);
+        return '<input placeholder="example( 1LCoconut-1LGroundnut-1LSesame )"  name="container_input1_1[]" type="text" class="form-control custom-ht" required/><br/><br/><input placeholder="Total Price" name="container_input1_2[]" type="text" class="form-control custom-ht" required/><br/><br/>';
+    }
+    $(function () {
+        $("#addButton2").bind("click", function () {
+
+            var div = "<div />";
+            var row = get_values2("");
+            div +=row;
+            // div.html(GetDynamicTextBox(""));
+            $("#container2").append(div);
+            
+        });
+    });
+    function get_values2(value) {
+        var txtlength = $("#container2").find('input').length;
+        // console.log($("#TextBoxContainer").find('input').length);
+        return '<input placeholder="example( 1LCoconut-2LSesame-2LGroundnut )" name="container_input2_1[]" type="text" class="form-control custom-ht" required/><br/><br/><input placeholder="Total Price"  name="container_input2_2[]" type="text" class="form-control custom-ht" required /><br/><br/>';
+    }
 </script>
