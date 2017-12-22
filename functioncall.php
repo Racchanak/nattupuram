@@ -71,6 +71,7 @@ $product[0]['GstAmt'] = $productGstAmt;
 if (isset($_SESSION['user']['register_id'])) {
     $user_id = $_SESSION['user']['register_id'];
     $product_cart = carts_data($user_id);
+    $cartValue = 0;
     foreach ($product_cart as $key => $value) {
         $orders = order_data($user_id, $value['cart_id']);
         if (!empty($orders)) {
@@ -81,10 +82,12 @@ if (isset($_SESSION['user']['register_id'])) {
             $product_order[$key]['product_name'] = $value['product_name'];
             $product_order[$key]['products_offers'] = $product_order[$key]['product_details'][0]['offers'];
         }
+    	$cartValue = $key;
     }
 } else if ((isset($_COOKIE['Guest_cart'])) && ($_COOKIE['Guest_cart'] > 0)) {
     $order_id = $_COOKIE['Guest_cart'];
     $orders = order_data('', '', $order_id);
+    $cartValue = 0;
     if (!empty($orders)) {
         $product_order[0] = $orders[0];
         $product_order[0]['product_details'] = products_data($product_order[0]['product_id']);
@@ -98,5 +101,8 @@ if (isset($_SESSION['user']['register_id'])) {
             }
         }
     }
+} else {	
+	$cartValue = 0;
 }
+$cartProduct['cartValue'] = $cartValue;
 ?>

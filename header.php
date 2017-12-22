@@ -75,7 +75,7 @@
 		<div class="midContent">
 			<a class="hidden-xs" href="cart.php"><h3 class="btn btn-primary btnStyle" ><i class="fa fa-shopping-cart"></i> Cart</h3></a>
 			<div class="cartValue hidden-xs">
-				<p>2</p>
+				<p><?php echo $cartProduct['cartValue']; ?></p>
 			</div>
 		</div>
 		<div class="midContent hidden-lg hidden-md hidden-sm">

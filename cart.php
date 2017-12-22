@@ -13,7 +13,7 @@
 				</ol>
 			</div>
 			<div class="table-responsive cart_info">
-				<div class="reviewBox">
+			<div class="reviewBox">
 					<div class="orangeBox">
 						<div class="boxData">
 							<p>Order No</p>
@@ -28,14 +28,27 @@
 							<p>Quantity</p>
 						</div>
 						<div class="boxData">
+							<p>GST</p>
+						</div>
+						<div class="boxData">
 							<p>Total</p>
 						</div>
 					</div>
 	                <?php 
 	                	$cart_id = array(); 
-	                	$grand_total = 0; 
+	                	$grand_total = 0;  
+	                	$grand_total = 0;  
+	                	$grand_discount = 0; 
+	                	$grand_originalAmt = 0;
+	                	$grand_gst = 0;
+	                	// print_r($product_order);
 	                	foreach ($product_cart as $key => $value) { 
-	                		$grand_total+= $value['total']; 
+	                		$grand_total+= $value['gstAmt']; 
+	                		$grand_originalAmt += $value['originalAmt'];
+	                		$discount_value = $value['originalAmt']-$value['price'];
+	                		$grand_discount += $discount_value;
+	                		$gst_val = explode('%', $value['gstValue']);
+	                		$grand_gst +=$gst_val[0];
 	                		array_push($cart_id,$value['cart_id']);
 	                	?>
 						<div class="dataBox">
@@ -46,13 +59,33 @@
 								<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
 							</div>
 							<div class="boxData">
+								<p class="greyContent"><s><?php echo $value['originalAmt']; ?></s></p>
 								<p><?php echo $value['price']; ?></p>
+								<p class="redContent"><?php echo $value['offersdiscount']; ?> OFF</p>
+								 <p class="greyContent">Discount <?php echo $discount_value; ?></p>
+
 							</div>
 							<div class="boxData">
+							<!-- <div class="input-group">
+		                        <span class="input-group-btn">
+									<button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
+										<span class="glyphicon glyphicon-minus"></span>
+									</button>
+		                    	</span>
+		                        	<span><input type="text" name="quant[1]" id="proquantity" class="form-control input-number" value="1" min="1" max="5"></span>
+		                            <span class="input-group-btn">
+		                                <button type="button" class="btn btn-default btn-number" onclick="myquantity()" data-type="plus" data-field="quant[1]">
+		                                    <span class="glyphicon glyphicon-plus"></span>
+		                                </button>
+		                            </span>
+		                    </div> -->
 								<p><?php echo $value['quantity']; ?></p>
 							</div>
 							<div class="boxData">
-								<p class="cart_total_price"><?php echo $value['total']; ?></p>
+								<p><?php echo $value['gstValue']; ?></p>
+							</div>
+							<div class="boxData">
+								<p><?php echo $value['gstAmt']; ?></p>
 							</div>
 						</div>
 					<?php } ?>

@@ -158,13 +158,15 @@
                             	$grand_total = 0;  
                             	$grand_discount = 0; 
                             	$grand_originalAmt = 0;
+                            	$grand_gst = 0;
                             	// print_r($product_order);
                             	foreach ($product_order as $key => $value) { 
-                            		$grand_total+= $value['total']; 
+                            		$grand_total+= $value['gstAmt']; 
                             		$grand_originalAmt += $value['originalAmt'];
                             		$discount_value = $value['originalAmt']-$value['price'];
                             		$grand_discount += $discount_value;
-                            		$total_value = $grand_total;
+                            		$gst_val = explode('%', $value['gstValue']);
+                            		$grand_gst +=$gst_val[0];
                             		array_push($order_id,$value['order_id']);
                             	?>
 				<div class="dataBox">
@@ -198,10 +200,10 @@
 						<p><?php echo $value['quantity']; ?></p>
 					</div>
 					<div class="boxData">
-						<p>5%</p>
+						<p><?php echo $value['gstValue']; ?></p>
 					</div>
 					<div class="boxData">
-						<p><?php echo $value['total']; ?></p>
+						<p><?php echo $value['gstAmt']; ?></p>
 					</div>
 				</div>
 						<?php } ?>
@@ -238,12 +240,12 @@
 					<div class="boxBottom ">
 						<div class="total">
 							<p>GST</p>
-							<h6>5%</h6>							
+							<h6><?php echo $grand_gst; ?>%</h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">
 						<div class="total">
-							<p>Order Sub Total</p>
+							<p>Grand Total</p>
 							<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
 							<h6><?php echo $grand_total; ?></h6>							
 						</div>
