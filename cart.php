@@ -28,6 +28,9 @@
 							<p>Quantity</p>
 						</div>
 						<div class="boxData">
+							<p>Net Price</p>
+						</div>
+						<div class="boxData">
 							<p>GST</p>
 						</div>
 						<div class="boxData">
@@ -43,12 +46,14 @@
 	                	$grand_gst = 0;
 	                	// print_r($product_order);
 	                	foreach ($product_cart as $key => $value) { 
-	                		$grand_total+= $value['gstAmt']; 
-	                		$grand_originalAmt += $value['originalAmt'];
-	                		$discount_value = $value['originalAmt']-$value['price'];
-	                		$grand_discount += $discount_value;
-	                		$gst_val = explode('%', $value['gstValue']);
-	                		$grand_gst +=$gst_val[0];
+                    		$grand_total+= $value['gstAmt']; 
+            				$quantyPrice = ($value['originalAmt']*$value['quantity']);
+                    		$grand_originalAmt += $quantyPrice;
+        					$netPrice = $quantyPrice - ($quantyPrice * $value['offersdiscount']) / 100;  
+                    		$discount_value = $quantyPrice-$netPrice;
+                    		$grand_discount += $discount_value;
+                    		$gst_val = explode('%', $value['gstValue']);
+                    		$grand_gst +=$gst_val[0];
 	                		array_push($cart_id,$value['cart_id']);
 	                	?>
 						<div class="dataBox">
@@ -59,11 +64,7 @@
 								<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
 							</div>
 							<div class="boxData">
-								<p class="greyContent"><s><?php echo $value['originalAmt']; ?></s></p>
-								<p><?php echo $value['price']; ?></p>
-								<p class="redContent"><?php echo $value['offersdiscount']; ?> OFF</p>
-								 <p class="greyContent">Discount <?php echo $discount_value; ?></p>
-
+								<p><?php echo $value['originalAmt']; ?></p>
 							</div>
 							<div class="boxData">
 							<!-- <div class="input-group">
@@ -80,6 +81,12 @@
 		                            </span>
 		                    </div> -->
 								<p><?php echo $value['quantity']; ?></p>
+							</div>
+							<div class="boxData">
+								<p class="greyContent"><s><?php echo $quantyPrice; ?></s></p>
+								<p><?php echo $netPrice; ?></p>
+								<p class="redContent"><?php echo $value['offersdiscount']; ?> OFF</p>
+								 <p class="greyContent">Discount <?php echo $discount_value; ?></p>
 							</div>
 							<div class="boxData">
 								<p><?php echo $value['gstValue']; ?></p>

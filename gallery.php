@@ -29,7 +29,7 @@ include('header.php');
 		        	<div class="col-md-3 col-sm-3">
 		        		<img src="assets/images/gallery/4.jpg" alt="" style="height: 350px;padding-bottom: 28px"/>
 		        	</div>
-		        	<div class="col-md-3 col-sm-3">
+		        	<!-- <div class="col-md-3 col-sm-3">
 		        		<img src="assets/images/gallery/5.jpg" alt="" style="height: 350px;padding-bottom: 28px"/>
 		        	</div>
 		        	<div class="col-md-3 col-sm-3">
@@ -46,7 +46,7 @@ include('header.php');
 		        	</div>
 		        	<div class="col-md-3 col-sm-3">
 		        		<img src="assets/images/gallery/10.jpg" alt="" style="height: 350px;padding-bottom: 28px"/>
-		        	</div>
+		        	</div> -->
 		        </div>
 		    </div>
 		</div>

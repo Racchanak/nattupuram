@@ -27,13 +27,11 @@ if ($product[0]['product_id'] != 6) {
                 $Offerprice = $offers['Welcome'][0]['Offersvalue'];  
                 $product[0]['welcome'] = $Offerprice;              
             }
-        }
-        $priceGst = ($pkvalue - ($pkvalue * $product[0]['gst_val']) / 100); 
+        } 
         $gstAmt = $product[0]['gst_val'].'%';
         array_push($productDiscount, $pprice);
         array_push($productOffersvalue, $Offerprice);
         array_push($productGstvalue, $gstAmt);
-        array_push($productGstAmt, $priceGst);
     }
 } else {
     foreach ($product[0]['pricesqty'] as $pkey => $pkvalue) {
@@ -55,10 +53,8 @@ if ($product[0]['product_id'] != 6) {
                 array_push($productOffersvalue[$pkey], $Offerprice);  
                 array_push($pOffVal[$pkey], $offers['Combo 5C'][$pey]);    
             }
-            $priceGst = ($pkvalue - ($pkvalue * $product[0]['gst_val']) / 100); 
             $gstAmt = $product[0]['gst_val'].'%';
             array_push($productGstvalue, $gstAmt);
-            array_push($productGstAmt, $priceGst);
         }    
     }
     $product[0]['welcome'] = $offers['Welcome'][0]['Offersvalue'];
@@ -67,7 +63,6 @@ if ($product[0]['product_id'] != 6) {
 $product[0]['discount'] = $productDiscount;
 $product[0]['Offersvalue'] = $productOffersvalue;
 $product[0]['Gstvalue'] = $productGstvalue;
-$product[0]['GstAmt'] = $productGstAmt;
 if (isset($_SESSION['user']['register_id'])) {
     $user_id = $_SESSION['user']['register_id'];
     $product_cart = carts_data($user_id);
