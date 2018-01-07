@@ -147,64 +147,73 @@
 						<p>Quantity</p>
 					</div>
 					<div class="boxData">
+						<p>Net Price</p>
+					</div>
+					<div class="boxData">
 						<p>GST</p>
 					</div>
 					<div class="boxData">
 						<p>Total</p>
 					</div>
 				</div>
-                            <?php 
-                            	$order_id = array(); 
-                            	$grand_total = 0;  
-                            	$grand_discount = 0; 
-                            	$grand_originalAmt = 0;
-                            	// print_r($product_order);
-                            	foreach ($product_order as $key => $value) { 
-                            		$grand_total+= $value['total']; 
-                            		$grand_originalAmt += $value['originalAmt'];
-                            		$discount_value = $value['originalAmt']-$value['price'];
-                            		$grand_discount += $discount_value;
-                            		$total_value = $grand_total;
-                            		array_push($order_id,$value['order_id']);
-                            	?>
-				<div class="dataBox">
-					<div class="boxData">
-						<p>Web ID: <?php echo $value['order_id']; ?></p>
+                <?php 
+                	$order_id = array(); 
+                	$grand_total = 0;  
+                	$grand_discount = 0; 
+                	$grand_originalAmt = 0;
+                	$grand_gst = 0;
+                	// print_r($product_order);
+                	foreach ($product_order as $key => $value) { 
+                		$grand_total+= $value['gstAmt']; 
+        				$quantyPrice = ($value['originalAmt']*$value['quantity']);
+                		$grand_originalAmt += $quantyPrice;
+    					$netPrice = $quantyPrice - ($quantyPrice * $value['offersdiscount']) / 100;  
+                		$discount_value = $quantyPrice-$netPrice;
+                		$grand_discount += $discount_value;
+                		$gst_val = explode('%', $value['gstValue']);
+                		$grand_gst +=$gst_val[0];
+                		array_push($order_id,$value['order_id']);
+                	?>
+					<div class="dataBox">
+						<div class="boxData">
+							<p>Web ID: <?php echo $value['order_id']; ?></p>
+						</div>
+						<div class="boxDatanew">
+							<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
+						</div>
+						<div class="boxData">
+							<p><?php echo $value['originalAmt']; ?></p>
+						</div>
+						<div class="boxData">
+						<!-- <div class="input-group">
+	                        <span class="input-group-btn">
+								<button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
+									<span class="glyphicon glyphicon-minus"></span>
+								</button>
+	                    	</span>
+	                        	<span><input type="text" name="quant[1]" id="proquantity" class="form-control input-number" value="1" min="1" max="5"></span>
+	                            <span class="input-group-btn">
+	                                <button type="button" class="btn btn-default btn-number" onclick="myquantity()" data-type="plus" data-field="quant[1]">
+	                                    <span class="glyphicon glyphicon-plus"></span>
+	                                </button>
+	                            </span>
+	                    </div> -->
+							<p><?php echo $value['quantity']; ?></p>
+						</div>
+						<div class="boxData">
+							<p class="greyContent"><s><?php echo $quantyPrice; ?></s></p>
+							<p><?php echo $netPrice; ?></p>
+							<p class="redContent"><?php echo $value['offersdiscount']; ?> OFF</p>
+							 <p class="greyContent">Discount <?php echo $discount_value; ?></p>
+						</div>
+						<div class="boxData">
+							<p><?php echo $value['gstValue']; ?></p>
+						</div>
+						<div class="boxData">
+							<p><?php echo $value['gstAmt']; ?></p>
+						</div>
 					</div>
-					<div class="boxDatanew">
-						<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
-					</div>
-					<div class="boxData">
-						<p class="greyContent"><s><?php echo $value['originalAmt']; ?></s></p>
-						<p><?php echo $value['price']; ?></p>
-						<p class="redContent"><?php echo $value['offersdiscount']; ?> OFF</p>
-						 <p class="greyContent">Discount <?php echo $discount_value; ?></p>
-
-					</div>
-					<div class="boxData">
-					<!-- <div class="input-group">
-                        <span class="input-group-btn">
-							<button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
-								<span class="glyphicon glyphicon-minus"></span>
-							</button>
-                    	</span>
-                        	<span><input type="text" name="quant[1]" id="proquantity" class="form-control input-number" value="1" min="1" max="5"></span>
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" onclick="myquantity()" data-type="plus" data-field="quant[1]">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button>
-                            </span>
-                    </div> -->
-						<p><?php echo $value['quantity']; ?></p>
-					</div>
-					<div class="boxData">
-						<p>5%</p>
-					</div>
-					<div class="boxData">
-						<p><?php echo $value['total']; ?></p>
-					</div>
-				</div>
-						<?php } ?>
+				<?php } ?>
 			</div>
 			<div class="reviewBox borderTop">
 				<div class=" dataBox">
@@ -238,12 +247,12 @@
 					<div class="boxBottom ">
 						<div class="total">
 							<p>GST</p>
-							<h6>5%</h6>							
+							<h6><?php echo $grand_gst; ?>%</h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">
 						<div class="total">
-							<p>Order Sub Total</p>
+							<p>Grand Total</p>
 							<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
 							<h6><?php echo $grand_total; ?></h6>							
 						</div>

@@ -75,7 +75,7 @@
 		<div class="midContent">
 			<a class="hidden-xs" href="cart.php"><h3 class="btn btn-primary btnStyle" ><i class="fa fa-shopping-cart"></i> Cart</h3></a>
 			<div class="cartValue hidden-xs">
-				<p>2</p>
+				<p><?php echo $cartProduct['cartValue']; ?></p>
 			</div>
 		</div>
 		<div class="midContent hidden-lg hidden-md hidden-sm">
@@ -104,11 +104,33 @@
 			      <ul class="nav navbar-nav headBottom">
 					<li><a href="index.php" class="<?= ($menu == 'home') ? 'active' : ''; ?>"> Home</a></li>
 					<li><a href="products.php" class="<?= ($menu == 'shop') ? 'active' : ''; ?>"> Shop Online</a></li>
-					<li><a href="shopOnline.php?product_id=1" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Mara Chekku Ground Nut Oil</a></li>
-					<li><a href="shopOnline.php?product_id=2" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Mara Chekku Sesame/Gingelly Oil</a></li>
-					<li><a href="shopOnline.php?product_id=3" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Mara Chekku Coconut Oil</a></li>
-					<li><a href="shopOnline.php?product_id=4" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Cow Ghee</a></li>
-					<li><a href="shopOnline.php?product_id=6" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Combo Pack</a></li>
+					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Cold Pressed Oil<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="shopOnline.php?product_id=1" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Mara Chekku Ground Nut Oil</a></li>
+							<li><a href="shopOnline.php?product_id=2" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Mara Chekku Sesame/Gingelly Oil</a></li>
+							<li><a href="shopOnline.php?product_id=3" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Mara Chekku Coconut Oil</a></li>
+							<li><a href="shopOnline.php?product_id=5" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Cold Pressed Oil Trial Pack (200ML)</a></li>
+							<li><a href="shopOnline.php?product_id=6" class="<?= ($menu == 'testi') ? 'active' : ''; ?>"> Cold Pressed Oil Combo Pack</a></li>
+                        </ul>
+                    </li>	
+					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Salt & Sugar<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="shopOnline.php?product_id=7" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>">Himalayan Rock Salt (Crystal) / Indhu Uppu</a></li>
+							<li><a href="shopOnline.php?product_id=8" class="<?= ($menu == 'testi') ? 'active' : ''; ?>">Himalayan Rock Salt (Powder) / Indhu Uppu</a></li>
+							<li><a href="shopOnline.php?product_id=9" class="<?= ($menu == 'testi') ? 'active' : ''; ?>">Cane Sugar (Brown) / Nattu Sakkarai</a></li>
+                        </ul>
+                    </li>	
+					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Honey & Ghee<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="shopOnline.php?product_id=4" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>">Cow Ghee</a></li>
+							<li><a href="shopOnline.php?product_id=10" class="<?= ($menu == 'testi') ? 'active' : ''; ?>">Natural Honey</a></li>
+                        </ul>
+                    </li>			
+					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dry Fruits & Nuts<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="shopOnline.php?product_id=11" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>">Natural Cashews</a></li>
+                        </ul>
+                    </li>
 					<li><a href="bulk-order.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Bulk Order</a></li>
 					<li><a href="offers.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Offers </a></li>										
 			      </ul>

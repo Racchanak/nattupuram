@@ -74,8 +74,13 @@ if (isset($_POST)) {
     }
     if ($action == 'product_cart') {
         extract($_POST);
-        $link = $GLOBALS['link'];  sele_gstValue
-        $query = "INSERT INTO product_cart (user_id,product_id,product_name,category,quantity,price,originalAmt,offersdiscount,gstAmt,gstValue  total,cret_date) VALUES ('" . $product_user_id . "','" . $product_id . "','" . $product_name . "','" . $product_category . "','" . $product_quantity . "','" . $product_amount . "','" . $originalAmt . "','".$offersdiscount."', '".$sele_gstAmt."', '".$sele_gstValue."','" . ($product_quantity*$product_amount) . "','" . date('Y-m-d H:i:s') . "')";
+        $link = $GLOBALS['link'];  
+        $total = ($product_quantity*$product_amount);        
+        $sele_gstAmt = ($total + ($total * $sele_gstValue) / 100);
+        $query = "INSERT INTO product_cart (user_id,product_id,product_name,category,quantity,price, originalAmt,offersdiscount,gstAmt,gstValue,total,cret_date) VALUES ('" . $product_user_id . "',
+        '" . $product_id . "','" . $product_name . "','" . $product_category . "','" . $product_quantity . "',
+        '" . $product_amount . "','" . $originalAmt . "','".$offersdiscount."', '".$sele_gstAmt."', 
+        '".$sele_gstValue."','" . $total . "','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $cart_id = mysqli_insert_id($link);
         echo json_encode($cart_id);
@@ -123,8 +128,12 @@ if (isset($_POST)) {
     }
     if ($action == 'guest_order') {
         extract($_POST);
-        $link = $GLOBALS['link'];  
-        $query = "INSERT INTO product_order (product_id,product_name,category,quantity,price,originalAmt,offersdiscount,gstAmt,gstValue total,delivery_status, order_status,cret_date) VALUES ('" . $product_id . "', '" . $product_name . "','".$product_category."', '" . $product_quantity . "','" . $product_amount . "','" . $originalAmt . "','".$offersdiscount."', '".$sele_gstAmt."', '".$sele_gstValue."','" . ($product_quantity*$product_amount) . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
+        $link = $GLOBALS['link']; 
+        $total = ($product_quantity*$product_amount);        
+        $sele_gstAmt = ($total + ($total * $sele_gstValue) / 100);
+        $query = "INSERT INTO product_order (product_id,product_name,category,quantity,price,originalAmt,offersdiscount,gstAmt,gstValue,total,delivery_status, order_status,cret_date) VALUES ('" . $product_id . "', '" . $product_name . "','".$product_category."', 
+            '" . $product_quantity . "','" . $product_amount . "','" . $originalAmt . "','".$offersdiscount."', 
+            '".$sele_gstAmt."', '".$sele_gstValue."','" . $total. "','N','Pending','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $order_id = mysqli_insert_id($link);
         echo json_encode($order_id);  
