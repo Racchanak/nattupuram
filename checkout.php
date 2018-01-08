@@ -156,78 +156,148 @@
 						<p>Total</p>
 					</div>
 				</div>
-                <?php 
-                	$order_id = array(); 
-                	$grand_total = 0;  
-                	$grand_discount = 0; 
-                	$grand_originalAmt = 0;
-                	$grand_gst = 0;
-                	// print_r($product_order);
-                	foreach ($product_order as $key => $value) { 
-                		$grand_total+= $value['gstAmt']; 
-        				$quantyPrice = ($value['originalAmt']*$value['quantity']);
-                		$grand_originalAmt += $quantyPrice;
-    					$netPrice = $quantyPrice - ($quantyPrice * $value['offersdiscount']) / 100;  
-                		$discount_value = $quantyPrice-$netPrice;
-                		$grand_discount += $discount_value;
-                		$gst_val = explode('%', $value['gstValue']);
-                		$grand_gst +=$gst_val[0];
-                		array_push($order_id,$value['order_id']);
-                	?>
-					<div class="dataBox">
-						<div class="boxData">
-							<p>Web ID: <?php echo $value['order_id']; ?></p>
+				<div id="before_discount">
+					<?php 
+	                	$order_id = array(); 
+	                	$grand_total = 0;  
+	                	$grand_discount = 0; 
+	                	$grand_originalAmt = 0;
+	                	$grand_gst = 0;
+	                	// print_r($product_order);
+	                	foreach ($product_order as $key => $value) { 
+	        				$quantyPrice = ($value['originalAmt']*$value['quantity']);
+	    					$netPrice = $quantyPrice - ($quantyPrice * $value['offersdiscount']) / 100;  
+	                		$gstAmt = $quantyPrice + ($quantyPrice * $value['gstValue']) / 100;
+	                		$discount_value = 0;
+	                		$gst_val = explode('%', $value['gstValue']);
+	                		$grand_originalAmt += $quantyPrice;
+	                		$grand_total+= $gstAmt; 
+	                		$grand_discount += $discount_value;
+	                		$grand_gst +=$gst_val[0];
+	                		array_push($order_id,$value['order_id']);
+	                	?>
+						<div class="dataBox">
+							<div class="boxData">
+								<p>Web ID: <?php echo $value['order_id']; ?></p>
+							</div>
+							<div class="boxDatanew">
+								<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
+							</div>
+							<div class="boxData">
+								<p><?php echo $value['originalAmt']; ?></p>
+							</div>
+							<div class="boxData">
+							<!-- <div class="input-group">
+		                        <span class="input-group-btn">
+									<button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
+										<span class="glyphicon glyphicon-minus"></span>
+									</button>
+		                    	</span>
+		                        	<span><input type="text" name="quant[1]" id="proquantity" class="form-control input-number" value="1" min="1" max="5"></span>
+		                            <span class="input-group-btn">
+		                                <button type="button" class="btn btn-default btn-number" onclick="myquantity()" data-type="plus" data-field="quant[1]">
+		                                    <span class="glyphicon glyphicon-plus"></span>
+		                                </button>
+		                            </span>
+		                    </div> -->
+								<p><?php echo $value['quantity']; ?></p>
+							</div>
+							<div class="boxData">
+								<p><?php echo $quantyPrice; ?></p>
+							</div>
+							<div class="boxData">
+								<p><?php echo $value['gstValue']; ?></p>
+							</div>
+							<div class="boxData">
+								<p><?php echo $gstAmt; ?></p>
+							</div>
 						</div>
-						<div class="boxDatanew">
-							<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
+					<?php } ?>
+					<input type="hidden" class="grand_originalAmt" value="<?php echo $grand_originalAmt; ?>">
+					<input type="hidden" class="grand_total" value="<?php echo $grand_total; ?>">
+					<input type="hidden" class="grand_discount" value="<?php echo $grand_discount; ?>" >
+					<input type="hidden" class="grand_gst" value="<?php echo $grand_gst; ?>">
+				</div>
+				<div id="after_discount">
+	                <?php 
+	                	$order_id = array(); 
+	                	$grand_total = 0;  
+	                	$grand_discount = 0; 
+	                	$grand_originalAmt = 0;
+	                	$grand_gst = 0;
+	                	// print_r($product_order);
+	                	foreach ($product_order as $key => $value) { 
+	                		$grand_total+= $value['gstAmt']; 
+	        				$quantyPrice = ($value['originalAmt']*$value['quantity']);
+	                		$grand_originalAmt += $quantyPrice;
+	    					$netPrice = $quantyPrice - ($quantyPrice * $value['offersdiscount']) / 100;  
+	                		$discount_value = $quantyPrice-$netPrice;
+	                		$grand_discount += $discount_value;
+	                		$gst_val = explode('%', $value['gstValue']);
+	                		$grand_gst +=$gst_val[0];
+	                		array_push($order_id,$value['order_id']);
+	                	?>
+						<div class="dataBox">
+							<div class="boxData">
+								<p>Web ID: <?php echo $value['order_id']; ?></p>
+							</div>
+							<div class="boxDatanew">
+								<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
+							</div>
+							<div class="boxData">
+								<p><?php echo $value['originalAmt']; ?></p>
+							</div>
+							<div class="boxData">
+							<!-- <div class="input-group">
+		                        <span class="input-group-btn">
+									<button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
+										<span class="glyphicon glyphicon-minus"></span>
+									</button>
+		                    	</span>
+		                        	<span><input type="text" name="quant[1]" id="proquantity" class="form-control input-number" value="1" min="1" max="5"></span>
+		                            <span class="input-group-btn">
+		                                <button type="button" class="btn btn-default btn-number" onclick="myquantity()" data-type="plus" data-field="quant[1]">
+		                                    <span class="glyphicon glyphicon-plus"></span>
+		                                </button>
+		                            </span>
+		                    </div> -->
+								<p><?php echo $value['quantity']; ?></p>
+							</div>
+							<div class="boxData">
+								<p class="greyContent"><s><?php echo $quantyPrice; ?></s></p>
+								<p><?php echo $netPrice; ?></p>
+								<p class="redContent"><?php echo $value['offersdiscount']; ?> OFF</p>
+								 <p class="greyContent">Discount <?php echo $discount_value; ?></p>
+							</div>
+							<div class="boxData">
+								<p><?php echo $value['gstValue']; ?></p>
+							</div>
+							<div class="boxData">
+								<p><?php echo $value['gstAmt']; ?></p>
+							</div>
 						</div>
-						<div class="boxData">
-							<p><?php echo $value['originalAmt']; ?></p>
-						</div>
-						<div class="boxData">
-						<!-- <div class="input-group">
-	                        <span class="input-group-btn">
-								<button type="button" class="btn btn-default btn-number" onclick="myquantity()" disabled="disabled" data-type="minus" data-field="quant[1]">
-									<span class="glyphicon glyphicon-minus"></span>
-								</button>
-	                    	</span>
-	                        	<span><input type="text" name="quant[1]" id="proquantity" class="form-control input-number" value="1" min="1" max="5"></span>
-	                            <span class="input-group-btn">
-	                                <button type="button" class="btn btn-default btn-number" onclick="myquantity()" data-type="plus" data-field="quant[1]">
-	                                    <span class="glyphicon glyphicon-plus"></span>
-	                                </button>
-	                            </span>
-	                    </div> -->
-							<p><?php echo $value['quantity']; ?></p>
-						</div>
-						<div class="boxData">
-							<p class="greyContent"><s><?php echo $quantyPrice; ?></s></p>
-							<p><?php echo $netPrice; ?></p>
-							<p class="redContent"><?php echo $value['offersdiscount']; ?> OFF</p>
-							 <p class="greyContent">Discount <?php echo $discount_value; ?></p>
-						</div>
-						<div class="boxData">
-							<p><?php echo $value['gstValue']; ?></p>
-						</div>
-						<div class="boxData">
-							<p><?php echo $value['gstAmt']; ?></p>
-						</div>
-					</div>
-				<?php } ?>
+					<?php } ?>
+					<input type="hidden" class="grand_originalAmt" value="<?php echo $grand_originalAmt; ?>">
+					<input type="hidden" class="grand_total" value="<?php echo $grand_total; ?>">
+					<input type="hidden" class="grand_discount" value="<?php echo $grand_discount; ?>" >
+					<input type="hidden" class="grand_gst" value="<?php echo $grand_gst; ?>">
+				</div>
 			</div>
 			<div class="reviewBox borderTop">
-				<div class=" dataBox">
+				<div class="dataBox">
 					<div class="boxBottomnew">
-						<input type="text" name="refferrer_Code" placeholder="Refferrer Code" id="referCode"/>
-						<form id="main-form" onsubmit="return applyDiscounts();" class="purchase-form " name="purchase-form">
-							<button type="submit" class="btn btn-fefault applyBtn" ><i class="fa fa-check" aria-hidden="true"></i>Apply</button>
-					    </form>
+						<div id="refereal">
+							<input type="text" name="refferrer_Code" placeholder="Refferrer Code" id="referCode"/>
+							<form id="main-form" onsubmit="return applyDiscounts();" class="purchase-form " name="purchase-form">
+								<button type="submit" class="btn btn-fefault applyBtn" ><i class="fa fa-check" aria-hidden="true"></i>Apply</button>
+						    </form>
+						</div>
 					</div>
 					<div class="boxBottom ">
 						<div class="total">
 							<p>Value of Product</p>
-							<input type="hidden" id="grand_originalAmt" value="<?php echo $grand_originalAmt; ?>" name="">
-							<h6><?php echo $grand_originalAmt; ?></h6>							
+							<input type="hidden" id="grand_originalAmt" value="">
+							<h6 class="rev_grand_originalAmt"></h6>		
 						</div>
 					</div>
 					<div class="boxBottom ">
@@ -235,48 +305,88 @@
 							<p>Shipping cost</p>
 							<h6> Free</h6>							
 						</div>
-					</div>
-					
+					</div>					
 					<div class="boxBottom ">
 						<div class="total">
 							<p>Discount</p>
-							<input type="hidden" id="grand_discount" value="<?php echo $grand_discount; ?>" name="">
-							<h6><?php echo $grand_discount; ?></h6>							
+							<input type="hidden" id="grand_discount" value="" name="">
+							<h6 class="rev_grand_discount"></h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">
 						<div class="total">
 							<p>GST</p>
-							<h6><?php echo $grand_gst; ?>%</h6>							
+							<input type="hidden" id="grand_gst" value="" name="">
+							<h6 class="rev_grand_gst"></h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">
 						<div class="total">
 							<p>Grand Total</p>
-							<input type="hidden" id="grand_total" value="<?php echo $grand_total; ?>" name="">
-							<h6><?php echo $grand_total; ?></h6>							
+							<input type="hidden" id="grand_total" value="" name="">
+							<h6 class="rev_grand_total"></h6>							
 						</div>
 					</div>
 					<div class="boxBottom ">
-					<div class="payment-options">
-				<?php $order_ids = implode(',', $order_id); ?>
-				<!-- <a class="btn btn-default update" href="">Update</a> -->
-				<form id="main-form" onsubmit="return purchase_transact();" class="purchase-form row" name="purchase-form">
-                    <input type="hidden" name="order_ids" id="order_ids" class="form-control" value="<?php echo $order_ids; ?>" >
-                    <button type="submit" class="btn btn-fefault cart" >
-                        <i class="fa fa-shopping-cart"></i>
-                        Check Out
-                    </button>
-                </form>
+						<div class="payment-options">
+							<?php $order_ids = implode(',', $order_id); ?>
+							<!-- <a class="btn btn-default update" href="">Update</a> -->
+							<form id="main-form" onsubmit="return purchase_transact();" class="purchase-form row" name="purchase-form">
+			                    <input type="hidden" name="order_ids" id="order_ids" class="form-control" value="<?php echo $order_ids; ?>" >
+			                    <button type="submit" class="btn btn-fefault cart" >
+			                        <i class="fa fa-shopping-cart"></i>
+			                        Check Out
+			                    </button>
+			                </form>
+						</div>
+					</div>	
 				</div>
-			</div>	
-				</div>
-				</div>
-			
+			</div>			
 		</div>
 	</section> <!--/#cart_items-->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <?php
 	include('footer.php');
 ?>
+<script type="text/javascript">
+	function before_discount() {
+		$('#after_discount').css('display','none');
+		$('#refereal').css('display','none');
+		$('#before_discount').css('display','block');
+		var grand_originalAmt = $('#before_discount').find('.grand_originalAmt').val();
+		$('#grand_originalAmt').val(grand_originalAmt);
+		$('#grand_originalAmt').next('h6')[0]['innerHTML'] = grand_originalAmt;
+		var grand_total = $('#before_discount').find('.grand_total').val();
+		$('#grand_total').val(grand_total);
+		$('#grand_total').next('h6')[0]['innerHTML'] = grand_total;
+		var grand_discount = $('#before_discount').find('.grand_discount').val();
+		$('#grand_discount').val(grand_discount);
+		$('#grand_discount').next('h6')[0]['innerHTML'] = grand_discount;
+		var grand_gst = $('#before_discount').find('.grand_gst').val();
+		$('#grand_gst').val(grand_gst+'%');
+		$('#grand_gst').next('h6')[0]['innerHTML']  = grand_gst+'%';
+	}
+	function after_discount() {
+		$('#after_discount').css('display','block');
+		$('#before_discount').css('display','none');
+		$('#refereal').css('display','block');
+		var grand_originalAmt = $('#after_discount').find('.grand_originalAmt').val();
+		$('#grand_originalAmt').val(grand_originalAmt);
+		$('#grand_originalAmt').next('h6')[0]['innerHTML'] = grand_originalAmt;
+		var grand_total = $('#after_discount').find('.grand_total').val();
+		$('#grand_total').val(grand_total);
+		$('#grand_total').next('h6')[0]['innerHTML'] = grand_total;
+		var grand_discount = $('#after_discount').find('.grand_discount').val();
+		$('#grand_discount').val(grand_discount);
+		$('#grand_discount').next('h6')[0]['innerHTML'] = grand_discount;
+		var grand_gst = $('#after_discount').find('.grand_gst').val();
+		$('#grand_gst').val(grand_gst+'%');
+		$('#grand_gst').next('h6')[0]['innerHTML']  = grand_gst+'%';
+	}
+	console.log($('#user_id').val());
+	if($('#user_id').val()!='Guest_id') {
+		after_discount();
+	} else {
+		before_discount();		
+	}
+</script>

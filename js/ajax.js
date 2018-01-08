@@ -177,6 +177,7 @@ function checkoutGuestLogin() {
             $('#gRegister').val('GuestRegister');
             $('#regisCheck').css('display','none');
             $('#guestresPassword').val('');
+            after_discount();
         }
     });
     return false;    
@@ -201,6 +202,7 @@ function checkoutRegisterLogin() {
                 $('#add_name').val(guestRegist.name);
                 $('#add_email').val(guestRegist.emailid);
                 $('#gOrderId').val(guestRegist.order_id); 
+                after_discount();
             }
         }
     });
