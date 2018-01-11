@@ -516,6 +516,33 @@ function products_data($product_id='') {
     return $products;
 }
 
+function transaction_data($transaction_id='') {
+    $link = $GLOBALS['link'];  
+    $query = "SELECT * FROM `product_transaction` WHERE transaction_id='" . $transaction_id . "'"; 
+    $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+    $transact = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $transact[] = $row;
+    }
+    $uquery = "SELECT * FROM `register` WHERE register_id='" . $transact[0]['user_id'] . "'";
+    $uresult = mysqli_query($link, $uquery) or die('Error in Query.' . mysqli_error($link));
+    $user = array();
+    while ($urow = mysqli_fetch_assoc($uresult)) {
+        $user[] = $urow;
+    }
+    $aquery = "SELECT * FROM `user_address` WHERE address_id='" . $transact[0]['billing_addid'] . "'";
+    $aresult = mysqli_query($link, $aquery) or die('Error in Query.' . mysqli_error($link));
+    $address = array();
+    while ($arow = mysqli_fetch_assoc($aresult)) {
+        $address[] = $arow;
+    }
+    $transaction = array();
+    $transaction = $transact[0];
+    $transaction['user_id'] = $user[0];
+    $transaction['billing_addid'] = $address[0];
+    return $transaction;
+}
+
 /*
  * Function to limit the no. of words in a string
  */

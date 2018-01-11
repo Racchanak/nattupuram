@@ -56,7 +56,7 @@
 
   </div>
 </div>
-<div id="paymentGateway" class="modal fade" role="dialog">
+<div id="paymentGatewaySoon" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -76,6 +76,7 @@
 
   </div>
 </div>
+
 <!-- Modal -->
 <div id="proOffers" class="modal fade" role="dialog">
   <div class="modal-dialog">

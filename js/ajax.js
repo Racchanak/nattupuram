@@ -600,7 +600,10 @@ function purchase_transact() {
                         type: 'POST',
                         data: trans_data,
                         success: function (transact_id) {
-                            $('#paymentGateway').modal('toggle');
+                            if (transact_id > 0) {
+                                window.location.href = 'payment.php?transaction_id='+transact_id;
+                            }
+
                             // var options = {
                             //     "key": "rzp_test_vKA7gqOvxPudTU",
                             //     "amount": parseInt(grand_total) * 100, // 2000 paise = INR 20
