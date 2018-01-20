@@ -62,11 +62,22 @@ $page = 0;
         $end = $per_page;
         $show_page=1;
     }
+    
+if(isset($_GET['page'])){
     // display pagination
-    $page = intval($_GET['page']);
-    $tpages = $total_pages;
-    if ($page <= 0)
-        $page = 1;
+        $page = intval($_GET['page']);
+        $tpages = $total_pages;
+        if ($page <= 0)
+            $page = 1;
+
+    } else {
+    // display pagination
+        $page = intval(0);
+        $tpages = $total_pages;
+        if ($page <= 0)
+            $page = 1;
+
+    }
 
 
 $details = display_all_register();

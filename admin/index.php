@@ -1,7 +1,6 @@
 
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 //include_once('common/page_header.php');
 session_start();
 $session_check = $_SESSION['nattupuram_admin']['user_name'];

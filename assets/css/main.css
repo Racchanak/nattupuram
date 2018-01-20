@@ -2902,6 +2902,14 @@ textarea {
     padding: 15px;
 }
 
+.boxDatadele {
+    width: 3%;
+    display: inline-block;
+    text-align: center;
+    padding: 15px;
+    vertical-align: top;    
+}
+
 .boxData {
     width: 11%;
     display: inline-block;

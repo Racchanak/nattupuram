@@ -1,7 +1,5 @@
 <?php
-error_reporting(E_ALL);
-
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 ob_start();
 include_once('common/functions-admin.php');
 // include_once('js/custom.js');
@@ -23,10 +21,6 @@ else
     {
        header('Location:index.php');
        exit();
-    }
-    else if($privilege_type==2)
-    {
-        include_once('common/lms_page_header.php');
     }
     else if($privilege_type==1)
     {
@@ -62,12 +56,21 @@ $page = 0;
         $end = $per_page;
         $show_page=1;
     }
+if(isset($_GET['page'])){
     // display pagination
-    $page = intval($_GET['page']);
-    $tpages = $total_pages;
-    if ($page <= 0)
-        $page = 1;
+        $page = intval($_GET['page']);
+        $tpages = $total_pages;
+        if ($page <= 0)
+            $page = 1;
 
+    } else {
+    // display pagination
+        $page = intval(0);
+        $tpages = $total_pages;
+        if ($page <= 0)
+            $page = 1;
+
+    }
 
 $details = display_all_offers();
 ?>

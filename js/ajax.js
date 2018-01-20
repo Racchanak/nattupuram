@@ -255,22 +255,135 @@ function add_register() {
         valid++;
     }
     var reg_data = {'name': name, 'emailid': emailid, 'password': password};
+    var email_data = {'emailid': emailid};
     if (valid == 3) {
         $.ajax({
-            url: 'function.php?action=register',
+            url: 'function.php?action=checkemail',
+            type: 'POST',
+            data: email_data,
+            success: function (res) {
+                if (res > 0) {
+                    $('.error-review').html('Email Id is already register with us. Please Login with this email id.');
+                } else if (res == 0) {
+                    $.ajax({
+                        url: 'function.php?action=register',
+                        type: 'POST',
+                        data: reg_data,
+                        success: function (res) {
+                            if (res > 0) {
+                                $('.error-review').html('');
+                                $('#reg_name').val('');
+                                $('#reg_email').val('');
+                                $('#reg_password').val('');
+                                $('.success-review').html('Thanks for Your Registration');
+                                setTimeout(function () {
+                                    window.location.href = 'products.php';
+                                    $('.success-review').html('');
+                                }, 1000);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+    return false;
+}
+
+function change_password() {
+    var user_id = $('#user_id').val();
+    var old_password = $('#old_password').val();
+    var password = $('#password').val();
+    var confirm_password = $('#confirm_password').val();
+    var valid = 0;
+    if (old_password == '') {
+        $('.error-pass').html('Please enter your old password');
+        return false;
+    } else {
+        $('.error-pass').html('');
+        valid++;
+    }
+    if (password == '') {
+        $('.error-pass').html('Please enter your new password');
+        return false;
+    } else if (password == old_password) {
+        $('.error-pass').html('Please enter different password');
+        return false;
+    } else {
+        $('.error-pass').html('');
+        valid++;
+    }
+    if (confirm_password == '') {
+        $('.error-pass').html('Please reenter your new password');
+        return false;
+    } else if (password != confirm_password) {
+        $('.error-pass').html('Please reenter your new password');
+        return false;
+    } else {
+        $('.error-pass').html('');
+        valid++;
+    }
+    var reg_data = {'user_id': user_id,'password':password,'old_password':old_password};
+    if (valid == 3) {
+        $.ajax({
+            url: 'function.php?action=checkpassword',
             type: 'POST',
             data: reg_data,
             success: function (res) {
                 if (res > 0) {
-                    $('.error-review').html('');
-                    $('#reg_name').val('');
-                    $('#reg_email').val('');
-                    $('#reg_password').val('');
-                    $('.success-review').html('Thanks for Your Registration');
-                    setTimeout(function () {
-                        window.location.href = 'products.php';
-                        $('.success-review').html('');
-                    }, 1000);
+                    $.ajax({
+                        url: 'function.php?action=changePassword',
+                        type: 'POST',
+                        data: reg_data,
+                        success: function (res) {
+                            if (res > 0) {
+                                $('.success-pass').html('Your Password changed successfully');
+                            } else if (res == 0) {
+                                $('.error-pass').html('something went wrong');
+                            }
+                        }
+                    });
+                } else {
+                    $('.error-pass').html('Please enter your current Password');
+                }
+            }
+        });
+    }
+    return false;
+}
+
+function forget_email() {
+    var emailid = $('#forgetemail').val();
+    var valid = 0;
+    if (emailid == '') {
+        $('.error-forget').html('Please enter your email id');
+        return false;
+    } else {
+        $('.error-forget').html('');
+        valid++;
+    }
+    var reg_data = {'emailid': emailid};
+    if (valid == 1) {
+        $.ajax({
+            url: 'function.php?action=checkemail',
+            type: 'POST',
+            data: reg_data,
+            success: function (res) {
+                if (res > 0) {
+                    $.ajax({
+                        url: 'function.php?action=forgetpass',
+                        type: 'POST',
+                        data: reg_data,
+                        success: function (res) {
+                            if (res > 0) {
+                                $('.success-forget').html('Your Temporary Password will be mailed to your email id.');
+                            } else if (res == 0) {
+                                $('.error-forget').html('something went wrong');
+                            }
+                        }
+                    });
+                } else if (res == 0) {
+                    $('.error-forget').html('Please enter your registered email id');
                 }
             }
         });
@@ -283,17 +396,17 @@ function login_check() {
     var password = $('#login_password').val();
     var valid = 0;
     if (emailid == '') {
-        $('.error-review').html('Please enter your email id');
+        $('.error-login').html('Please enter your email id');
         return false;
     } else {
-        $('.error-review').html('');
+        $('.error-login').html('');
         valid++;
     }
     if (password == '') {
-        $('.error-review').html('Please enter your password');
+        $('.error-login').html('Please enter your password');
         return false;
     } else {
-        $('.error-review').html('');
+        $('.error-login').html('');
         valid++;
     }
     var reg_data = {'emailid': emailid, 'password': password};
@@ -306,7 +419,7 @@ function login_check() {
                 if (res > 0) {
                     window.location.href = 'products.php';
                 } else if (res == 0) {
-                    $('.error-review').html('Please enter valid username and password');
+                    $('.error-login').html('Please enter valid username and password');
                 }
             }
         });

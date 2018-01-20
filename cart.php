@@ -36,6 +36,9 @@
 						<div class="boxData">
 							<p>Total</p>
 						</div>
+						<div class="boxDatadele">
+							<p></p>
+						</div>
 					</div>
 	                <?php 
 	                	$cart_id = array(); 
@@ -93,6 +96,9 @@
 							</div>
 							<div class="boxData">
 								<p><?php echo $value['gstAmt']; ?></p>
+							</div>
+							<div class="boxData">
+								<p><a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a></p>
 							</div>
 						</div>
 					<?php } ?>

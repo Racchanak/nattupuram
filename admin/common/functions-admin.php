@@ -1,40 +1,30 @@
 <?php
-error_reporting(E_ALL);
-
-ini_set("display_errors", 0);
-include ('conn.php');
-
+ini_set("display_errors", 1);
+$GLOBALS['link'] = mysqli_connect('50.62.209.123:3306','nattupuram','nATTUPURAMpALsUJI3','nattupuram') or die('Error Connecting to PHPmyadmin');
 $action = '';
 if (isset($_REQUEST['action'])) {
     $action = $_REQUEST['action'];
 }
-
 if(!empty($_GET['action'])) {
     if ($_GET['action'] == 'chk_pvlg') {
         $user_name = $_GET['user_name'];
         $password =$_GET['password'];
         $privilege=$_GET['login_type'];
-       
         $pass = md5($password);
         $query = "select privilege_type from emp_mst where emp_name='$user_name' and emp_password='$pass'";
         $result = mysqli_query($GLOBALS['link'], $query);
         $row = mysqli_fetch_assoc($result);
         if($row['privilege_type']==$privilege){
             $res=true;
-        }
-        else
-        {
+        } else {
             $res=false;
         }
         echo json_encode(array('res'=>$res));
      }
 }
-
-
 if (isset($_POST)) {
     extract($_POST);
     if ($action == 'login') {
-
         $pass = md5($password);
         $query = "select emp_id,emp_name,privilege_type from emp_mst where emp_name='$user_name' and emp_password='$pass'";
         $result = mysqli_query($GLOBALS['link'], $query);
@@ -43,20 +33,14 @@ if (isset($_POST)) {
             $cur_time = date('Y-m-d H:i:s');
             $query1 = "update emp_mst set last_litime='$cur_time' where emp_name='$user_name'";
             mysqli_query($GLOBALS['link'], $query1);
-
-//            session_start();
-//            $_SESSION['user'] = md5($user_name . rand());
             $privilege=$row['privilege_type'];
             session_start();
             $curr_admin = array();
             $curr_admin['user_id'] = $row['emp_id'];
             $curr_admin['user_name'] = $row['emp_name'];
             $curr_admin['privilege_type']=$privilege;
-            //                $curr_admin['user_email'] = $luser_email;
             $_SESSION['nattupuram_admin'] = $curr_admin;
             setcookie("username", $row['emp_id'], time() + 7600);
-//            print_r($_SESSION);exit();
-
             echo $privilege;
         } elseif ($password == null || $password == '') {
             echo'PWF';
@@ -65,7 +49,6 @@ if (isset($_POST)) {
         }
     }
 }
-
 function select_specific_offer($edit){
     extract($GLOBALS);
     $query = "SELECT * FROM `Offers` WHERE offers_id=$edit";
@@ -126,7 +109,6 @@ function select_specific_product_methods($edit){
     }
     return($arr);
 }
-
 function display_all_products() {
     extract($GLOBALS);
     $query = "SELECT * FROM `products` where del_flag='N' order by product_id DESC";
@@ -137,7 +119,6 @@ function display_all_products() {
     }
     return $arr;
 }
-
 function display_all_offers() {
     extract($GLOBALS);
     $query = "SELECT * FROM `Offers` where del_flag='N' order by offers_id DESC";
@@ -148,7 +129,6 @@ function display_all_offers() {
     }
     return $arr;
 }
-
 function display_all_register() {
     extract($GLOBALS);
     $query = "SELECT * FROM `register` where del_flag='N' order by register_id DESC";
@@ -159,7 +139,6 @@ function display_all_register() {
     }
     return $arr;
 }
-
 function display_all_review() {
     extract($GLOBALS);
     $query = "SELECT * FROM `review` where del_flag='N' order by review_id DESC";
@@ -170,7 +149,6 @@ function display_all_review() {
     }
     return $arr;
 }
-
 function display_all_enquiry() {
     extract($GLOBALS);
     $query = "SELECT * FROM `enquiry` where del_flag='N' order by enquiry_id DESC";
@@ -181,7 +159,6 @@ function display_all_enquiry() {
     }
     return $arr;
 }
-
 function display_all_distributors() {
     extract($GLOBALS);
     $query = "SELECT * FROM `distributors` where del_flag='N' order by distributors_id DESC";
@@ -192,7 +169,6 @@ function display_all_distributors() {
     }
     return $arr;
 }
-
 function display_all_contactus() {
     extract($GLOBALS);
     $query = "SELECT * FROM `contactus` where del_flag='N' order by contactus_id DESC";
@@ -203,7 +179,6 @@ function display_all_contactus() {
     }
     return $arr;
 }
-
 function display_all_order() {
     extract($GLOBALS);
     $query = "SELECT * FROM `product_order` where del_flag='N' order by order_id DESC";
@@ -214,7 +189,6 @@ function display_all_order() {
     }
     return $arr;
 }
-
 if ($action == 'del_product') {
     extract($GLOBALS);
     $productid = $_REQUEST['data'];
@@ -222,7 +196,6 @@ if ($action == 'del_product') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
 if ($action == 'del_offer') {
     extract($GLOBALS);
     $offersid = $_REQUEST['data'];
@@ -230,7 +203,6 @@ if ($action == 'del_offer') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
 if ($action == 'del_customer') {
     extract($GLOBALS);
     $registerid = $_REQUEST['data'];
@@ -238,7 +210,6 @@ if ($action == 'del_customer') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
 if ($action == 'active_register') {
     extract($GLOBALS);
     $registerid = $_REQUEST['data'];
@@ -246,7 +217,6 @@ if ($action == 'active_register') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
 if ($action == 'deactive_register') {
     extract($GLOBALS);
     $registerid = $_REQUEST['data'];
@@ -254,7 +224,6 @@ if ($action == 'deactive_register') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
 if ($action == 'delete_review') {
     extract($GLOBALS);
     $reviewid = $_REQUEST['data'];
@@ -262,7 +231,6 @@ if ($action == 'delete_review') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
 if ($action == 'review_home_yes') {
     extract($GLOBALS);
     $reviewid = $_REQUEST['data'];
@@ -270,7 +238,6 @@ if ($action == 'review_home_yes') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
 if ($action == 'review_home_no') {
     extract($GLOBALS);
     $reviewid = $_REQUEST['data'];
@@ -285,7 +252,6 @@ if ($action == 'delete_order') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
 if ($action == 'update_status_order') {
     extract($GLOBALS);
     $value = $_REQUEST['data'];
@@ -294,8 +260,6 @@ if ($action == 'update_status_order') {
     $result = mysqli_query($link, $sel_query);
     echo json_encode($result);
 }
-
-
 function paginate($reload, $page, $tpages) {
     $adjacents = 2;
     $prevlabel = "«";
@@ -333,5 +297,4 @@ function paginate($reload, $page, $tpages) {
     $out.= "";
     return $out;
 }
-
 ?>

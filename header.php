@@ -36,15 +36,21 @@
 			<div class="col-md-6 col-xs-12">
 				<div class="topHeaderContent">
 					<ul>
+						<?php if (!empty($_SESSION['user'])) { ?>
+						<li> 
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?><b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                          		<li><a href="change-passsword.php"> Change Password </a></li>
+                          		<li><a onclick="logout();" href="javascript:;"> Logout </a></li>
+                          	</ul>
+                         </li>
+						<?php } else { ?>
+						<li><a href="login.php"><i class="fa fa-lock"></i> Login/Register </a></li>
+						<?php } ?>
 						<li><a href="distribution.php" class="<?= ($menu == 'distribute') ? 'active' : ''; ?>"> Become a distributor</a></li>
 						<li><a href="aboutus.php" class="<?= ($menu == 'about') ? 'active' : ''; ?>"> About Us</a></li>
 						<li><a href="gallery.php" class="<?= ($menu == 'gallery') ? 'active' : ''; ?>"> Gallery</a></li>
 						<li><a href="contact-us.php" class="<?= ($menu == 'contact') ? 'active' : ''; ?>"> Contact Us</a></li>
-						<li><?php if (!empty($_SESSION['user'])) { ?>
-						<a onclick="logout();" href="javascript:;"><i class="fa fa-unlock"></i><?php echo $_SESSION['user']['name']; ?></a>
-						<?php } else { ?>
-						<a href="login.php"><i class="fa fa-lock"></i> Login/Register </a> <?php } ?>
-						</li>							
 					</ul>
 				</div>
 			</div>

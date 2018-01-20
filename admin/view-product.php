@@ -1,7 +1,5 @@
 <?php
-error_reporting(E_ALL);
-
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 ob_start();
 include_once('common/functions-admin.php');
 // include_once('js/custom.js');
@@ -62,11 +60,22 @@ $page = 0;
         $end = $per_page;
         $show_page=1;
     }
+    
+if(isset($_GET['page'])){
     // display pagination
-    $page = intval($_GET['page']);
-    $tpages = $total_pages;
-    if ($page <= 0)
-        $page = 1;
+        $page = intval($_GET['page']);
+        $tpages = $total_pages;
+        if ($page <= 0)
+            $page = 1;
+
+    } else {
+    // display pagination
+        $page = intval(0);
+        $tpages = $total_pages;
+        if ($page <= 0)
+            $page = 1;
+
+    }
 
 
 $details = display_all_products();
@@ -105,7 +114,7 @@ $details = display_all_products();
                             <tr id='<?php echo $details[$i]['product_id']; ?>'>
                                 <td><?php echo $i + 1; ?></td>
                                 <td><?php echo $details[$i]['product_name']; ?></td>
-                                <td><img src="<?php echo "../../".$details[$i]['main_img']; ?>" width="50%"></td>
+                                <td><img src="<?php echo "../".$details[$i]['main_img']; ?>" width="50%"></td>
                                 <td><?php echo $details[$i]['gst_val']; ?></td>
                                 <td><?php echo $details[$i]['review_count']; ?></td>
                                 <td class="button-holder">

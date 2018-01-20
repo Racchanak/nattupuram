@@ -11,14 +11,16 @@ include('header.php');
                 <div class="login-form"><!--login form-->
                     <h2>Login to your account</h2>
                     <form id="login" onsubmit="return login_check();">
-                        <input type="text" id="login_email" name="email" placeholder="Email Address" />
+                        <input type="email" id="login_email" name="email" placeholder="Email Address" />
                         <input type="password" id="login_password" name="password" placeholder="Password" />
+                        <div><span class="error-login"></span></div>
                         <!-- <span>
                                 <input type="checkbox" class="checkbox"> 
                                 Keep me signed in
                         </span> -->
                         <button type="submit" id="login" class="btn btn-default">Login</button>
                     </form>
+                    <a href="forget-passsword.php"> Forgot password</a>
                 </div><!--/login form-->
             </div>
             <div class="col-sm-1">

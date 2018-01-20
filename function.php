@@ -340,6 +340,75 @@ if (isset($_POST)) {
             echo json_encode(0);
         }
     }
+    if($action == 'checkpassword') {
+        extract($_POST);
+        $link = $GLOBALS['link']; 
+        $sel_query = "SELECT * FROM register WHERE register_id=".$user_id." AND password='".md5($old_password)."'";
+        $res = mysqli_query($link, $sel_query) or die('Error in Query.' . mysqli_error($link));
+        $arr = array();
+        while ($row = mysqli_fetch_assoc($res)) {
+            $arr[] = $row;
+        }
+        if (!empty($arr)) {
+            echo json_encode((int) $arr[0]['register_id']);
+        } else {
+            echo json_encode(0);
+        } 
+    }
+    if($action == 'changePassword') {
+        extract($_POST);
+        $link = $GLOBALS['link']; 
+        $query = "UPDATE register SET password='".md5($password)."' WHERE register_id=".$user_id;
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        echo json_encode((int) $user_id);        
+    }
+    if ($action == 'checkemail') {
+        extract($_POST);
+        $link = $GLOBALS['link'];  
+        $query = "SELECT * FROM register WHERE emailid='" . $emailid . "'";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $arr = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $arr[] = $row;
+        }
+        if (!empty($arr)) {
+            echo json_encode((int) $arr[0]['register_id']);
+        } else {
+            echo json_encode(0);
+        }
+    }
+    if ($action == 'forgetpass') {
+        extract($_POST);
+        $link = $GLOBALS['link']; 
+        $password = randomString(5,$emailid);
+        $query = "UPDATE register SET password='".md5($password)."' WHERE emailid='".$emailid."'";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $sel_query = "SELECT * FROM register WHERE emailid='" . $emailid . "'";
+        $res = mysqli_query($link, $sel_query) or die('Error in Query.' . mysqli_error($link));
+        $arr = array();
+        while ($row = mysqli_fetch_assoc($res)) {
+            $arr[] = $row;
+        }
+        $subject = "Forget Password";
+        $message = "<html>
+        <head>
+        <title>HTML email</title>
+        </head>
+        <body>
+        <p>Hi ".$arr[0]['name'] .",</p>
+        <p>Your new Password is '".$password."'.</p>
+        <p>Thank you<br><br>Regards,<br><a href='http://www.nattupuram.com/'>Nattupuram</a></p>
+        </body>
+        </html>";
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        // More headers
+        $headers .= 'From: <salesnattupuram@gmail.com>' . "\r\n";
+        $headers .= 'Cc: salesnattupuram@gmail.com' . "\r\n";
+        mail($emailid,$subject,$message,$headers);
+        echo json_encode((int) $arr[0]['register_id']);
+    }
     if ($action == 'product') {
         $link = $GLOBALS['link'];  
         $query = "SELECT * FROM `review` WHERE product_name='" . $product . "'";

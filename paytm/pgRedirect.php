@@ -23,7 +23,7 @@ $paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;
 $paramList["CHANNEL_ID"] = $CHANNEL_ID;
 $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
 $paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
-$paramList["CALLBACK_URL"] = "pgResponse.php";
+$paramList["CALLBACK_URL"] = "pgRedirect.php";
 
 /*
 $paramList["MSISDN"] = $MSISDN; //Mobile number of customer
@@ -43,7 +43,7 @@ $checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
 </head>
 <body>
 	<center><h1>Please do not refresh this page...</h1></center>
-		<form method="post" action="<?php echo PAYTM_TXN_URL.'?orderid='.$Order_ID; ?>" name="f1">
+		<form method="post" action="<?php echo PAYTM_TXN_URL.'?orderid='.$ORDER_ID; ?>" name="f1">
 		<table border="1">
 			<tbody>
 			<?php
