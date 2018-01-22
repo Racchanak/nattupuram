@@ -228,6 +228,21 @@ function applyDiscounts() {
     return false;    
 }
 
+function deleteCart(cart_id) {
+    var delete_data = {'cart_id': cart_id};
+    $.ajax({
+        url: 'function.php?action=deleteCart',
+        type: 'POST',
+        data: delete_data,
+        success: function (res) {
+            if (res > 0) {
+                window.location.href = 'cart.php';
+            }
+        }
+    });    
+    return false;
+}
+
 function add_register() {
     var name = $('#reg_name').val();
     var emailid = $('#reg_email').val();

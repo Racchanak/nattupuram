@@ -97,8 +97,8 @@
 							<div class="boxData">
 								<p><?php echo $value['gstAmt']; ?></p>
 							</div>
-							<div class="boxData">
-								<p><a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a></p>
+							<div class="boxDatadele">
+								<p><a class="cart_quantity_delete" onclick="deleteCart(<?php echo $value['cart_id']; ?>);" href="javascript:;"><i class="fa fa-times"></i></a></p>
 							</div>
 						</div>
 					<?php } ?>
