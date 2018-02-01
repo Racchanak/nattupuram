@@ -80,22 +80,42 @@ if (isset($_SESSION['user']['register_id'])) {
     	$cartValue = $key;
     }
 } else if ((isset($_COOKIE['Guest_cart'])) && ($_COOKIE['Guest_cart'] > 0)) {
-    $order_id = $_COOKIE['Guest_cart'];
-    $orders = order_data('', '', $order_id);
+    $cart_id = $_COOKIE['Guest_cart']; //cart_id
+    $product_cart = carts_data('',$cart_id);
     $cartValue = 0;
-    if (!empty($orders)) {
-        $product_order[0] = $orders[0];
-        $product_order[0]['product_details'] = products_data($product_order[0]['product_id']);
-        if (!empty($product_order[0]['product_details'][0]['offer_ids'])) {
-            $product_offers = explode(',', $product_order[0]['product_details'][0]['offers']);
-            $offers_id = explode(',', $product_order[0]['product_details'][0]['offer_ids']);
-            foreach ($offers_id as $key => $value) {
-                $offer_details = offers_data($value);
-                $product_order[0]['offers'][$key] = $product_offers[$key];
-                $product_order[0]['products_offers'][$key] = $offer_details[0];
+    foreach ($product_cart as $key => $value) {
+        $orders = order_data('', $value['cart_id']);
+        if (!empty($orders)) {
+            $product_order[0] = $orders[0];
+            $product_order[0]['product_details'] = products_data($product_order[0]['product_id']);
+            if (!empty($product_order[0]['product_details'][0]['offer_ids'])) {
+                $product_offers = explode(',', $product_order[0]['product_details'][0]['offers']);
+                $offers_id = explode(',', $product_order[0]['product_details'][0]['offer_ids']);
+                foreach ($offers_id as $key => $value) {
+                    $offer_details = offers_data($value);
+                    $product_order[0]['offers'][$key] = $product_offers[$key];
+                    $product_order[0]['products_offers'][$key] = $offer_details[0];
+                }
             }
         }
+        $cartValue = $key;
     }
+
+    // $orders = order_data('', '', $order_id);
+    // $cartValue = 0;
+    // if (!empty($orders)) {
+    //     $product_order[0] = $orders[0];
+    //     $product_order[0]['product_details'] = products_data($product_order[0]['product_id']);
+    //     if (!empty($product_order[0]['product_details'][0]['offer_ids'])) {
+    //         $product_offers = explode(',', $product_order[0]['product_details'][0]['offers']);
+    //         $offers_id = explode(',', $product_order[0]['product_details'][0]['offer_ids']);
+    //         foreach ($offers_id as $key => $value) {
+    //             $offer_details = offers_data($value);
+    //             $product_order[0]['offers'][$key] = $product_offers[$key];
+    //             $product_order[0]['products_offers'][$key] = $offer_details[0];
+    //         }
+    //     }
+    // }
 } else {	
 	$cartValue = 0;
 }

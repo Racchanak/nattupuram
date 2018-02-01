@@ -15,7 +15,7 @@ if (isset($_POST)) {
         extract($_POST);
         $link = $GLOBALS['link'];  
         $query = "INSERT INTO review (name,product_id,emailid,city,message,cret_date,product_name,product_img) 
-			VALUES ('" . $name . "',".$product_id.",'" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "','" . $product . "','" . $product_img . "')";
+            VALUES ('" . $name . "',".$product_id.",'" . $emailid . "','" . $city . "','" . $msg . "','" . date('Y-m-d H:i:s') . "','" . $product . "','" . $product_img . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $rev_id = mysqli_insert_id($link);
         echo json_encode($rev_id);
@@ -88,14 +88,22 @@ if (isset($_POST)) {
     if ($action == 'product_order') {
         extract($_POST);
         $link = $GLOBALS['link'];  
-        $cart_ids = explode(',', $cart_ids);
-        foreach ($cart_ids as $key => $value) {
-            $cart_detials = carts_data($user_id,$value);
-            $query = "INSERT INTO product_order (user_id,cart_id,product_id,total,delivery_status,order_status,cret_date) VALUES ('" . $user_id . "','" . $value . "','" . $cart_detials[0]['product_id'] . "', '" . $cart_detials[0]['total'] . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
-            $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
-            $order_id = mysqli_insert_id($link);
-        }
-        echo json_encode($order_id);
+        print_r($cart_ids);
+        exit();
+        // $cart_ids = explode(',', $cart_ids);
+        // foreach ($cart_ids as $key => $value) {
+        //     $cart_detials = carts_data($user_id,$value);
+
+        // // $query = "INSERT INTO product_order (cart_id,product_id,product_name,category,quantity,price,originalAmt,offersdiscount,gstAmt,gstValue,total,delivery_status, order_status,cret_date) VALUES ('".$cart_id."', '" . $product_id . "', '" . $product_name . "','".$product_category."', 
+        // //     '" . $product_quantity . "','" . $product_amount . "','" . $originalAmt . "','".$offersdiscount."', 
+        // //     '".$sele_gstAmt."', '".$sele_gstValue."','" . $total. "','N','Pending','" . date('Y-m-d H:i:s') . "')";
+
+        //     $query = "INSERT INTO product_order (user_id,cart_id,product_id,total,delivery_status,order_status,cret_date) VALUES ('" . $user_id . "','" . $value . "','" . $cart_detials[0]['product_id'] . "', '" . $cart_detials[0]['total'] . "','N','Pending','" . date('Y-m-d H:i:s') . "')";
+
+        //     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        //     $order_id = mysqli_insert_id($link);
+        // }
+        // echo json_encode($order_id);
     }
     if ($action == 'user_address') {
         extract($_POST);
@@ -103,7 +111,7 @@ if (isset($_POST)) {
         if(isset($_SESSION['user']['register_id'])) {
             $query = "INSERT INTO user_address (user_id,name,phoneno,address1,address2,country,city, state,pincode,cret_date) VALUES ('" . $user_id . "','" . $_SESSION['user']['name'] . "','" . $phone. "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $country . "', '" . $zipcode . "', '" . date('Y-m-d H:i:s') . "')";
         } else if(isset($_COOKIE['Guest_cart'])) { 
-            $query = "INSERT INTO user_address (guest_orderid,name,phoneno,address1,address2,country,city, state,pincode,cret_date) VALUES ('" . $_COOKIE['Guest_cart'] . "','" . $name . "','" . $phone. "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $country . "', '" . $zipcode . "', '" . date('Y-m-d H:i:s') . "')";
+            $query = "INSERT INTO user_address (guest_orderid,name,phoneno,address1,address2,country,city, state,pincode,cret_date) VALUES ('" . $_COOKIE['Guest_order'] . "','" . $name . "','" . $phone. "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $country . "', '" . $zipcode . "', '" . date('Y-m-d H:i:s') . "')";
         }
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $address_id = mysqli_insert_id($link);
@@ -115,7 +123,7 @@ if (isset($_POST)) {
         if(isset($_SESSION['user']['register_id'])) {
             $query = "INSERT INTO product_transaction (user_id, billing_addid, total_amt,cret_date) VALUES ('" . $user_id . "','" . $billing_addid . "','" . $total_amt. "', '" . date('Y-m-d H:i:s') . "')";
         } else if(isset($_COOKIE['Guest_cart'])) { 
-            $query = "INSERT INTO product_transaction (guest_orderid, billing_addid, total_amt,cret_date) VALUES ('" . $_COOKIE['Guest_cart'] . "','" . $billing_addid . "','" . $total_amt. "', '" . date('Y-m-d H:i:s') . "')";
+            $query = "INSERT INTO product_transaction (guest_orderid, billing_addid, total_amt,cret_date) VALUES ('" . $_COOKIE['Guest_order'] . "','" . $billing_addid . "','" . $total_amt. "', '" . date('Y-m-d H:i:s') . "')";
         }
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $transaction_id = mysqli_insert_id($link);
@@ -131,12 +139,20 @@ if (isset($_POST)) {
         $link = $GLOBALS['link']; 
         $total = ($product_quantity*$product_amount);        
         $sele_gstAmt = ($total + ($total * $sele_gstValue) / 100);
-        $query = "INSERT INTO product_order (product_id,product_name,category,quantity,price,originalAmt,offersdiscount,gstAmt,gstValue,total,delivery_status, order_status,cret_date) VALUES ('" . $product_id . "', '" . $product_name . "','".$product_category."', 
+
+        $query = "INSERT INTO product_cart (user_id,product_id,product_name,category,quantity,price, originalAmt,offersdiscount,gstAmt,gstValue,total,cret_date) VALUES ('0',
+        '" . $product_id . "','" . $product_name . "','" . $product_category . "','" . $product_quantity . "',
+        '" . $product_amount . "','" . $originalAmt . "','".$offersdiscount."', '".$sele_gstAmt."', 
+        '".$sele_gstValue."','" . $total . "','" . date('Y-m-d H:i:s') . "')";
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+        $cart_id = mysqli_insert_id($link);
+
+        $query = "INSERT INTO product_order (cart_id,product_id,product_name,category,quantity,price,originalAmt,offersdiscount,gstAmt,gstValue,total,delivery_status, order_status,cret_date) VALUES ('".$cart_id."', '" . $product_id . "', '" . $product_name . "','".$product_category."', 
             '" . $product_quantity . "','" . $product_amount . "','" . $originalAmt . "','".$offersdiscount."', 
             '".$sele_gstAmt."', '".$sele_gstValue."','" . $total. "','N','Pending','" . date('Y-m-d H:i:s') . "')";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $order_id = mysqli_insert_id($link);
-        echo json_encode($order_id);  
+        echo json_encode('c'.$cart_id.'_o'.$order_id);  
     }
     if ($action == 'guestLoginregister') { //gOrderId
         extract($_POST);
@@ -172,6 +188,9 @@ if (isset($_POST)) {
         $headers .= 'Cc: salesnattupuram@gmail.com' . "\r\n";
         mail($curr_user['emailid'],$subject,$message,$headers);
         $curr_user['order_id'] = $gOrderId;
+        $cart_id = $_COOKIE['Guest_cart'];
+        $cquery = "UPDATE product_cart SET user_id='".$reg_id."' WHERE  cart_id=".$cart_id;
+        $cresult = mysqli_query($link, $cquery) or die('Error in Query.' . mysqli_error($link));            
         $query = "UPDATE product_order SET user_id='".$reg_id."' WHERE order_id=".$gOrderId;
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         echo json_encode($curr_user);
@@ -193,6 +212,9 @@ if (isset($_POST)) {
             $curr_user['emailid'] = $arr[0]['emailid'];
             $_SESSION['user'] = $curr_user;
             $curr_user['order_id'] = $gOrderId;
+            $cart_id = $_COOKIE['Guest_cart'];
+            $cquery = "UPDATE product_cart SET user_id='".$arr[0]['register_id']."' WHERE  cart_id=".$cart_id;
+            $cresult = mysqli_query($link, $cquery) or die('Error in Query.' . mysqli_error($link));
             $query = "UPDATE product_order SET user_id='".$arr[0]['register_id']."' WHERE order_id=".$gOrderId;
             $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
             echo json_encode($curr_user);
@@ -216,7 +238,7 @@ if (isset($_POST)) {
         $order_id = explode(',', $order_ids);
         $grand_total = 0;
         foreach ($order_id as $key => $value) {         
-            $order_details = "SELECT * FROM product_order WHERE order_id='" . $value . "'";
+            $order_details = "SELECT * FROM product_order WHERE del_flag='N' AND order_id='" . $value . "'";
             $res_order = mysqli_query($link, $order_details) or die('Error in Query.' . mysqli_error($link));
             $arr = array();
             while ($row = mysqli_fetch_assoc($res_order)) {
@@ -227,7 +249,7 @@ if (isset($_POST)) {
         $response['grand_total'] = $grand_total;
         if(!empty($aCcoupon)) {
             //coupon code
-            $coupon = "SELECT * FROM Offers WHERE coupon_code='" . $aCcoupon . "' AND del_flag='N'";
+            $coupon = "SELECT * FROM Offers WHERE del_flag='N' AND coupon_code='" . $aCcoupon . "'";
             $res_coupon = mysqli_query($link, $coupon) or die('Error in Query.' . mysqli_error($link));
             $coupon_arr = array();
             while ($row = mysqli_fetch_assoc($res_coupon)) {
@@ -241,7 +263,7 @@ if (isset($_POST)) {
             }
         }
         if(!empty($redeemCash)) {
-            $redcoupon = "SELECT * FROM Offers WHERE coupon_code='" . $redeemCash . "' AND del_flag='N'";
+            $redcoupon = "SELECT * FROM Offers WHERE del_flag='N' AND coupon_code='" . $redeemCash . "'";
             $red_coupon = mysqli_query($link, $redcoupon) or die('Error in Query.' . mysqli_error($link));
             $redcoupon_arr = array();
             while ($row = mysqli_fetch_assoc($red_coupon)) {
@@ -259,13 +281,13 @@ if (isset($_POST)) {
             }
         }
         if(!empty($referCode)) {
-            $redcoupon = "SELECT * FROM Offers WHERE coupon_code='user' AND del_flag='N'";
+            $redcoupon = "SELECT * FROM Offers WHERE del_flag='N' AND coupon_code='user'";
             $red_coupon = mysqli_query($link, $redcoupon) or die('Error in Query.' . mysqli_error($link));
             $redcoupon_arr = array();
             while ($row = mysqli_fetch_assoc($red_coupon)) {
                 $redcoupon_arr[] = $row;
             }
-            $refcoupon = "SELECT * FROM register WHERE referal_code='" . $referCode . "' AND register_id!='" . $user_id . "'";
+            $refcoupon = "SELECT * FROM register WHERE del_flag='N' AND referal_code='" . $referCode . "' AND register_id!='" . $user_id . "'";
             $ref_coupon = mysqli_query($link, $refcoupon) or die('Error in Query.' . mysqli_error($link));
             $refcoupon_arr = array();
             while ($row = mysqli_fetch_assoc($ref_coupon)) {
@@ -323,7 +345,7 @@ if (isset($_POST)) {
     if ($action == 'userlogin') {
         extract($_POST);
         $link = $GLOBALS['link'];  
-        $query = "SELECT * FROM register WHERE emailid='" . $emailid . "' AND password='" . md5($password) . "' AND del_flag='N'";
+        $query = "SELECT * FROM register WHERE del_flag='N' AND emailid='" . $emailid . "' AND password='" . md5($password) . "'";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $arr = array();
         while ($row = mysqli_fetch_assoc($result)) {
@@ -343,7 +365,7 @@ if (isset($_POST)) {
     if($action == 'checkpassword') {
         extract($_POST);
         $link = $GLOBALS['link']; 
-        $sel_query = "SELECT * FROM register WHERE register_id=".$user_id." AND password='".md5($old_password)."' AND del_flag='N'";
+        $sel_query = "SELECT * FROM register WHERE del_flag='N' AND register_id=".$user_id." AND password='".md5($old_password)."'";
         $res = mysqli_query($link, $sel_query) or die('Error in Query.' . mysqli_error($link));
         $arr = array();
         while ($row = mysqli_fetch_assoc($res)) {
@@ -365,7 +387,7 @@ if (isset($_POST)) {
     if ($action == 'checkemail') {
         extract($_POST);
         $link = $GLOBALS['link'];  
-        $query = "SELECT * FROM register WHERE emailid='" . $emailid . "' AND del_flag='N'";
+        $query = "SELECT * FROM register WHERE del_flag='N' AND emailid='" . $emailid . "'";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $arr = array();
         while ($row = mysqli_fetch_assoc($result)) {
@@ -383,7 +405,7 @@ if (isset($_POST)) {
         $password = randomString(5,$emailid);
         $query = "UPDATE register SET password='".md5($password)."' WHERE emailid='".$emailid."'";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
-        $sel_query = "SELECT * FROM register WHERE emailid='" . $emailid . "' AND del_flag='N'";
+        $sel_query = "SELECT * FROM register WHERE del_flag='N' AND emailid='" . $emailid . "'";
         $res = mysqli_query($link, $sel_query) or die('Error in Query.' . mysqli_error($link));
         $arr = array();
         while ($row = mysqli_fetch_assoc($res)) {
@@ -411,7 +433,7 @@ if (isset($_POST)) {
     }
     if ($action == 'product') {
         $link = $GLOBALS['link'];  
-        $query = "SELECT * FROM `review` WHERE product_name='" . $product . "' AND del_flag='N'";
+        $query = "SELECT * FROM `review` WHERE del_flag='N' AND product_name='" . $product . "'";
         $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
         $arr = array();
         while ($row = mysqli_fetch_assoc($result)) {
@@ -423,6 +445,18 @@ if (isset($_POST)) {
         $_SESSION['user'] = '';
         echo json_encode(1);
     }
+    if ($action == 'deleteCart') { 
+        $link = $GLOBALS['link']; 
+        $query = "UPDATE product_cart SET del_flag='Y' WHERE cart_id=".$_POST['cart_id'];
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link)); 
+        echo json_encode((int) $_POST['cart_id']); 
+    }
+    if ($action == 'deleteOrder') { 
+        $link = $GLOBALS['link']; 
+        $query = "UPDATE product_order SET del_flag='Y' WHERE order_id=".$_POST['order_id'];
+        $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link)); 
+        echo json_encode((int) $_POST['order_id']); 
+    }
 }   
 function randomString($length,$string) {
     $str = "";
@@ -433,13 +467,6 @@ function randomString($length,$string) {
         $str .= $characters[$rand];
     }
     return $str;
-}
-
-function deleteCart(){
-    $link = $GLOBALS['link'];  
-    $query = "UPDATE register SET del_flag='N' WHERE cart_id=".$cart_id;
-    $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
-    echo json_encode((int) $cart_id);  
 }
 
 function reviews_data() {
@@ -458,7 +485,7 @@ function offers_data($offer_id = '') {
     if($offer_id=='') {
         $query = "SELECT * FROM `Offers` WHERE del_flag='N'";
     } else {
-        $query = "SELECT * FROM `Offers` WHERE offers_id = '".$offer_id."' AND del_flag='N'" ;
+        $query = "SELECT * FROM `Offers` WHERE del_flag='N' AND offers_id = '".$offer_id."'" ;
     }
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $arr = array();
@@ -496,9 +523,11 @@ function offers_data($offer_id = '') {
 function carts_data($user_id,$cart_id = '') {
     $link = $GLOBALS['link'];  
     if($cart_id=='') {
-        $query = "SELECT * FROM `product_cart` WHERE user_id='".$user_id."' AND del_flag='N'";
+        $query = "SELECT * FROM `product_cart` WHERE del_flag='N' AND user_id='".$user_id."'";
+    } else if($cart_id!='' && $userid!='') {
+        $query = "SELECT * FROM `product_cart` WHERE del_flag='N' AND user_id='".$user_id."' AND cart_id='".$cart_id."'";       
     } else {
-        $query = "SELECT * FROM `product_cart` WHERE user_id='".$user_id."' AND cart_id='".$cart_id."' AND del_flag='N'";        
+        $query = "SELECT * FROM `product_cart` WHERE del_flag='N' AND cart_id='".$cart_id."'";        
     }
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $arr = array();
@@ -510,12 +539,14 @@ function carts_data($user_id,$cart_id = '') {
 
 function order_data($user_id,$cart_id = '',$order_id='') {
     $link = $GLOBALS['link'];  
-    if($cart_id!='') {
-        $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."' AND cart_id='".$cart_id."' AND del_flag='N'";
+    if($cart_id!='' && $user_id!='') {
+        $query = "SELECT * FROM `product_order` WHERE del_flag='N' AND user_id='".$user_id."' AND cart_id='".$cart_id."'";
     } else if ($order_id!='') {
-        $query = "SELECT * FROM `product_order` WHERE order_id='".$order_id."' AND del_flag='N'";
+        $query = "SELECT * FROM `product_order` WHERE del_flag='N' AND order_id='".$order_id."'";
+    } else if($user_id!='') {
+        $query = "SELECT * FROM `product_order` WHERE del_flag='N' AND user_id='".$user_id."'";        
     } else {
-        $query = "SELECT * FROM `product_order` WHERE user_id='".$user_id."' AND del_flag='N'";        
+        $query = "SELECT * FROM `product_order` WHERE del_flag='N' AND cart_id='".$cart_id."'";         
     }
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $arr = array();
@@ -527,15 +558,15 @@ function order_data($user_id,$cart_id = '',$order_id='') {
 
 function products_data($product_id='') {
     $link = $GLOBALS['link'];  
-    $query = "SELECT * FROM `products` WHERE del_flag='N'";
+    $query = "SELECT * FROM `products`";
     if ($product_id!='') {
-        $mquery = "SELECT * FROM `product_methods` WHERE product_id='" . $product_id . "' AND del_flag='N'";
+        $mquery = "SELECT * FROM `product_methods` WHERE del_flag='N' AND product_id='" . $product_id . "'";
         $mresult = mysqli_query($link, $mquery) or die('Error in Query.' . mysqli_error($link));
         $methods = array();
         while ($mrow = mysqli_fetch_assoc($mresult)) {
             $methods[] = $mrow['description'];
         }
-        $fquery = "SELECT * FROM `product_facts` WHERE product_id='" . $product_id . "' AND del_flag='N'";
+        $fquery = "SELECT * FROM `product_facts` WHERE del_flag='N' AND product_id='" . $product_id . "'";
         $fresult = mysqli_query($link, $fquery) or die('Error in Query.' . mysqli_error($link));
         $facts = array();
         $fkey = 0;
@@ -544,25 +575,25 @@ function products_data($product_id='') {
             $facts[$fkey]['fact_result'] = $frow['fact_result'];
             $fkey++;
         }
-        $cquery = "SELECT * FROM `product_characteristics` WHERE product_id='" . $product_id . "' AND del_flag='N'";
+        $cquery = "SELECT * FROM `product_characteristics` WHERE del_flag='N' AND product_id='" . $product_id . "'";
         $cresult = mysqli_query($link, $cquery) or die('Error in Query.' . mysqli_error($link));
         $charater = array();
         while ($crow = mysqli_fetch_assoc($cresult)) {
             $charater[] = $crow['description'];
         }
-        $bquery = "SELECT * FROM `product_benefits` WHERE product_id='" . $product_id . "' AND del_flag='N'";
+        $bquery = "SELECT * FROM `product_benefits` WHERE del_flag='N' AND product_id='" . $product_id . "'";
         $bresult = mysqli_query($link, $bquery) or die('Error in Query.' . mysqli_error($link));
         $benefit = array();
         while ($brow = mysqli_fetch_assoc($bresult)) {
             $benefit[] = $brow['description'];
         }
-        $rquery = "SELECT * FROM `review` WHERE product_id='" . $product_id . "' AND del_flag='N' LIMIT 0,5";
+        $rquery = "SELECT * FROM `review` WHERE del_flag='N' AND product_id='" . $product_id . "' LIMIT 0,5";
         $rresult = mysqli_query($link, $rquery) or die('Error in Query.' . mysqli_error($link));
         $reviews = array();
         while ($rrow = mysqli_fetch_assoc($rresult)) {
             $reviews[] = $rrow;
         }
-        $query = "SELECT * FROM `products` WHERE product_id='" . $product_id . "' AND del_flag='N'";
+        $query = "SELECT * FROM `products` WHERE del_flag='N' AND product_id='" . $product_id . "'";
     } 
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $products = array();
@@ -594,19 +625,19 @@ function products_data($product_id='') {
 
 function transaction_data($transaction_id='') {
     $link = $GLOBALS['link'];  
-    $query = "SELECT * FROM `product_transaction` WHERE transaction_id='" . $transaction_id . "' AND del_flag='N'"; 
+    $query = "SELECT * FROM `product_transaction` WHERE del_flag='N' AND transaction_id='" . $transaction_id . "'"; 
     $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
     $transact = array();
     while ($row = mysqli_fetch_assoc($result)) {
         $transact[] = $row;
     }
-    $uquery = "SELECT * FROM `register` WHERE register_id='" . $transact[0]['user_id'] . "' AND del_flag='N'";
+    $uquery = "SELECT * FROM `register` WHERE del_flag='N' AND register_id='" . $transact[0]['user_id'] . "'";
     $uresult = mysqli_query($link, $uquery) or die('Error in Query.' . mysqli_error($link));
     $user = array();
     while ($urow = mysqli_fetch_assoc($uresult)) {
         $user[] = $urow;
     }
-    $aquery = "SELECT * FROM `user_address` WHERE address_id='" . $transact[0]['billing_addid'] . "' AND del_flag='N'";
+    $aquery = "SELECT * FROM `user_address` WHERE del_flag='N' AND address_id='" . $transact[0]['billing_addid'] . "'";
     $aresult = mysqli_query($link, $aquery) or die('Error in Query.' . mysqli_error($link));
     $address = array();
     while ($arow = mysqli_fetch_assoc($aresult)) {
@@ -626,6 +657,32 @@ function transaction_data($transaction_id='') {
 function limit_words($string, $word_limit) {
     $words = explode(" ", $string);
     return implode(" ", array_splice($words, 0, $word_limit));
+}
+
+function select_product_order($edit) {
+    extract($GLOBALS);
+    $query = "SELECT * FROM `product_order` WHERE del_flag='N' AND order_id=$edit ORDER BY `order_id` DESC ";
+    $result = mysqli_query($link, $query) or die('Error querying database.');
+    $arr = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $arr[] = $row;
+    }
+    return $arr;
+    mysqli_close($link);
+}
+
+function insert_payment_status($data) {
+    extract($GLOBALS);
+    extract($data_arr);
+    echo $query = 'INSERT INTO `product_transaction`(`total_amt`, `transaction_status`, `payment_id`, `user_id`) VALUES ("' . $data['TXNAMOUNT'] . '","' . $data['STATUS'] . '","' . $data['TXNID'] . '", "'. $data['ORDERID'] . '")';
+    $result = mysqli_query($link, $query) or die('Error in Query.' . mysqli_error($link));
+    $user_id = mysqli_insert_id($link);
+    if ($result) {
+        return true;
+    mysqli_close($link);
+    } else {
+        return false;
+    }
 }
 
 ?>

@@ -105,13 +105,13 @@ $('#product_filter').change(function () {
                             + '<img src="' + reviews[i]['product_img'] + '" alt="">'
                             + '</a>'
                             //<div class="post-meta">
-                            // 	<span style="float: left;">
-                            // 		<i class="fa fa-star"></i>
-                            // 		<i class="fa fa-star"></i>
-                            // 		<i class="fa fa-star"></i>
-                            // 		<i class="fa fa-star"></i>
-                            // 		<i class="fa fa-star-half-o"></i>
-                            // 	</span>
+                            //  <span style="float: left;">
+                            //      <i class="fa fa-star"></i>
+                            //      <i class="fa fa-star"></i>
+                            //      <i class="fa fa-star"></i>
+                            //      <i class="fa fa-star"></i>
+                            //      <i class="fa fa-star-half-o"></i>
+                            //  </span>
                             // </div> 
                             + '</div>'
                             + '<div class="col-sm-9">'
@@ -161,25 +161,34 @@ function checkoutGuestLogin() {
     var emailid = $('#guestemail').val();
     var password = $('#guestresPassword').val();
     var gOrderId = $('#gOrderId').val(); 
-    var ges_data = {'name': name, 'emailid': emailid, 'password': password, 'gOrderId':gOrderId};
-    $.ajax({
-        url: 'function.php?action=guestLoginregister',
-        type: 'POST',
-        data: ges_data,
-        success: function (res) {
-            var guestRegist = JSON.parse(res);
-            console.log(guestRegist);
-            $('.error-review').html('');
-            $('#user_id').val(guestRegist.register_id);
-            $('#add_name').val(guestRegist.name);
-            $('#add_email').val(guestRegist.emailid);
-            $('#gOrderId').val(guestRegist.order_id); 
-            $('#gRegister').val('GuestRegister');
-            $('#regisCheck').css('display','none');
-            $('#guestresPassword').val('');
-            after_discount();
-        }
-    });
+    if(password=='') {
+        $('#add_name').val(name);
+        $('#add_email').val(emailid);
+        $('#gOrderId').val(gOrderId);         
+    } else {
+        var ges_data = {'name': name, 'emailid': emailid, 'password': password, 'gOrderId':gOrderId};
+        $.ajax({
+            url: 'function.php?action=guestLoginregister',
+            type: 'POST',
+            data: ges_data,
+            success: function (res) {
+                var guestRegist = JSON.parse(res);
+                $('.error-review').html('');
+                $('#user_id').val(guestRegist.register_id);
+                $('#add_name').val(guestRegist.name);
+                $('#add_email').val(guestRegist.emailid);
+                $('#gOrderId').val(guestRegist.order_id); 
+                $('#gRegister').val('GuestRegister');
+                $('#regisCheck').css('display','none');
+                $('#guestresPassword').val('');
+                setTimeout(function () {
+                    window.location.href = 'checkout.php';
+                    $('.success-review').html('');
+                }, 1000);
+                after_discount();
+            }
+        });
+    }
     return false;    
 }
 
@@ -196,12 +205,17 @@ function checkoutRegisterLogin() {
             if (res == 0) {
                 $('.error-review').html('Please enter valid username and password');
             } else {
+                console.log(res);
                 var guestRegist = JSON.parse(res);
                 $('.error-review').html('');
                 $('#user_id').val(guestRegist.register_id);
                 $('#add_name').val(guestRegist.name);
                 $('#add_email').val(guestRegist.emailid);
                 $('#gOrderId').val(guestRegist.order_id); 
+                setTimeout(function () {
+                    window.location.href = 'checkout.php';
+                    $('.success-review').html('');
+                }, 1000);
                 after_discount();
             }
         }
@@ -226,21 +240,6 @@ function applyDiscounts() {
         }
     });
     return false;    
-}
-
-function deleteCart(cart_id) {
-    var delete_data = {'cart_id': cart_id};
-    $.ajax({
-        url: 'function.php?action=deleteCart',
-        type: 'POST',
-        data: delete_data,
-        success: function (res) {
-            if (res > 0) {
-                window.location.href = 'cart.php';
-            }
-        }
-    });    
-    return false;
 }
 
 function add_register() {
@@ -603,12 +602,14 @@ function purchase_cart() {
             url: 'function.php?action=guest_order',
             type: 'POST',
             data: product_data,
-            success: function (res) {
-                if (res > 0) {
-                    console.log(res);
-                    res = Number(res);
-                    console.log(res);
-                    document.cookie = 'Guest_cart=' + res;
+            success: function (response) {
+                if (response) {
+                    var res = JSON.parse(response);
+                    var cartOrder = res.split("_");
+                    var cart = cartOrder[0].split("c");
+                    var order = cartOrder[1].split("o");
+                    document.cookie = 'Guest_cart=' + Number(cart[1]);
+                    document.cookie = 'Guest_order=' + Number(order[1]);
                     setTimeout(function () {
                         window.location.href = 'checkout.php';
                     }, 1000);
@@ -796,4 +797,35 @@ function referral_email() {
         }
     });
     return false;
+}
+
+function deleteCart(cart_id) {
+    var delete_data = {'cart_id': cart_id};
+    $.ajax({
+        url: 'function.php?action=deleteCart',
+        type: 'POST',
+        data: delete_data,
+        success: function (res) {
+            if (res > 0) {
+                window.location.href = 'cart.php';
+            }
+        }
+    });    
+    return false;
+}
+
+function deleteOrder(order_id) {
+    var delete_data = {'order_id': order_id};
+    $.ajax({
+        url: 'function.php?action=deleteOrder',
+        type: 'POST',
+        data: delete_data,
+        success: function (res) {
+            if (res > 0) {
+                window.location.href = 'checkout.php';
+            }
+        }
+    });    
+    return false;
+
 }

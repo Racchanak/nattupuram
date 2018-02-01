@@ -16,7 +16,7 @@
 			<div class="reviewBox">
 					<div class="orangeBox">
 						<div class="boxData">
-							<p>Order No</p>
+							<p>Cart No</p>
 						</div>
 						<div class="boxDatanew">
 							<p>Product Name</p>
@@ -47,7 +47,7 @@
 	                	$grand_discount = 0; 
 	                	$grand_originalAmt = 0;
 	                	$grand_gst = 0;
-	                	// print_r($product_order);
+	                	// print_r($product_cart);
 	                	foreach ($product_cart as $key => $value) { 
                     		$grand_total+= $value['gstAmt']; 
             				$quantyPrice = ($value['originalAmt']*$value['quantity']);
@@ -61,7 +61,7 @@
 	                	?>
 						<div class="dataBox">
 							<div class="boxData">
-								<p>Web ID: <?php echo $value['order_id']; ?></p>
+								<p><?php echo $value['cart_id']; ?></p>
 							</div>
 							<div class="boxDatanew">
 								<p><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></p>
@@ -98,7 +98,7 @@
 								<p><?php echo $value['gstAmt']; ?></p>
 							</div>
 							<div class="boxDatadele">
-								<p><a class="cart_quantity_delete" onclick="deleteCart(<?php echo $value['cart_id']; ?>);" href="javascript:;"><i class="fa fa-times"></i></a></p>
+								<p><a class="cart_quantity_delete" onClick="deleteCart(<?php echo $value['cart_id']; ?>)" href="javascript:;"><i class="fa fa-times"></i></a></p>
 							</div>
 						</div>
 					<?php } ?>

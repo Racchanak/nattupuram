@@ -226,7 +226,6 @@ function applyDiscounts() {
     return false;    
 }
 
-
 function add_register() {
     var name = $('#reg_name').val();
     var emailid = $('#reg_email').val();
@@ -254,111 +253,21 @@ function add_register() {
         valid++;
     }
     var reg_data = {'name': name, 'emailid': emailid, 'password': password};
-    var email_data = {'emailid': emailid};
     if (valid == 3) {
         $.ajax({
-            url: 'function.php?action=checkemail',
-            type: 'POST',
-            data: email_data,
-            success: function (res) {
-                if (res > 0) {
-                    $('.error-review').html('Email Id is already register with us. Please Login with this email id.');
-                } else if (res == 0) {
-                    $.ajax({
-                        url: 'function.php?action=register',
-                        type: 'POST',
-                        data: reg_data,
-                        success: function (res) {
-                            if (res > 0) {
-                                $('.error-review').html('');
-                                $('#reg_name').val('');
-                                $('#reg_email').val('');
-                                $('#reg_password').val('');
-                                $('.success-review').html('Thanks for Your Registration');
-                                setTimeout(function () {
-                                    window.location.href = 'products.php';
-                                    $('.success-review').html('');
-                                }, 1000);
-                            }
-                        }
-                    });
-                }
-            }
-        });
-    }
-    return false;
-}
-
-function forget_email() {
-    console.log('emailid');
-        return false;
-    var emailid = $('#forget_email').val();
-    var valid = 0;
-    if (emailid == '') {
-        $('.error-review').html('Please enter your email id');
-        return false;
-    } else {
-        $('.error-review').html('');
-        valid++;
-    }
-    var reg_data = {'emailid': emailid};
-    if (valid == 1) {
-        $.ajax({
-            url: 'function.php?action=checkemail',
+            url: 'function.php?action=register',
             type: 'POST',
             data: reg_data,
             success: function (res) {
                 if (res > 0) {
-                    $.ajax({
-                        url: 'function.php?action=forgetpass',
-                        type: 'POST',
-                        data: reg_data,
-                        success: function (res) {
-                            if (res > 0) {
-                                $('.success-forget').html('Your Temporary Password will be mailed to your email id.');
-                            } else if (res == 0) {
-                                $('.error-forget').html('something went wrong');
-                            }
-                        }
-                    });
-                } else if (res == 0) {
-                    $('.error-forget').html('Please enter your registered email id');
-                }
-            }
-        });
-    }
-    return false;
-}
-
-function login_check() {
-    var emailid = $('#login_email').val();
-    var password = $('#login_password').val();
-    var valid = 0;
-    if (emailid == '') {
-        $('.error-review').html('Please enter your email id');
-        return false;
-    } else {
-        $('.error-review').html('');
-        valid++;
-    }
-    if (password == '') {
-        $('.error-review').html('Please enter your password');
-        return false;
-    } else {
-        $('.error-review').html('');
-        valid++;
-    }
-    var reg_data = {'emailid': emailid, 'password': password};
-    if (valid == 2) {
-        $.ajax({
-            url: 'function.php?action=userlogin',
-            type: 'POST',
-            data: reg_data,
-            success: function (res) {
-                if (res > 0) {
-                    window.location.href = 'products.php';
-                } else if (res == 0) {
-                    $('.error-review').html('Please enter valid username and password');
+                    $('.error-review').html('');
+                    $('#reg_name').val('');
+                    $('#reg_email').val('');
+                    $('#reg_password').val('');
+                    $('.success-review').html('Thanks for Your Registration');
+                    setTimeout(function () {
+                        $('.success-review').html('');
+                    }, 1000);
                 }
             }
         });

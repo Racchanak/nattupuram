@@ -40,7 +40,7 @@
 					</ul> 
 			</div><!--/checkout-options--> 
 			<div class="col-md-6">				
-			    <input type="hidden" id="gOrderId" value="<?php echo $_COOKIE['Guest_cart']; ?>">
+			    <input type="hidden" id="gOrderId" value="<?php echo $_COOKIE['Guest_order']; ?>">
 				<input type="hidden" id="add_email" value="">
 				<input type="hidden" id="add_name" value="">	
 				<div>                  
@@ -49,6 +49,8 @@
 							<input type="hidden" name="user_id" id="user_id" value="Guest_id">
 	                        <input type="text" id="login_email" name="email" placeholder="Email Address" />
 	                        <input type="password" id="login_password" name="password" placeholder="Password" />
+	                        <div><span class="error-review"></span></div>
+	                        <div><span class="success-review"></span></div>
 			                <button type="submit" class="btn btn-fefault cart" >
 			                    <i class="fa fa-shopping-cart"></i>
 			                    Continue
@@ -63,11 +65,11 @@
 							<input type="text" placeholder="Email*" id="guestemail" value="">
 			                <input type="hidden" id="gRegister" value="Guest">
 			                <label><input type="radio" class="regisCheck" name="guestRegister[]" value="GRegister"> Do You want to Register?</label></br>
-			                <span id="regisCheck" style="display: none;"><label>Password :</label><input type="password" name="password" id="guestresPassword" class="form-control">
+			                <span id="regisCheck" style="display: none;"><label>Password :</label><input type="password" name="password" id="guestresPassword" class="form-control"></span>
 			                <button type="submit" class="btn btn-fefault cart" >
 			                    <i class="fa fa-shopping-cart"></i>
 			                    Continue
-			                </button></span>
+			                </button>
 			            </form>
 			        </div>
 		        </div>
@@ -155,6 +157,9 @@
 					<div class="boxData">
 						<p>Total</p>
 					</div>
+					<div class="boxDatadele">
+						<p></p>
+					</div>
 				</div>
 				<div id="before_discount">
 					<?php 
@@ -210,6 +215,9 @@
 							</div>
 							<div class="boxData">
 								<p><?php echo $gstAmt; ?></p>
+							</div>
+							<div class="boxDatadele">
+								<p><a class="order_quantity_delete" onClick="deleteOrder(<?php echo $value['order_id']; ?>)" href="javascript:;"><i class="fa fa-times"></i></a></p>
 							</div>
 						</div>
 					<?php } ?>
@@ -274,6 +282,9 @@
 							</div>
 							<div class="boxData">
 								<p><?php echo $value['gstAmt']; ?></p>
+							</div>
+							<div class="boxDatadele">
+								<p><a class="order_quantity_delete" onClick="deleteOrder(<?php echo $value['order_id']; ?>)" href="javascript:;"><i class="fa fa-times"></i></a></p>
 							</div>
 						</div>
 					<?php } ?>

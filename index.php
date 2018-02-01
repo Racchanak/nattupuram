@@ -1,6 +1,6 @@
 <?php
 //http://demo.themeum.com/html/eshopper/cart.html
-    include('functioncall.php');
+include('functioncall.php');
 $title = 'Home';
 $menu = 'home';
 include('header.php');

@@ -3,6 +3,37 @@
 $title = 'Order Confirmation';
 $menu = 'confirmorder';
 include('header.php');
+
+
+header("Pragma: no-cache");
+header("Cache-Control: no-cache");
+header("Expires: 0");
+
+
+require_once("./lib/config_paytm.php");
+require_once("./lib/encdec_paytm.php");
+
+$paytmChecksum = "";
+$paramList = array();
+$isValidChecksum = "FALSE";
+
+$paramList = $_POST;
+$paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : "";
+
+$isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum);
+
+// $paramList["ORDERID"] = 24;
+// $paramList["TXNID"] = "70000566274";
+// $paramList["STATUS"] = "TXN_SUCCESS"; 
+// $paramList["TXNAMOUNT"] = 1084.65;
+
+$paramList["ORDERID"] = $_POST['ORDERID'];
+$paramList["TXNID"] = $_POST['TXNID'];
+$paramList["STATUS"] = $_POST['STATUS'];
+$paramList["TXNAMOUNT"] = $_POST['TXNAMOUNT'];
+
+
+$payment_status = insert_payment_status($paramList);
 ?>
 <body>
     <!-- <div class="container text-center">
@@ -14,9 +45,9 @@ include('header.php');
     <section id="cart_items">
         <div class="container text-center">
             <?php //include('category.php'); ?>
-    		<!-- <div class="logo-404">
-    			<a href="index.php"><img src="images/nattupuram.jpg" alt=""/></a>
-    		</div> -->
+            <!-- <div class="logo-404">
+                <a href="index.php"><img src="images/nattupuram.jpg" alt=""/></a>
+            </div> -->
                 <div class="review-payment">
                     <h1>Order Confirmation</h1>
                 </div>
@@ -35,7 +66,11 @@ include('header.php');
                         </thead>
                         <tbody>
                                 <?php 
-                                    $order_id = array(); 
+                                    session_start();
+                                    $_SESSION['id'] = 14;
+                                    $order_id = $_SESSION['id'];
+                                    $product_order = select_product_order($order_id);
+
                                     $grand_total = 0; 
                                     foreach ($product_order as $key => $value) { 
                                         $grand_total+= $value['total']; 
@@ -46,7 +81,7 @@ include('header.php');
                                     <p>Web ID: <?php echo $value['order_id']; ?></p>
                                 </td>
                                 <td class="cart_description">
-                                    <h4><a href="<?php echo $value['product_id']; ?>"><?php echo $value['product_name']; ?></a></h4>
+                                    <h4><a href="<?php echo "shopOnline.php?product_id=".$value['product_id']; ?>"><?php echo $value['product_name']; ?></a></h4>
                                 </td>
                                 <td class="cart_price">
                                     <p><?php echo $value['price']; ?></p>
@@ -120,7 +155,35 @@ include('header.php');
                                 </td>
                             </tr> -->
                             <tr>
-                                <td colspan="4"><p>Thank you for using nattupuram.com. You have ordered successsfully.</p></td>
+                                <td colspan="4">
+                                <?php
+
+
+                                    if($isValidChecksum == "TRUE") {
+                                        echo "<b>Checksum matched and following are the transaction details:</b>" . "<br/>";
+                                        if ($_POST["STATUS"] == "TXN_SUCCESS") {
+                                            echo "<b>Transaction status is success</b>" . "<br/>";
+                                            //Process your transaction here as success transaction.
+                                            //Verify amount & order id received from Payment gateway with your application's order id and amount.
+                                        }
+                                        else {
+                                            echo "<b>Transaction status is failure</b>" . "<br/>";
+                                        }
+
+                                        if (isset($_POST) && count($_POST)>0 )
+                                        { 
+                                            foreach($_POST as $paramName => $paramValue) {
+                                                    echo "<br/>" . $paramName . " = " . $paramValue;
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        echo "<b>Checksum mismatched.</b>";
+                                        //Process transaction as suspicious.
+                                    }
+
+                                ?>
+                                <p>Thank you for using nattupuram.com. You have ordered successsfully.</p></td>
                                 <td colspan="2">
                                     <table class="table table-condensed total-result">
                                         <!-- <tr>
